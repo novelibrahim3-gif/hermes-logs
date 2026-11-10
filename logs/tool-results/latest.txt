@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T03:07:46+07:00
-Status: ok
-Durasi: 463 ms
+Waktu: 2026-11-11T03:07:59+07:00
+Status: error
+Durasi: 602 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "ls -la /root/.hermes/tools/ 2>/dev/null; echo \"---\"; find /root/.hermes/tools -maxdepth 3 -name \"python3*\" 2>/dev/null | head; echo \"---\"; ls /root/.hermes/tools/*/bin/ 2>/dev/null | head"
+  "command": "PY=$(ls -d /root/.hermes/tools/python-3.14.9*/bin/python3 2>/dev/null | head -1); echo \"python: $PY\"; \"$PY\" -c \"\nimport yaml\nd = yaml.safe_load(open('/root/.hermes/config.yaml'))\nprint('YAML valid: YES')\nprint('compression:', d.get('compression'))\nprint('agent:', d.get('agent'))\nprint('model:', d.get('model'))\nprint('hooks:', list((d.get('hooks') or {}).keys()))\nprint('mcp_servers:', list((d.get('mcp_servers') or {}).keys()))\nprint('top-level:', list(d.keys()))\n\""
 }
 
 HASIL:
-{"output": "total 39\ndrwxr-xr-x+ 10 root root 3452 Nov  7 23:33 .\ndrwx------+ 32 root root 8192 Nov 11 03:07 ..\n-rw-------+  1 root root    0 Nov  7 23:30 .install.lock\ndrwxr-xr-x+  3 root root 3452 Nov  7 23:33 chromium-1208\ndrwxr-xr-x+  3 root root 3452 Nov  7 23:33 cua-driver-0.21.0-linux-arm64\n-rw-------+  1 root root 3267 Nov  7 23:33 facts.json\ndrwxr-xr-x+  6 root root 3452 Nov  7 23:31 ffmpeg-9.0.1-linux-arm64\ndrwxr-xr-x+  6 root root 3452 Nov  7 23:31 node-26.12.1-linux-arm64\ndrwxr-xr-x+  4 root root 3452 Nov  7 23:31 npm-12.0.2-linux-arm64\ndrwxr-xr-x+  6 root root 3452 Nov  7 23:32 python-3.14.9+202****1021-linux-arm64\ndrwxr-xr-x+  4 root root 3452 Nov  7 23:32 ripgrep-15.2.0-linux-arm64\ndrwxr-xr-x+  2 root root 3452 Nov  7 23:32 uv-0.13.5-linux-arm64\n---\n/root/.hermes/tools/python-3.14.9+202****1021-linux-arm64/bin/python3\n/root/.hermes/tools/python-3.14.9+202****1021-linux-arm64/bin/python3-config\n/root/.hermes/tools/python-3.14.9+202****1021-linux-arm64/bin/python3.14\n/root/.hermes/tools/python-3.14.9+202****1021-linux-arm64/bin/python3.14-config\n/root/.hermes/tools/python-3.14.9+202****1021-linux-arm64/include/python3.14\n/root/.hermes/tools/python-3.14.9+202****1021-linux-arm64/lib/python3.14\n---\n/root/.hermes/tools/ffmpeg-9.0.1-linux-arm64/bin/:\nffmpeg\nffplay\nffprobe\n\n/root/.hermes/tools/node-26.12.1-linux-arm64/bin/:\nnode\nnpm\nnpx", "exit_code": 0, "error": null}
+{"output": "python: /root/.hermes/tools/python-3.14.9+202****1021-linux-arm64/bin/python3\nTraceback (most recent call last):\n  File \"<string>\", line 2, in <module>\n    import yaml\nModuleNotFoundError: No module named 'yaml'", "exit_code": 1, "error": null, "hint": "Python cannot import 'yaml'. Most often the wrong interpreter is running: activate the project venv (e.g. `source .venv/bin/activate`) or invoke its python directly. Only pip install if the package is genuinely absent from that venv."}
