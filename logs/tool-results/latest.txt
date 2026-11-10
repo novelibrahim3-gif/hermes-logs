@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T02:16:03+07:00
+Waktu: 2026-11-11T02:16:23+07:00
 Status: ok
-Durasi: 3110 ms
+Durasi: 8517 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "cp /root/.hermes/cache/images/img_742500026bc6.jpg /root/.hermes/cache/scratch/now6.jpg && /root/craftworld-vision/.venv/bin/python -c \"\nimport sys\nsys.path.insert(0, '/root/craftworld-vision')\nimport cv2, targets, json, numpy as np\n\nrgb = cv2.cvtColor(cv2.imread('/root/.hermes/cache/scratch/now6.jpg'), cv2.COLOR_BGR2RGB)\nscale = rgb.shape[0] / 1600.0\nfor t in ['green_play', 'pink_x2', 'earth_mine', 'tank_body']:\n    res = targets.find_objects(rgb, t, scale)\n    print(f'TARGET: {t} -> count: {len(res)}')\n    for obj in res[:10]:\n        print('  ', json.dumps(obj))\n\na = cv2.imread('/root/.hermes/cache/scratch/now5.jpg').astype(np.float32)\nb = cv2.imread('/root/.hermes/cache/scratch/now6.jpg').astype(np.float32)\nd = np.abs(a-b).mean(axis=2)\nprint('diff now5 vs now6:', round(d.mean(),2), 'pct>30', round((d>30).mean()*100,1))\nroi = d[560:900, 140:460]\nprint('earthmine region diff:', round(roi.mean(),2))\n\""
+  "command": "tesseract /root/.hermes/cache/scratch/now6.jpg - --psm 11 2>/dev/null | head -12"
 }
 
 HASIL:
-{"output": "TARGET: green_play -> count: 0\nTARGET: pink_x2 -> count: 0\nTARGET: earth_mine -> count: 0\nTARGET: tank_body -> count: 1\n   {\"box\": [613, 1391, 99, 103], \"area\": 8194, \"center\": [662.0, 1442.0], \"centroid\": [661.8574566756163, 1441.8590432023432], \"confidence\": 1.0}\ndiff now5 vs now6: 65.26 pct>30 70.4\nearthmine region diff: 120.27", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
+{"output": "9.46 1.20A\n\n2:15 © @)_-\n\nKB/s 5.33W\n\n®D + S w+\n\nLet me look at the pixel structure of the body region wi\n\nth ASCII art.", "exit_code": 0, "error": null}
