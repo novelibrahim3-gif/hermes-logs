@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T02:14:44+07:00
+Waktu: 2026-11-11T02:14:56+07:00
 Status: ok
-Durasi: 50762 ms
+Durasi: 611 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "echo \"--- ollama ---\"; which ollama && ollama list 2>&1 | head -20; ls ~/.ollama/models/manifests/*/*/ 2>/dev/null | head; ls /data/data/com.termux/files/home/.ollama/models/manifests/*/*/ 2>/dev/null | head; echo \"--- python vision pkgs ---\"; /root/craftworld-vision/.venv/bin/python -c \"import importlib; [print(m, bool(importlib.util.find_spec(m))) for m in ['transformers','torch','llama_cpp','cv2','pytesseract']]\" 2>&1; echo \"--- gguf search ---\"; find / -name \"*.gguf\" -not -path \"*/proc/*\" 2>/dev/null | head -10; echo \"--- hermes providers ---\"; python3 -c \"import json;d=json.load(open('/root/.hermes/auth.json'));print(list(d.get('providers',{}).keys()))\" 2>/dev/null"
+  "command": "for d in /data/data/com.termux/files/home/.ollama/models/manifests/*/*/; do echo \"=== $d ===\"; ls \"$d\"; for f in \"$d\"/*; do echo \"--- $f ---\"; python3 -c \"\nimport json,sys\ntry:\n    d=json.load(open('$f'))\n    for l in d.get('layers',[]):\n        print(l.get('media_type'), l.get('size'))\nexcept Exception as e:\n    print('err', e)\n\" 2>/dev/null; done; done 2>/dev/null | head -60"
 }
 
 HASIL:
-{"output": "--- ollama ---\n/data/data/com.termux/files/usr/bin/ollama\nError: could not connect to ollama server, run 'ollama serve' to start it\nnemotron-3-super\nqwen3\n--- python vision pkgs ---\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import importlib; [print(m, bool(importlib.util.find_spec(m))) for m in ['transformers','torch','llama_cpp','cv2','pytesseract']]\n                                     ^^^^^^^^^^^^^^\nAttributeError: module 'importlib' has no attribute 'util'\n--- gguf search ---\n/mnt/sdcard/Download/abliterated-llama-3.2-1b-instruct-q4_k_m.gguf\n/sdcard/Download/abliterated-llama-3.2-1b-instruct-q4_k_m.gguf\n--- hermes providers ---\n['nous']", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
+{"output": "=== /data/data/com.termux/files/home/.ollama/models/manifests/registry.ollama.ai/library/ ===\nnemotron-3-super\nqwen3\n--- /data/data/com.termux/files/home/.ollama/models/manifests/registry.ollama.ai/library//nemotron-3-super ---\nerr [Errno 21] Is a directory: '/data/data/com.termux/files/home/.ollama/models/manifests/registry.ollama.ai/library//nemotron-3-super'\n--- /data/data/com.termux/files/home/.ollama/models/manifests/registry.ollama.ai/library//qwen3 ---\nerr [Errno 21] Is a directory: '/data/data/com.termux/files/home/.ollama/models/manifests/registry.ollama.ai/library//qwen3'", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
