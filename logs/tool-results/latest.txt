@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T02:12:32+07:00
+Waktu: 2026-11-11T02:12:57+07:00
 Status: ok
-Durasi: 1129 ms
+Durasi: 4319 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "/root/craftworld-vision/.venv/bin/python -c \"\nimport cv2, numpy as np\na = cv2.imread('/root/.hermes/cache/scratch/current3.jpg').astype(np.float32)\nb = cv2.imread('/root/.hermes/cache/scratch/now5.jpg').astype(np.float32)\nd = np.abs(a-b).mean(axis=2)\n# earth mine region\nroi = d[550:900, 140:460]\nprint('earthmine region diff:', round(roi.mean(),2), 'pct>40', round((roi>40).mean()*100,1))\n# where changed\nys,xs = np.where(roi>60)\nif len(ys):\n    print('changed>60: y', ys.min()+550, ys.max()+550, 'x', xs.min()+140, xs.max()+140, 'n', len(ys))\n\""
+  "command": "/root/craftworld-vision/.venv/bin/python -c \"\nimport cv2, numpy as np\nimg = cv2.imread('/root/.hermes/cache/scratch/now5.jpg')\ncrop = img[560:900, 140:460]\ncrop = cv2.resize(crop, None, fx=4, fy=4, interpolation=cv2.INTER_LANCZOS4)\ng = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)\ng = cv2.createCLAHE(3.0,(8,8)).apply(g)\ncv2.imwrite('/root/.hermes/cache/scratch/em_gray.png', g)\n_, th = cv2.threshold(g, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)\ncv2.imwrite('/root/.hermes/cache/scratch/em_otsu.png', th)\n# invert too\ncv2.imwrite('/root/.hermes/cache/scratch/em_otsu_inv.png', 255-th)\nprint('ok')\n\" && for f in em_gray em_otsu em_otsu_inv; do echo \"=== $f psm11 ===\"; tesseract /root/.hermes/cache/scratch/$f.png - --psm 11 2>/dev/null | tr -s '\\n' ' ' | head -c 400; echo; done"
 }
 
 HASIL:
-{"output": "earthmine region diff: 66.44 pct>40 70.7\nchanged>60: y 550 857 x 140 459 n 63736", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
+{"output": "ok\n=== em_gray psm11 ===\nas a — id @)i- Qe al 2} —r 4 Phe, a we, bd VH27 im 7 os -~ N« ea) Vi —— — hg av . \n=== em_otsu psm11 ===\nee .. af? fit Re | <} =v an ott Fad nd TH 7H a¢ ge ox Ne Yager’ 0: — Lid oF ae \n=== em_otsu_inv psm11 ===\n«a .. af? fit Re | <} =v an oth Fad ad TH 7 iT o¢ eo Ne meglio %:- — Lid oF ae", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
