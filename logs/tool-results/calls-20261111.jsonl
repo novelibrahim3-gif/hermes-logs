@@ -1,0 +1,1 @@
+{"timestamp": "2026-11-11T00:14:23+07:00", "event": "post_tool_call", "tool": "terminal", "session_id": "test-session", "cwd": "/root", "command": {"command": "echo hello"}, "status": "ok", "duration_ms": 42, "error_type": null, "error_message": null, "result": "{\"output\": \"hello\"}"}
