@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T03:06:39+07:00
+Waktu: 2026-11-11T03:06:54+07:00
 Status: ok
-Durasi: 5337 ms
+Durasi: 644 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "echo \"=== DIFF vs backup ===\"; diff /root/.hermes/config.yaml.bak-20261111-0305 /root/.hermes/config.yaml; echo \"(exit $?)\"; echo; echo \"=== config get ===\"; hermes config get compression.proactive_prune_tokens 2>&1; echo; echo \"=== config check ===\"; hermes config check 2>&1 | head -30"
+  "command": "python3 - <<'EOF'\nimport yaml\nd = yaml.safe_load(open('/root/.hermes/config.yaml'))\nprint(\"YAML valid ✓\")\nprint(\"compression:\", d.get(\"compression\"))\nprint(\"agent:\", d.get(\"agent\"))\nprint(\"model:\", d.get(\"model\"))\nprint(\"hooks keys:\", list((d.get(\"hooks\") or {}).keys()))\nprint(\"mcp_servers:\", list((d.get(\"mcp_servers\") or {}).keys()))\nprint(\"top-level keys:\", list(d.keys()))\nEOF\necho; echo \"=== backup ===\"; ls -la /root/.hermes/config.yaml.bak-20261111-0305"
 }
 
 HASIL:
-{"output": "=== DIFF vs backup ===\n54a55,56\n> compression:\n>   proactive_prune_tokens: 48000\n(exit 1)\n\n=== config get ===\n48000\n\n=== config check ===\n\n📋 Configuration Status\n\n  Config version: 52 ✓\n\n  Required:\n\n  Optional:\n    ○ NOUS_BASE_URL\n    ○ HERMES_ANON_API_SECRET\n    ○ OPENROUTER_API_KEY → vision_analyze\n    ✓ GOOGLE_API_KEY\n    ○ GEMINI_API_KEY\n    ○ GEMINI_BASE_URL\n    ○ VERTEX_CREDENTIALS_PATH\n    ○ XAI_API_KEY\n    ○ XAI_BASE_URL\n    ○ NVIDIA_API_KEY\n    ○ NVIDIA_BASE_URL\n    ○ LM_API_KEY\n    ○ LM_BASE_URL\n    ○ GLM_API_KEY\n    ○ ZAI_API_KEY\n    ○ Z_AI_API_KEY\n    ○ GLM_BASE_URL\n    ○ KIMI_API_KEY\n    ○ KIMI_BASE_URL\n    ○ KIMI_CN_API_KEY\n    ○ STEPFUN_API_KEY\n    ○ STEPFUN_BASE_URL", "exit_code": 0, "error": null}
+{"output": "Traceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>\nModuleNotFoundError: No module named 'yaml'\n\n=== backup ===\n-rw-------+ 1 root root 1254 Nov 11 03:05 /root/.hermes/config.yaml.bak-20261111-0305", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via heredoc) and auto-approved by an 'always' approval the user saved earlier."}
