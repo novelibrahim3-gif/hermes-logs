@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T03:13:06+07:00
-Status: ok
-Durasi: 1324 ms
+Waktu: 2026-11-11T03:13:41+07:00
+Status: error
+Durasi: 1323 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "cd /root/hermes-logs-sync && echo \"=== credential cache entry (password hidden) ===\"; printf \"protocol=https\\nhost=github.com\\n\\n\" | timeout 5 git credential-cache get 2>/dev/null | sed 's/^password=[DISEMBUNYIKAN]]' | head -5; echo \"(end)\"; echo; echo \"=== exact push error (DRY-RUN, no refs updated) ===\"; GIT_TERMINAL_PROMPT=0 timeout 25 git push --dry-run origin main 2>&1 | head -10; echo \"exit: ${PIPESTATUS[0]}\""
+  "command": "cd /root/hermes-logs-sync && echo \"=== refs ===\"; git rev-parse main origin/main; echo; echo \"=== actual remote ===\"; git ls-remote --heads origin; echo; echo \"=== local log ===\"; git log --oneline -3 main; echo; echo \"=== remote-tracking log ===\"; git log --oneline -3 origin/main; echo; echo \"=== is main behind? ===\"; git rev-list --count main..origin/main 2>/dev/null; echo \"=== fetch state ===\"; ls -la .git/FETCH_HEAD 2>/dev/null; stat -c '%y' .git/FETCH_HEAD 2>/dev/null"
 }
 
 HASIL:
-{"output": "=== credential cache entry (password hidden) ===\ncapability[]=authtype\nusername=novelibrahim3-gif\npassword=[DISEMBUNYIKAN]] exact push error (DRY-RUN, no refs updated) ===\nEverything up-to-date\nexit: 0", "exit_code": 0, "error": null}
+{"output": "=== refs ===\nb4eeef74eb28bbdeb91064a7898902dd2292b10c\nb4eeef74eb28bbdeb91064a7898902dd2292b10c\n\n=== actual remote ===\nb4eeef74eb28bbdeb91064a7898902dd2292b10c\trefs/heads/main\n\n=== local log ===\nb4eeef7 Sync Hermes terminal results\n53f1ed0 Sync Hermes terminal results\n2799494 Sync Hermes terminal results\n\n=== remote-tracking log ===\nb4eeef7 Sync Hermes terminal results\n53f1ed0 Sync Hermes terminal results\n2799494 Sync Hermes terminal results\n\n=== is main behind? ===\n0\n=== fetch state ===", "exit_code": 1, "error": null}
