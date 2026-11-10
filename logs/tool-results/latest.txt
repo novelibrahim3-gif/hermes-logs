@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T03:07:10+07:00
+Waktu: 2026-11-11T03:07:22+07:00
 Status: ok
-Durasi: 642 ms
+Durasi: 517 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "echo \"=== find hermes python ===\"; which hermes; head -1 \"$(which hermes)\" 2>/dev/null; ls /root/.hermes/hermes-agent/.venv/bin/python* 2>/dev/null; ls /root/.hermes/hermes-agent/venv/bin/python* 2>/dev/null; echo; echo \"=== validate YAML with hermes python ===\"; for py in /root/.hermes/hermes-agent/.venv/bin/python /root/.hermes/hermes-agent/venv/bin/python python3; do if [ -x \"$py\" ] || command -v \"$py\" >/dev/null 2>&1; then echo \"trying: $py\"; \"$py\" -c \"import yaml, sys; d=yaml.safe_load(open('/root/.hermes/config.yaml')); print('YAML valid'); print('compression:', d.get('compression')); print('agent:', d.get('agent')); print('model:', d.get('model')); print('top-level:', list(d.keys()))\" 2>&1 | head -8 && break; fi; done"
+  "command": "cat /root/.hermes/hermes-agent/.hermes/bin/hermes 2>/dev/null | head -20; echo \"=== venv python ===\"; ls -d /root/.hermes/hermes-agent/.hermes/* 2>/dev/null | head; find /root/.hermes/hermes-agent/.hermes -name \"python*\" -maxdepth 3 2>/dev/null | head"
 }
 
 HASIL:
-{"output": "=== find hermes python ===\n/root/.hermes/hermes-agent/.hermes/bin/hermes\n#!/bin/sh\n\n=== validate YAML with hermes python ===\ntrying: python3\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import yaml, sys; d=yaml.safe_load(open('/root/.hermes/config.yaml')); print('YAML valid'); print('compression:', d.get('compression')); print('agent:', d.get('agent')); print('model:', d.get('model')); print('top-level:', list(d.keys()))\n    ^^^^^^^^^^^^^^^^\nModuleNotFoundError: No module named 'yaml'", "exit_code": 0, "error": null}
+{"output": "#!/bin/sh\nexec /root/.hermes/tools/python-3.14.9+202****1021-linux-arm64/bin/python3 -I -c 'import os, re, sys\nimport contextlib, hashlib, io, pathlib, shutil, subprocess\nos.environ.pop('\"'\"'PYTHONHOME'\"'\"', None)\nos.environ.pop('\"'\"'PYTHONPATH'\"'\"', None)\nsys.path.insert(0, '\"'\"'/root/.hermes/hermes-agent'\"'\"')\ndef _hermes_closure_repair():\n    import contextlib, hashlib, io, shutil, subprocess\n    from pathlib import Path\n    root = Path('\"'\"'/root/.hermes/hermes-agent'\"'\"')\n    git = root / '\"'\"'.git'\"'\"'\n    try:\n        if git.is_file():\n            text = git.read_text(encoding='\"'\"'utf-8-sig'\"'\"').strip()\n            git = root / text[7:].strip() if text.startswith('\"'\"'gitdir:'\"'\"') else git\n        fields = dict(line.partition('\"'\"'='\"'\"')[::2] for line in (git / '\"'\"'hermes-update-pull'\"'\"').read_text(encoding='\"'\"'utf-8-sig'\"'\"').splitlines())\n    except OSError:\n        return\n    pre = fields.get('\"'\"'pre'\"'\"', '\"'\"''\"'\"').strip()\n    if not re.fullmatch('\"'\"'[0-9a-f]{40}|[0-9a-f]{64}'\"'\"', pre):\n=== venv python ===\n/root/.hermes/hermes-agent/.hermes/bin", "exit_code": 0, "error": null}
