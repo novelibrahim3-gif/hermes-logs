@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-10T22:07:32+07:00
+Waktu: 2026-11-10T22:07:33+07:00
 Status: ok
-Durasi: 42 ms
-Direktori: /root
+Durasi: 9667 ms
+Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "echo hello"
+  "command": "hermes hooks list\nhermes hooks doctor"
 }
 
 HASIL:
-{"output": "hello"}
+{"output": "Configured shell hooks (1 total):\n\n  [post_tool_call]\n    - /root/hermes-logs-sync/sync_logs.py matcher='^terminal$' (timeout=120s, ✓ allowed)\n      approved_at: 2026-11-10T12:30:21.329548Z\n      ⚠ script modified since approval (was 2026-11-10T12:26:02.040002Z, now 2026-11-10T14:01:19.348002Z) — run `hermes hooks doctor` to re-validate\n\nChecking 1 configured shell hook(s)...\n\n  [post_tool_call] /root/hermes-logs-sync/sync_logs.py\n      ✓ script exists and is executable\n      ✓ allowlisted (approved 2026-11-10T12:30:21.329548Z)\n      ⚠ script modified since approval (was 2026-11-10T12:26:02.040002Z, now 2026-11-10T14:01:19.348002Z) — review changes, then `hermes hooks revoke` + re-approve to refresh\n      ✓ ran clean with empty stdout (exit=1, 1.162s) — hook is observer-only\n\n1 issue(s) found.  Fix before relying on these hooks.", "exit_code": 0, "error": null}
