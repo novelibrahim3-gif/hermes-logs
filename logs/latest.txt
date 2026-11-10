@@ -1,0 +1,6 @@
+COMMAND: sh -c echo\ \"Tes\ integrasi\"\;\ echo\ \"Status\ normal\"
+
+Tes integrasi
+Status normal
+
+[exit_code=0]

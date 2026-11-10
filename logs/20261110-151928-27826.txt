@@ -1,0 +1,4 @@
+Tes output berhasil
+Tes pesan error
+
+[exit_code=0]

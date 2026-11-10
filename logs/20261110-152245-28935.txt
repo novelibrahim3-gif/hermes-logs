@@ -1,0 +1,6 @@
+COMMAND: sh -c echo\ \"Output\ terbaru\"\;\ echo\ \"Tes\ error\"\ \>\&2
+
+Output terbaru
+Tes error
+
+[exit_code=0]
