@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T03:18:49+07:00
+Waktu: 2026-11-11T03:19:29+07:00
 Status: ok
-Durasi: 1163 ms
+Durasi: 2502 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "cd /root/.hermes/hermes-agent && echo \"=== run_once ===\"; sed -n '854,905p' agent/shell_hooks.py; echo; echo \"=== closure builder (541-560) ===\"; sed -n '541,560p' agent/shell_hooks.py"
+  "command": "echo \"=== hook script startup (early-return path) ===\"; echo '{\"hook_event_name\":\"post_tool_call\",\"tool_name\":\"file\",\"tool_input\":{},\"extra\":{}}' | timeout 10 python3 /root/hermes-logs-sync/sync_logs.py; echo \"exit: $?\"; echo; echo \"=== timing the early-return ===\"; time (echo '{\"hook_event_name\":\"post_tool_call\",\"tool_name\":\"file\",\"tool_input\":{},\"extra\":{}}' | python3 /root/hermes-logs-sync/sync_logs.py >/dev/null 2>&1)"
 }
 
 HASIL:
-{"output": "=== run_once ===\ndef run_once(spec: ShellHookSpec, kwargs: dict[str, Any]) -> dict[str, Any]:\n    \"\"\"Fire one hook with a synthetic payload (``hermes hooks test`` / doctor) through the production path.\"\"\"\n    result = _spawn(spec, _serialize_payload(spec.event, kwargs))\n    result[\"parsed\"] = _evaluate_result(spec, result)\n    return result\n\n=== closure builder (541-560) ===\n    \"\"\"Build the closure that ``invoke_hook()`` will call per firing.\"\"\"\n\n    def _callback(**kwargs: Any) -> Optional[dict[str, Any]]:\n        from agent.safe_worker_policy import safe_worker_enabled\n\n        if safe_worker_enabled():\n            return None\n        if spec.event in _TOOL_EVENTS and not spec.matches_tool(kwargs.get(\"tool_name\")):\n            return None\n        return _evaluate_result(spec, _spawn(spec, _serialize_payload(spec.event, kwargs)))\n\n    _callback.__name__ = _callback.__qualname__ = f\"shell_hook[{spec.event}:{spec.command}]\"\n    return _callback\n\n\ndef _fail_closed_block(spec: ShellHookSpec, reason: str) -> dict[str, Any]:\n    return {\"action\": \"block\", \"message\": f\"hook {spec.command} failed closed: {reason}\"}\n\n\ndef _evaluate_result(", "exit_code": 0, "error": null}
+{"output": "=== hook script startup (early-return path) ===\n{\"status\": \"ok\", \"action\": \"ignored_tool\"}\nexit: 0\n\n=== timing the early-return ===\n\nreal\t0m0.314s\nuser\t0m0.113s\nsys\t0m0.030s", "exit_code": 0, "error": null}
