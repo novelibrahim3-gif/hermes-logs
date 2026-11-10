@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T02:26:15+07:00
-Status: ok
-Durasi: 515 ms
+Waktu: 2026-11-11T02:26:25+07:00
+Status: error
+Durasi: 492 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "sed -n '80,200p' /root/.hermes/config.yaml 2>/dev/null; echo \"=== grep vision ===\"; grep -riE \"vision|image|gemini|google\" /root/.hermes/config.yaml 2>/dev/null | head -20; echo \"=== auth keys ===\"; python3 -c \"import json; d=json.load(open('/root/.hermes/auth.json')); print(list(d.keys())); print({k: (list(v.keys()) if isinstance(v,dict) else type(v).__name__) for k,v in d.items()})\" 2>/dev/null"
+  "command": "python3 -c \"\nimport json\nd=json.load(open('/root/.hermes/auth.json'))\ncp = d.get('credential_pool',{})\nprint(type(cp), list(cp.keys()) if isinstance(cp,dict) else cp)\ng = cp.get('gemini') if isinstance(cp,dict) else None\nif g: print({k:(v if k not in ('api_key','access_token','refresh_token','agent_key') else '***') for k,v in g.items()})\n\""
 }
 
 HASIL:
-{"output": "=== grep vision ===\n  craftworld-vision:\n    command: /root/craftworld-vision/.venv/bin/python\n      - /root/craftworld-vision/server.py\n=== auth keys ===\n['version', 'providers', 'active_provider', 'updated_at', 'credential_pool']\n{'version': 'int', 'providers': ['nous'], 'active_provider': 'str', 'updated_at': 'str', 'credential_pool': ['nous', 'custom:freellmapi-(test)', 'gemini']}", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
+{"output": "Traceback (most recent call last):\n  File \"<string>\", line 7, in <module>\n    if g: print({k:(v if k not in ('api_key','access_token','refresh_token','agent_key') else '***') for k,v in g.items()})\n                                                                                                                ^^^^^^^\nAttributeError: 'list' object has no attribute 'items'\n<class 'dict'> ['nous', 'custom:freellmapi-(test)', 'gemini']", "exit_code": 1, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
