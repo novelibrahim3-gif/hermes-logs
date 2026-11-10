@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T03:11:03+07:00
+Waktu: 2026-11-11T03:11:34+07:00
 Status: ok
-Durasi: 478 ms
+Durasi: 413 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "cd /root/hermes-logs-sync && echo \"=== remote ===\"; git remote -v; echo; echo \"=== branch tracking ===\"; git branch -vv; echo; echo \"=== status ===\"; git status --short | head -20; echo; echo \"=== local config ===\"; git config --local --list; echo; echo \"=== credential helper ===\"; git config --get credential.helper || echo \"(none local)\"; git config --global --get credential.helper || echo \"(none global)\""
+  "command": "echo \"=== auth-related env (names only) ===\"; env | grep -iE \"GH_TOKEN|GITHUB_TOKEN|GIT_ASKPASS|GIT_CRED\" | sed 's/=.*/=<set>/'; echo \"(end)\"; echo; echo \"=== credential files ===\"; ls -la ~/.git-credentials 2>/dev/null || echo \"(no ~/.git-credentials)\"; echo; echo \"=== global git config (credential lines) ===\"; git config --global --list 2>/dev/null | grep -i credential; echo; echo \"=== remote URL has token? ===\"; cd /root/hermes-logs-sync && git remote get-url origin | grep -qiE \"://[^@]*@\" && echo \"TOKEN IN URL\" || echo \"no token in URL\""
 }
 
 HASIL:
-{"output": "=== remote ===\norigin\thttps://github.com/novelibrahim3-gif/hermes-logs.git (fetch)\norigin\thttps://github.com/novelibrahim3-gif/hermes-logs.git (push)\n\n=== branch tracking ===\n* main 6d7efca [origin/main] Sync Hermes terminal results\n\n=== status ===\n?? __pycache__/\n?? log_llm.py\n?? sync_logs.py\n\n=== local config ===\ncore.repositoryformatversion=0\ncore.filemode=true\ncore.bare=false\ncore.logallrefupdates=true\nuser.name=novelibrahim3-gif\nuser.email=354819452+novelibrahim3-gif@users.noreply.github.com\nremote.origin.url=https://github.com/novelibrahim3-gif/hermes-logs.git\nremote.origin.fetch=+refs/heads/*:refs/remotes/origin/*\nbranch.main.remote=origin\nbranch.main.merge=refs/heads/main\n\n=== credential helper ===\ncache --timeout=3600\ncache --timeout=3600", "exit_code": 0, "error": null, "cwd": "/root/hermes-logs-sync"}
+{"output": "=== auth-related env (names only) ===\n(end)\n\n=== credential files ===\n(no ~/.git-credentials)\n\n=== global git config (credential lines) ===\ncredential.helper=*** --timeout=3600\n\n=== remote URL has token? ===\nno token in URL", "exit_code": 0, "error": null}
