@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T02:12:09+07:00
+Waktu: 2026-11-11T02:12:32+07:00
 Status: ok
-Durasi: 3730 ms
+Durasi: 1129 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "/root/craftworld-vision/.venv/bin/python -c \"\nimport cv2\nimg = cv2.imread('/root/.hermes/cache/scratch/now5.jpg')\nregions = {\n 'timer_above': (140, 560, 460, 660),\n 'timer_body':  (140, 640, 460, 780),\n 'timer_below': (140, 760, 460, 860),\n}\nfor name,(x1,y1,x2,y2) in regions.items():\n    crop = img[y1:y2, x1:x2]\n    crop = cv2.resize(crop, None, fx=4, fy=4, interpolation=cv2.INTER_LANCZOS4)\n    crop = cv2.detailEnhance(crop)\n    fn = f'/root/.hermes/cache/scratch/{name}.png'\n    cv2.imwrite(fn, crop)\n    print(fn)\n\" && for r in timer_above timer_body timer_below; do echo \"=== $r psm6 ===\"; tesseract /root/.hermes/cache/scratch/$r.png - --psm 6 2>/dev/null; echo \"=== $r psm7 ===\"; tesseract /root/.hermes/cache/scratch/$r.png - --psm 7 2>/dev/null; done"
+  "command": "/root/craftworld-vision/.venv/bin/python -c \"\nimport cv2, numpy as np\na = cv2.imread('/root/.hermes/cache/scratch/current3.jpg').astype(np.float32)\nb = cv2.imread('/root/.hermes/cache/scratch/now5.jpg').astype(np.float32)\nd = np.abs(a-b).mean(axis=2)\n# earth mine region\nroi = d[550:900, 140:460]\nprint('earthmine region diff:', round(roi.mean(),2), 'pct>40', round((roi>40).mean()*100,1))\n# where changed\nys,xs = np.where(roi>60)\nif len(ys):\n    print('changed>60: y', ys.min()+550, ys.max()+550, 'x', xs.min()+140, xs.max()+140, 'n', len(ys))\n\""
 }
 
 HASIL:
-{"output": "/root/.hermes/cache/scratch/timer_above.png\n/root/.hermes/cache/scratch/timer_body.png\n/root/.hermes/cache/scratch/timer_below.png\n=== timer_above psm6 ===\n-—_ es ee\n. —\" m ai ’ ’\n0-0). — \"eo\n: a 4 \\ _\n, } N —~—~ y ; ’ . ' y\n: 2S a\n=== timer_above psm7 ===\n=== timer_body psm6 ===\n=== timer_body psm7 ===\n; 4 . | \\\n=== timer_below psm6 ===\n’ ee |\n=== timer_below psm7 ===", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
+{"output": "earthmine region diff: 66.44 pct>40 70.7\nchanged>60: y 550 857 x 140 459 n 63736", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
