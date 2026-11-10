@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T02:47:20+07:00
+Waktu: 2026-11-11T02:47:47+07:00
 Status: ok
-Durasi: 5870 ms
+Durasi: 7669 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "sleep 4"
+  "command": "cp /root/.hermes/cache/images/img_7f7fe2fcd9ac.jpg /root/.hermes/cache/scratch/boost5.jpg && tesseract /root/.hermes/cache/scratch/boost5.jpg - --psm 11 2>/dev/null | tr -s '\\n' ' ' | head -c 250; echo; /root/craftworld-vision/.venv/bin/python -c \"\nimport cv2, numpy as np\nimg = cv2.imread('/root/.hermes/cache/scratch/boost5.jpg')\nrgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)\nR = rgb[:,:,0].astype(np.int32); G = rgb[:,:,1].astype(np.int32); B = rgb[:,:,2].astype(np.int32)\npink = ((R > 150) & (G < 130) & (B > 90)).astype(np.uint8)\nn, lab, stats, cents = cv2.connectedComponentsWithStats(pink, 8)\ncomps=[]\nfor i in range(1,n):\n    x,y,w,h,area = stats[i]\n    if area > 800:\n        comps.append((int(x),int(y),int(w),int(h),int(area),round(float(cents[i][0]),1),round(float(cents[i][1]),1)))\ncomps.sort(key=lambda c:-c[4])\nfor c in comps[:6]: print('  ',c)\n\""
 }
 
 HASIL:
-{"output": "", "exit_code": 0, "error": null}
+{"output": "EU ae rears é 0 4) 378k/373k Cll; Pare a . ahs bal 10 a fe — ‘\"y a » oe __ 315k BRED BRO A y hea ts BO Oy ee, % a hy atts Sigs es %: atc 4, Pa ‘ . ae iif ae EL a 2) KS) J CRAFT \n   (156, 617, 299, 235, 28584, 341.5, 754.1)\n   (576, 1359, 120, 84, 4606, 635.0, 1404.0)\n   (53, 56, 55, 55, 1357, 79.4, 88.1)\n   (452, 1518, 41, 46, 1083, 471.6, 1538.3)", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
