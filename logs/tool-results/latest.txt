@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-10T22:01:00+07:00
+Waktu: 2026-11-10T22:06:18+07:00
 Status: ok
-Durasi: 2003 ms
-Direktori: /root/.hermes/hermes-agent
+Durasi: 42 ms
+Direktori: /root
 
 PERINTAH:
 {
-  "command": "printf 'HERMES_REAL_LOG_TEST_20261110\\n'\npwd\nid -un"
+  "command": "echo hello"
 }
 
 HASIL:
-{"output": "HERMES_REAL_LOG_TEST_20261110\n/root\nroot", "exit_code": 0, "error": null}
+{"output": "hello"}
