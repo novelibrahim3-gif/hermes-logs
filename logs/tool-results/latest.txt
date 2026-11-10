@@ -1,0 +1,13 @@
+Hermes — hasil tool terminal
+Waktu: 2026-11-10T20:22:16+07:00
+Status: None
+Durasi: 42 ms
+Direktori: /root
+
+PERINTAH:
+{
+  "command": "echo hello"
+}
+
+HASIL:
+{"output": "hello"}
