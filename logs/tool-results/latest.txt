@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T03:14:33+07:00
+Waktu: 2026-11-11T03:14:38+07:00
 Status: ok
-Durasi: 2319 ms
+Durasi: 615 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "cd /root/hermes-logs-sync && echo \"=== commit cadence ===\"; git log --format='%h %ci %s' -12; echo; echo \"=== total commits ===\"; git rev-list --count main"
+  "command": "cd /root/.hermes/hermes-agent && echo \"=== hook call site in tool executor ===\"; grep -rn \"shell_hook\\|run_shell_hook\\|post_tool_call\\|_run_hooks\\|hook_runner\" agent/tool_executor.py agent/*.py 2>/dev/null | grep -iE \"hook\" | head -20"
 }
 
 HASIL:
-{"output": "=== commit cadence ===\n6b79274 2026-11-11 03:13:41 +0700 Sync Hermes terminal results\nb4eeef7 2026-11-11 03:13:06 +0700 Sync Hermes terminal results\n53f1ed0 2026-11-11 03:12:38 +0700 Sync Hermes terminal results\n2799494 2026-11-11 03:12:34 +0700 Sync Hermes terminal results\n313be47 2026-11-11 03:11:58 +0700 Sync Hermes terminal results\nd4894a2 2026-11-11 03:11:55 +0700 Sync Hermes terminal results\n9410fb0 2026-11-11 03:11:37 +0700 Sync Hermes terminal results\n8422cf2 2026-11-11 03:11:34 +0700 Sync Hermes terminal results\nfd2c79a 2026-11-11 03:11:03 +0700 Sync Hermes terminal results\n6d7efca 2026-11-11 03:11:01 +0700 Sync Hermes terminal results\na820f7e 2026-11-11 03:08:58 +0700 Sync Hermes assistant responses\nb162520 2026-11-11 03:08:37 +0700 Sync Hermes terminal results\n\n=== total commits ===\n170", "exit_code": 0, "error": null}
+{"output": "=== hook call site in tool executor ===\nagent/tool_executor.py:341:    ``hook_error_type`` also emits the terminal ``post_tool_call`` (status=cancelled) per\nagent/tool_executor.py:1712:        with model_tools.suppress_post_tool_call_hook():\nagent/inline_tool_executors.py:45:    \"\"\"Emit the one terminal ``post_tool_call`` hook for a tool_call_id (best-effort).\"\"\"\nagent/inline_tool_executors.py:47:        from model_tools import _emit_post_tool_call_hook\nagent/inline_tool_executors.py:48:        _emit_post_tool_call_hook(\nagent/inline_tool_executors.py:77:    ``post_tool_call``) to keep the hook's \"every tool\" contract. Fail-open.\"\"\"\nagent/outbound_webhooks.py:2:pre/post_tool_call, timeout clamped to [1, 60], name) -> notify-only callbacks on the plugin hook\nagent/outbound_webhooks.py:28:from agent.shell_hooks import (\nagent/outbound_webhooks.py:139:    Mirrors ``agent.shell_hooks.re_register_config_hooks``: config-owned outbound-webhook callbacks live in\nagent/outbound_webhooks.py:196:        warn(\".matcher=%r will be ignored — matcher is only honored for pre_tool_call / post_tool_call.\", matcher)\nagent/shell_hooks.py:45:_TOOL_EVENTS = frozenset({\"pre_tool_call\", \"post_tool_call\"})\nagent/shell_hooks.py:237:                                         if getattr(cb, \"shell_hook_key\", None) not in stale]\nagent/shell_hooks.py:301:        callback.shell_hook_key = key  # type: ignore[attr-defined]  # identifies it for sync_from_config\nagent/shell_hooks.py:428:             \"pre_tool_call / post_tool_call.  The hook will fire on every %s event.\", matcher, event)\nagent/shell_hooks.py:552:    _callback.__name__ = _callback.__qualname__ = f\"shell_hook[{spec.event}:{spec.command}]\"\nagent/tool_executor.py:341:    ``hook_error_type`` also emits the terminal ``post_tool_call`` (status=cancelled) per\nagent/tool_executor.py:1712:        with model_tools.suppress_post_tool_call_hook():", "exit_code": 0, "error": null, "cwd": "/root/.hermes/hermes-agent"}
