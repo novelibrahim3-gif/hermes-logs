@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T01:24:58+07:00
+Waktu: 2026-11-11T01:46:05+07:00
 Status: ok
-Durasi: 1114 ms
+Durasi: 6173 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "/root/craftworld-vision/.venv/bin/python -c \"\nimport urllib.request, json\n# Let's see how cw_mcp.py works or test buddy swipe via python\n\""
+  "command": "sleep 3"
 }
 
 HASIL:
-{"output": "", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
+{"output": "", "exit_code": 0, "error": null}
