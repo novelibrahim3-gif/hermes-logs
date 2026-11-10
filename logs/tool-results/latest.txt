@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T03:08:21+07:00
+Waktu: 2026-11-11T03:08:37+07:00
 Status: ok
-Durasi: 3396 ms
+Durasi: 925 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "find /root/.hermes -maxdepth 6 -type d -name \"yaml\" 2>/dev/null | head -5; echo \"---\"; ls -d /root/.hermes/hermes-agent/.venv 2>/dev/null; ls /root/.hermes/hermes-agent/.hermes/ 2>/dev/null; echo \"--- node yaml? ---\"; node -e \"try{require('yaml');console.log('node yaml OK')}catch(e){console.log('no node yaml')}\" 2>/dev/null"
+  "command": "cd /root/.hermes/hermes-agent && node -e \"\nconst fs=require('fs'); const YAML=require('yaml');\nconst d=YAML.parse(fs.readFileSync('/root/.hermes/config.yaml','utf8'));\nconsole.log('YAML valid: YES');\nconsole.log('compression:', JSON.stringify(d.compression));\nconsole.log('agent:', JSON.stringify(d.agent));\nconsole.log('model:', JSON.stringify(d.model));\nconsole.log('hooks:', Object.keys(d.hooks||{}));\nconsole.log('mcp_servers:', Object.keys(d.mcp_servers||{}));\nconsole.log('top-level:', Object.keys(d).join(', '));\n\""
 }
 
 HASIL:
-{"output": "/root/.hermes/hermes-agent/node_modules/yaml\n/root/.hermes/cache/uv/archive-v0/LTwMgY-IgLYpRn1D/ruamel/yaml\n---\nbin\n--- node yaml? ---\nnode yaml OK", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
+{"output": "YAML valid: YES\ncompression: {\"proactive_prune_tokens\":48000}\nagent: {\"reasoning_effort\":\"medium\"}\nmodel: {\"default\":\"meituan/longcat-2.5:free\",\"provider\":\"nous\",\"base_url\":\"https://inference-api.nousresearch.com/v1\"}\nhooks: [ 'post_tool_call', 'post_llm_call' ]\nmcp_servers: [ 'buddy', 'craftworld-vision' ]\ntop-level: mcp_servers, telemetry, model, _config_version, agent, onboarding, command_allowlist, providers, approvals, hooks, compression", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
