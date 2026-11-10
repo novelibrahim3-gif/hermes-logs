@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T03:16:13+07:00
-Status: ok
-Durasi: 515 ms
+Waktu: 2026-11-11T03:16:24+07:00
+Status: error
+Durasi: 500 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "cd /root/.hermes/hermes-agent && sed -n '1,30p' hermes_cli/lifecycle.py; echo \"=== shell hook observer registration ===\"; grep -rn \"register_observer\\|shell_hook_observer\\|observe(\" agent/shell_hooks.py hermes_cli/lifecycle.py 2>/dev/null | head -10"
+  "command": "cd /root/.hermes/hermes-agent && echo \"=== observability.py hook dispatch ===\"; grep -n \"observe_lifecycle\\|shell_hook\\|run_hook\\|_run_shell\" hermes_cli/observability.py | head -20; echo \"---\"; sed -n \"$(grep -n 'def observe_lifecycle' hermes_cli/observability.py | cut -d: -f1),+40p\" hermes_cli/observability.py"
 }
 
 HASIL:
-{"output": "\"\"\"Hermes lifecycle dispatch for first-party observers and plugins.\"\"\"\n\nfrom __future__ import annotations\n\nimport logging\nfrom typing import Any, List\n\nlogger = logging.getLogger(__name__)\n\n\ndef _observe(hook_name: str, **kwargs: Any) -> None:\n    from agent.safe_worker_policy import safe_worker_enabled\n\n    if safe_worker_enabled():\n        return\n    try:\n        from hermes_cli.observability import observe_lifecycle\n\n        observe_lifecycle(hook_name, **kwargs)\n    except Exception:\n        logger.warning(\"Built-in observability hook failed\", exc_info=True)\n\n\ndef _plugin_hooks(hook_name: str, **kwargs: Any) -> list[Any]:\n    from hermes_cli import plugins\n\n    return plugins.invoke_hook(hook_name, **kwargs)\n\n\ndef invoke_hook(hook_name: str, **kwargs: Any) -> list[Any]:\n=== shell hook observer registration ===\nhermes_cli/lifecycle.py:11:def _observe(hook_name: str, **kwargs: Any) -> None:\nhermes_cli/lifecycle.py:36:    _observe(hook_name, **kwargs)\nhermes_cli/lifecycle.py:43:    _observe(hook_name, **kwargs)\nhermes_cli/lifecycle.py:83:    _observe(\"on_session_finalize\", **kwargs)", "exit_code": 0, "error": null}
+{"output": "=== observability.py hook dispatch ===\ngrep: hermes_cli/observability.py: No such file or directory\n---\ngrep: hermes_cli/observability.py: No such file or directory\nsed: -e expression #1, char 1: unknown command: `,'", "exit_code": 1, "error": null}
