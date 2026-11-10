@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T03:20:16+07:00
+Waktu: 2026-11-11T03:20:55+07:00
 Status: ok
-Durasi: 2732 ms
+Durasi: 2441 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "cd /root/hermes-logs-sync && echo \"=== commits around failure window (2026-11-10 20:00-23:59) ===\"; git log --format='%h %ci %s' --since=\"2026-11-10 20:00\" --until=\"2026-11-10 23:59\" | head -30; echo; echo \"=== gaps > 5 min in commit times (today) ===\"; git log --format='%ci' -40 | awk 'NR>1{if ((prev-$0) > 300) print \"GAP\", prev\" -> \"$0} {prev=$0}' | head"
+  "command": "echo \"=== credential cache socket ===\"; ls -la ~/.git-credential-cache/ 2>/dev/null || echo \"(no cache dir)\"; stat -c '%y %n' ~/.git-credential-cache/socket 2>/dev/null || echo \"(no socket)\"; echo; echo \"=== simulate empty-cache push (dry-run, no helper) ===\"; cd /root/hermes-logs-sync && GIT_CONFIG_GLOBAL=/dev/null GIT_TERMINAL_PROMPT=0 timeout 20 git push --dry-run origin main 2>&1 | head -6; echo \"exit: ${PIPESTATUS[0]}\""
 }
 
 HASIL:
-{"output": "=== commits around failure window (2026-11-10 20:00-23:59) ===\ne20bba7 2026-11-10 23:20:17 +0700 Sync Hermes terminal results\n90f59d5 2026-11-10 22:07:33 +0700 Sync Hermes terminal results\n7d9c2a7 2026-11-10 22:07:32 +0700 Sync Hermes terminal results\n6b62d35 2026-11-10 22:06:19 +0700 Sync Hermes terminal results\n2dd3f77 2026-11-10 22:06:18 +0700 Sync Hermes terminal results\ncedefd7 2026-11-10 22:01:01 +0700 Sync Hermes terminal results\n3a713bc 2026-11-10 21:03:30 +0700 Sync Hermes terminal results\nb95f38c 2026-11-10 20:54:06 +0700 Sync Hermes terminal results\n2dfddbb 2026-11-10 20:22:16 +0700 Sync Hermes terminal results\n\n=== gaps > 5 min in commit times (today) ===", "exit_code": 0, "error": null}
+{"output": "=== credential cache socket ===\n(no cache dir)\n(no socket)\n\n=== simulate empty-cache push (dry-run, no helper) ===\nfatal: could not read Username for 'https://github.com': terminal prompts disabled\nexit: 128", "exit_code": 0, "error": null}
