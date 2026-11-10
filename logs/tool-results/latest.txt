@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T03:18:35+07:00
+Waktu: 2026-11-11T03:18:49+07:00
 Status: ok
-Durasi: 1756 ms
+Durasi: 1163 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "cd /root/.hermes/hermes-agent && echo \"=== run_once / observer ===\"; grep -rn \"run_once\\|register_observer\\|observer\\|invoke_hook\\|observe_lifecycle\" agent/shell_hooks.py hermes_cli/hooks.py | head -25"
+  "command": "cd /root/.hermes/hermes-agent && echo \"=== run_once ===\"; sed -n '854,905p' agent/shell_hooks.py; echo; echo \"=== closure builder (541-560) ===\"; sed -n '541,560p' agent/shell_hooks.py"
 }
 
 HASIL:
-{"output": "=== run_once / observer ===\nagent/shell_hooks.py:2:callbacks on the plugin hook manager, so every ``invoke_hook()`` site dispatches to the scripts.\nagent/shell_hooks.py:235:                # Replaced, never edited in place: a concurrent invoke_hook keeps iterating the old list.\nagent/shell_hooks.py:541:    \"\"\"Build the closure that ``invoke_hook()`` will call per firing.\"\"\"\nagent/shell_hooks.py:579:    test helper (:func:`run_once`) so ``hermes hooks test`` reflects\nagent/shell_hooks.py:854:def run_once(spec: ShellHookSpec, kwargs: dict[str, Any]) -> dict[str, Any]:\nhermes_cli/hooks.py:99:# Synthetic kwargs matching the real invoke_hook() call sites. They go verbatim to\nhermes_cli/hooks.py:100:# agent.shell_hooks.run_once() -> the same _serialize_payload() production uses, so the\nhermes_cli/hooks.py:148:        # response, so without this an observer cannot see or price the fan-out.\nhermes_cli/hooks.py:221:        _print_run_result(shell_hooks.run_once(spec, payload))\nhermes_cli/hooks.py:236:    # run_once always sets ``parsed`` (agent/shell_hooks.py::_evaluate_result), so it is available even\nhermes_cli/hooks.py:321:        result = shell_hooks.run_once(spec, _DEFAULT_PAYLOADS.get(spec.event, {\"extra\": {}}))\nhermes_cli/hooks.py:335:                      f\"(exit={rc}, {elapsed}s) — hook is observer-only\")", "exit_code": 0, "error": null}
+{"output": "=== run_once ===\ndef run_once(spec: ShellHookSpec, kwargs: dict[str, Any]) -> dict[str, Any]:\n    \"\"\"Fire one hook with a synthetic payload (``hermes hooks test`` / doctor) through the production path.\"\"\"\n    result = _spawn(spec, _serialize_payload(spec.event, kwargs))\n    result[\"parsed\"] = _evaluate_result(spec, result)\n    return result\n\n=== closure builder (541-560) ===\n    \"\"\"Build the closure that ``invoke_hook()`` will call per firing.\"\"\"\n\n    def _callback(**kwargs: Any) -> Optional[dict[str, Any]]:\n        from agent.safe_worker_policy import safe_worker_enabled\n\n        if safe_worker_enabled():\n            return None\n        if spec.event in _TOOL_EVENTS and not spec.matches_tool(kwargs.get(\"tool_name\")):\n            return None\n        return _evaluate_result(spec, _spawn(spec, _serialize_payload(spec.event, kwargs)))\n\n    _callback.__name__ = _callback.__qualname__ = f\"shell_hook[{spec.event}:{spec.command}]\"\n    return _callback\n\n\ndef _fail_closed_block(spec: ShellHookSpec, reason: str) -> dict[str, Any]:\n    return {\"action\": \"block\", \"message\": f\"hook {spec.command} failed closed: {reason}\"}\n\n\ndef _evaluate_result(", "exit_code": 0, "error": null}
