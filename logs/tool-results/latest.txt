@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T01:58:04+07:00
+Waktu: 2026-11-11T01:58:24+07:00
 Status: ok
-Durasi: 3211 ms
+Durasi: 2591 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "/root/craftworld-vision/.venv/bin/python -c \"\nimport cv2, numpy as np\n\na = cv2.imread('/root/.hermes/cache/scratch/current3.jpg').astype(np.float32)\nb = cv2.imread('/root/.hermes/cache/scratch/ad_overlay.jpg').astype(np.float32)\nd = np.abs(a - b).mean(axis=2)\n\nprint('diff stats: mean', d.mean(), 'max', d.max(), 'pct>30:', (d>30).mean())\n\n# per band\nh = d.shape[0]\nfor i in range(0, h, 200):\n    band = d[i:i+200]\n    print(f'y {i:4d}-{i+200:4d}: mean {band.mean():6.2f}  pct>30 {(band>30).mean()*100:5.1f}%')\n\n# where are biggest changes\nys, xs = np.where(d > 60)\nif len(ys):\n    print('changed>60 region: x', xs.min(), xs.max(), 'y', ys.min(), ys.max(), 'count', len(ys))\n\""
+  "command": "/root/craftworld-vision/.venv/bin/python -c \"\nimport cv2\nimg = cv2.imread('/root/.hermes/cache/scratch/ad_overlay.jpg')\n# crop changed area y 480-900\ncrop = img[480:900, 0:720]\ncrop2 = cv2.resize(crop, None, fx=2, fy=2, interpolation=cv2.INTER_LANCZOS4)\ncrop2 = cv2.detailEnhance(crop2)\ncv2.imwrite('/root/.hermes/cache/scratch/crop_changed.png', crop2)\nprint('saved', crop2.shape)\n\" && tesseract /root/.hermes/cache/scratch/crop_changed.png - --psm 6 2>/dev/null"
 }
 
 HASIL:
-{"output": "diff stats: mean 10.225271 max 254.0 pct>30: 0.10939322916666666\ny    0- 200: mean   1.06  pct>30   0.8%\ny  200- 400: mean   6.92  pct>30   5.9%\ny  400- 600: mean   8.30  pct>30   8.0%\ny  600- 800: mean  42.88  pct>30  47.8%\ny  800-1000: mean  11.74  pct>30  14.8%\ny 1000-1200: mean   0.74  pct>30   0.4%\ny 1200-1400: mean   6.13  pct>30   5.7%\ny 1400-1600: mean   4.02  pct>30   4.1%\nchanged>60 region: x 9 712 y 59 1525 count 78995", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
+{"output": "saved (840, 1440, 3)\na Re Dy, ‘ at f fete\n° ae a gs a & f\n‘ Le 2 “4 ms f f at\nf Se! = Ba . ‘ f c 4 ¢: ,", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
