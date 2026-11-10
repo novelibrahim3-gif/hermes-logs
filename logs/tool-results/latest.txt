@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T03:05:25+07:00
+Waktu: 2026-11-11T03:06:23+07:00
 Status: ok
-Durasi: 4951 ms
+Durasi: 3330 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "cp -v /root/.hermes/config.yaml /root/.hermes/config.yaml.bak-20261111-0305 && ls -la /root/.hermes/config.yaml*"
+  "command": "hermes config set compression.proactive_prune_tokens 48000 2>&1 | head -20"
 }
 
 HASIL:
-{"output": "'/root/.hermes/config.yaml' -> '/root/.hermes/config.yaml.bak-20261111-0305'\n-rw-------+ 1 root root 1254 Nov 11 00:46 /root/.hermes/config.yaml\n-rw-------+ 1 root root 1040 Nov 10 19:23 /root/.hermes/config.yaml.backup\n-rw-------+ 1 root root  723 Nov  8 23:43 /root/.hermes/config.yaml.backup-2026-11-08T16-43-52-244Z\n-rw-------+ 1 root root 1254 Nov 11 03:05 /root/.hermes/config.yaml.bak-20261111-0305", "exit_code": 0, "error": null, "approval": "Command was flagged (copy/move file into sensitive credential/SSH/shell-rc path) and auto-approved by smart approval."}
+{"output": "✓ Set compression.proactive_prune_tokens = 48000 in /root/.hermes/config.yaml", "exit_code": 0, "error": null}
