@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T03:12:38+07:00
+Waktu: 2026-11-11T03:13:06+07:00
 Status: ok
-Durasi: 1415 ms
+Durasi: 1324 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "cd /root/hermes-logs-sync && echo \"=== remote reachability (read-only, no prompt) ===\"; time GIT_TERMINAL_PROMPT=0 timeout 20 git ls-remote --heads origin 2>&1 | head -5; echo \"exit: $?\""
+  "command": "cd /root/hermes-logs-sync && echo \"=== credential cache entry (password hidden) ===\"; printf \"protocol=https\\nhost=github.com\\n\\n\" | timeout 5 git credential-cache get 2>/dev/null | sed 's/^password=[DISEMBUNYIKAN]]' | head -5; echo \"(end)\"; echo; echo \"=== exact push error (DRY-RUN, no refs updated) ===\"; GIT_TERMINAL_PROMPT=0 timeout 25 git push --dry-run origin main 2>&1 | head -10; echo \"exit: ${PIPESTATUS[0]}\""
 }
 
 HASIL:
-{"output": "=== remote reachability (read-only, no prompt) ===\n2799494fae6a80f4ccb05c11414ed2324809bdf3\trefs/heads/main\n\nreal\t0m0.788s\nuser\t0m0.093s\nsys\t0m0.039s\nexit: 0", "exit_code": 0, "error": null}
+{"output": "=== credential cache entry (password hidden) ===\ncapability[]=authtype\nusername=novelibrahim3-gif\npassword=[DISEMBUNYIKAN]] exact push error (DRY-RUN, no refs updated) ===\nEverything up-to-date\nexit: 0", "exit_code": 0, "error": null}
