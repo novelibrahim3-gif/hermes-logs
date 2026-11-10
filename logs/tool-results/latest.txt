@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T03:12:34+07:00
+Waktu: 2026-11-11T03:12:38+07:00
 Status: ok
-Durasi: 896 ms
+Durasi: 1415 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "cd /root/hermes-logs-sync && echo \"=== local git op latency ===\"; time git add -- logs 2>&1 | head -3; echo \"---\"; time git diff --cached --quiet; echo \"diff exit: $?\"; echo \"---\"; time git rev-parse HEAD >/dev/null; echo; echo \"=== SOURCE dir ===\"; ls -la /sdcard/Download/ChatGPT-Logs 2>/dev/null | head -8 || echo \"(not accessible)\""
+  "command": "cd /root/hermes-logs-sync && echo \"=== remote reachability (read-only, no prompt) ===\"; time GIT_TERMINAL_PROMPT=0 timeout 20 git ls-remote --heads origin 2>&1 | head -5; echo \"exit: $?\""
 }
 
 HASIL:
-{"output": "=== local git op latency ===\n\nreal\t0m0.033s\nuser\t0m0.006s\nsys\t0m0.019s\n---\n\nreal\t0m0.019s\nuser\t0m0.006s\nsys\t0m0.000s\ndiff exit: 0\n---\n\nreal\t0m0.009s\nuser\t0m0.004s\nsys\t0m0.000s\n\n=== SOURCE dir ===\ntotal 35\ndrwxrws---  2 10245 1023  3452 Nov 10 15:26 .\ndrwxrws--- 13 10245 1023 20480 Nov 10 15:18 ..\n-rw-rw----  1 10245 1023    51 Nov 10 15:19 20261110-151928-27826.txt\n-rw-rw----  1 10245 1023   113 Nov 10 15:22 20261110-152245-28935.txt\n-rw-rw----  1 10245 1023  1236 Nov 10 15:26 20261110-152608-30073-analysis.txt\n-rw-rw----  1 10245 1023   112 Nov 10 15:26 20261110-152608-30073.txt\n-rw-rw----  1 10245 1023  1236 Nov 10 15:26 analysis-latest.txt", "exit_code": 0, "error": null, "cwd": "/root/hermes-logs-sync"}
+{"output": "=== remote reachability (read-only, no prompt) ===\n2799494fae6a80f4ccb05c11414ed2324809bdf3\trefs/heads/main\n\nreal\t0m0.788s\nuser\t0m0.093s\nsys\t0m0.039s\nexit: 0", "exit_code": 0, "error": null}
