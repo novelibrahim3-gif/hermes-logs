@@ -1,8 +1,9 @@
-Kedua proses background selesai — hasilnya sudah saya konsumsi sebelumnya, tidak ada info baru:
+Verifikasi (02:48):
 
-- **proc_e54d9f628f92**: diff 7.64 (layar stabil), OCR membaca teks Termux → saat itu layar memang di Termux, bukan Craft World.
-- **proc_5facedd52408**: OCR juga teks Termux, histogram gelap di atas/terang di bawah → konsisten dengan layar terminal.
+- **Earth Mine: BERJALAN** — timer **51m 33s** → habis **03:39:33**
+- **Boost x2: AKTIF** — indikator x2 menyala, countdown **51m 33s** (sama)
+- Satu-satunya countdown di layar: 51m 33s, posisi di bawah earth mine / zona x2
 
-Keduanya mengonfirmasi pola yang sudah diketahui: layar sempat jatuh ke Termux. Tidak ada tindakan baru dari batch ini.
+Kesimpulan: Earth Mine habis **03:39:33**, boost x2 aktif dengan timer yang sama.
 
-Status yang masih menunggu konfirmasimu: timer **"1h 19m"** di bawah earth mine (screenshot 02:19:46) — itu timer **earth mine** atau timer **boost x2**?
+Catatan: tap tombol boost sebelumnya sempat jatuh di layar Termux (bukan Craft World), jadi saya buka app dulu sebelum tap — sesuai aturanmu.
