@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T03:06:54+07:00
+Waktu: 2026-11-11T03:07:10+07:00
 Status: ok
-Durasi: 644 ms
+Durasi: 642 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "python3 - <<'EOF'\nimport yaml\nd = yaml.safe_load(open('/root/.hermes/config.yaml'))\nprint(\"YAML valid ✓\")\nprint(\"compression:\", d.get(\"compression\"))\nprint(\"agent:\", d.get(\"agent\"))\nprint(\"model:\", d.get(\"model\"))\nprint(\"hooks keys:\", list((d.get(\"hooks\") or {}).keys()))\nprint(\"mcp_servers:\", list((d.get(\"mcp_servers\") or {}).keys()))\nprint(\"top-level keys:\", list(d.keys()))\nEOF\necho; echo \"=== backup ===\"; ls -la /root/.hermes/config.yaml.bak-20261111-0305"
+  "command": "echo \"=== find hermes python ===\"; which hermes; head -1 \"$(which hermes)\" 2>/dev/null; ls /root/.hermes/hermes-agent/.venv/bin/python* 2>/dev/null; ls /root/.hermes/hermes-agent/venv/bin/python* 2>/dev/null; echo; echo \"=== validate YAML with hermes python ===\"; for py in /root/.hermes/hermes-agent/.venv/bin/python /root/.hermes/hermes-agent/venv/bin/python python3; do if [ -x \"$py\" ] || command -v \"$py\" >/dev/null 2>&1; then echo \"trying: $py\"; \"$py\" -c \"import yaml, sys; d=yaml.safe_load(open('/root/.hermes/config.yaml')); print('YAML valid'); print('compression:', d.get('compression')); print('agent:', d.get('agent')); print('model:', d.get('model')); print('top-level:', list(d.keys()))\" 2>&1 | head -8 && break; fi; done"
 }
 
 HASIL:
-{"output": "Traceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>\nModuleNotFoundError: No module named 'yaml'\n\n=== backup ===\n-rw-------+ 1 root root 1254 Nov 11 03:05 /root/.hermes/config.yaml.bak-20261111-0305", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via heredoc) and auto-approved by an 'always' approval the user saved earlier."}
+{"output": "=== find hermes python ===\n/root/.hermes/hermes-agent/.hermes/bin/hermes\n#!/bin/sh\n\n=== validate YAML with hermes python ===\ntrying: python3\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import yaml, sys; d=yaml.safe_load(open('/root/.hermes/config.yaml')); print('YAML valid'); print('compression:', d.get('compression')); print('agent:', d.get('agent')); print('model:', d.get('model')); print('top-level:', list(d.keys()))\n    ^^^^^^^^^^^^^^^^\nModuleNotFoundError: No module named 'yaml'", "exit_code": 0, "error": null}
