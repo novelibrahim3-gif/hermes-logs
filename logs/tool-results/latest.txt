@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T01:58:24+07:00
+Waktu: 2026-11-11T01:58:49+07:00
 Status: ok
-Durasi: 2591 ms
+Durasi: 3740 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "/root/craftworld-vision/.venv/bin/python -c \"\nimport cv2\nimg = cv2.imread('/root/.hermes/cache/scratch/ad_overlay.jpg')\n# crop changed area y 480-900\ncrop = img[480:900, 0:720]\ncrop2 = cv2.resize(crop, None, fx=2, fy=2, interpolation=cv2.INTER_LANCZOS4)\ncrop2 = cv2.detailEnhance(crop2)\ncv2.imwrite('/root/.hermes/cache/scratch/crop_changed.png', crop2)\nprint('saved', crop2.shape)\n\" && tesseract /root/.hermes/cache/scratch/crop_changed.png - --psm 6 2>/dev/null"
+  "command": "cp /root/.hermes/cache/images/img_ec376e9a7c65.jpg /root/.hermes/cache/scratch/ad_check2.jpg && /root/craftworld-vision/.venv/bin/python -c \"\nimport cv2, numpy as np\na = cv2.imread('/root/.hermes/cache/scratch/ad_overlay.jpg').astype(np.float32)\nb = cv2.imread('/root/.hermes/cache/scratch/ad_check2.jpg').astype(np.float32)\nd = np.abs(a-b).mean(axis=2)\nprint('diff mean', round(d.mean(),2), 'pct>30', round((d>30).mean()*100,1))\nh = d.shape[0]\nfor i in range(0, h, 200):\n    band = d[i:i+200]\n    print(f'y {i:4d}-{i+200:4d}: mean {band.mean():6.2f} pct>30 {(band>30).mean()*100:5.1f}%')\n\""
 }
 
 HASIL:
-{"output": "saved (840, 1440, 3)\na Re Dy, ‘ at f fete\n° ae a gs a & f\n‘ Le 2 “4 ms f f at\nf Se! = Ba . ‘ f c 4 ¢: ,", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
+{"output": "diff mean 5.54 pct>30 5.0\ny    0- 200: mean   0.96 pct>30   0.7%\ny  200- 400: mean   8.62 pct>30   7.5%\ny  400- 600: mean   5.00 pct>30   4.7%\ny  600- 800: mean  12.03 pct>30  11.5%\ny  800-1000: mean   1.75 pct>30   0.5%\ny 1000-1200: mean   0.70 pct>30   0.3%\ny 1200-1400: mean   8.07 pct>30   7.3%\ny 1400-1600: mean   7.18 pct>30   7.4%", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
