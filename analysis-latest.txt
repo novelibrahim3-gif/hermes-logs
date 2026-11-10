@@ -1,0 +1,10 @@
+1. Status: BERHASIL. Perintah berjalan normal dan selesai dengan exit code 0.
+
+2. Bukti penting:
+   - Dua baris output tercetak persis seperti yang diminta: "Tes integrasi" dan "Status normal" — tidak ada error, warning, atau output tambahan.
+   - exit_code=0 di akhir output menandakan proses berakhir sukses tanpa sinyal/gagal.
+   - Tidak ada rahasia (password/token) yang muncul di output, jadi tidak ada yang perlu disamarkan.
+
+3. Penyebab masalah: tidak ada masalah terdeteksi. Satu hal yang hanya perlu dicatat sebagai observasi, bukan error: baris COMMAND memuat escape `\ ` dan `\"`, yang biasa muncul karena perintah dilewatkan lewat lapisan shell/logging. Setelah unescape, isi perintahnya setara dengan menjalankan dua echo. Yang penting, hasil akhirnya konsisten dengan maksud perintah.
+
+4. Langkah pemeriksaan berikutnya: tidak diperlukan, karena perintahnya trivial dan exit code sudah 0. Kalau maksud "tes integrasi" ini menguji jalur eksekusi perintah secara umum, lanjutkan dengan menjalankan perintah target yang sebenarnya (bukan sekadar echo) lalu periksa exit code-nya; kalau yang diuji konektivitas/layanan lain, cek log layanan terkait. Sebagai data, output ini tidak memuat apa pun yang perlu ditindaklanjuti.
