@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T03:19:35+07:00
+Waktu: 2026-11-11T03:20:16+07:00
 Status: ok
-Durasi: 2982 ms
+Durasi: 2732 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "cd /root/hermes-logs-sync && echo \"=== git commit+push latency estimate (local ops only) ===\"; time git add -- logs >/dev/null 2>&1; time git diff --cached --quiet >/dev/null 2>&1; echo \"diff exit: $?\"; echo; echo \"=== log size ===\"; du -sh logs/ 2>/dev/null; wc -l logs/tool-results/*.jsonl 2>/dev/null | tail -3; echo; echo \"=== git repo size ===\"; du -sh .git 2>/dev/null"
+  "command": "cd /root/hermes-logs-sync && echo \"=== commits around failure window (2026-11-10 20:00-23:59) ===\"; git log --format='%h %ci %s' --since=\"2026-11-10 20:00\" --until=\"2026-11-10 23:59\" | head -30; echo; echo \"=== gaps > 5 min in commit times (today) ===\"; git log --format='%ci' -40 | awk 'NR>1{if ((prev-$0) > 300) print \"GAP\", prev\" -> \"$0} {prev=$0}' | head"
 }
 
 HASIL:
-{"output": "=== git commit+push latency estimate (local ops only) ===\n\nreal\t0m0.025s\nuser\t0m0.000s\nsys\t0m0.010s\n\nreal\t0m0.015s\nuser\t0m0.000s\nsys\t0m0.005s\ndiff exit: 0\n\n=== log size ===\n483K\tlogs/\n     9 logs/tool-results/calls-20261110.jsonl\n   165 logs/tool-results/calls-20261111.jsonl\n   174 total\n\n=== git repo size ===\n12M\t.git", "exit_code": 0, "error": null, "cwd": "/root/hermes-logs-sync"}
+{"output": "=== commits around failure window (2026-11-10 20:00-23:59) ===\ne20bba7 2026-11-10 23:20:17 +0700 Sync Hermes terminal results\n90f59d5 2026-11-10 22:07:33 +0700 Sync Hermes terminal results\n7d9c2a7 2026-11-10 22:07:32 +0700 Sync Hermes terminal results\n6b62d35 2026-11-10 22:06:19 +0700 Sync Hermes terminal results\n2dd3f77 2026-11-10 22:06:18 +0700 Sync Hermes terminal results\ncedefd7 2026-11-10 22:01:01 +0700 Sync Hermes terminal results\n3a713bc 2026-11-10 21:03:30 +0700 Sync Hermes terminal results\nb95f38c 2026-11-10 20:54:06 +0700 Sync Hermes terminal results\n2dfddbb 2026-11-10 20:22:16 +0700 Sync Hermes terminal results\n\n=== gaps > 5 min in commit times (today) ===", "exit_code": 0, "error": null}
