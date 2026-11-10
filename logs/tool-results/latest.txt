@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T03:16:02+07:00
+Waktu: 2026-11-11T03:16:13+07:00
 Status: ok
-Durasi: 821 ms
+Durasi: 515 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "cd /root/.hermes/hermes-agent && echo \"=== _observe ===\"; grep -rn \"def _observe\" hermes_cli/*.py agent/*.py 2>/dev/null | head; echo \"---\"; grep -n \"_observe\\|shell_hook\\|register_observer\\|observers\" hermes_cli/lifecycle.py | head -20"
+  "command": "cd /root/.hermes/hermes-agent && sed -n '1,30p' hermes_cli/lifecycle.py; echo \"=== shell hook observer registration ===\"; grep -rn \"register_observer\\|shell_hook_observer\\|observe(\" agent/shell_hooks.py hermes_cli/lifecycle.py 2>/dev/null | head -10"
 }
 
 HASIL:
-{"output": "=== _observe ===\nhermes_cli/gateway_runtime.py:372:def _observe_replacing_stale(home: Path, deadline: float, replaced: set[Path]) -> GatewayDiscovery:\nhermes_cli/lifecycle.py:11:def _observe(hook_name: str, **kwargs: Any) -> None:\nhermes_cli/nous_auth_keepalive.py:83:def _observed_lifetime_seconds() -> Optional[int]:\nhermes_cli/web_server_owner_exit.py:50:    def _observe() -> Optional[str]:\nhermes_cli/web_server_skew_exit.py:89:    def _observe() -> Optional[str]:\n---\n1:\"\"\"Hermes lifecycle dispatch for first-party observers and plugins.\"\"\"\n11:def _observe(hook_name: str, **kwargs: Any) -> None:\n31:    \"\"\"Notify first-party observers, then invoke compatibility plugin hooks.\"\"\"\n36:    _observe(hook_name, **kwargs)\n41:    \"\"\":func:`invoke_hook` for callers on an event loop: same observers-then-plugins\n43:    _observe(hook_name, **kwargs)\n82:    \"\"\"Notify observers and hard-close one core-owned Relay conversation.\"\"\"\n83:    _observe(\"on_session_finalize\", **kwargs)", "exit_code": 0, "error": null}
+{"output": "\"\"\"Hermes lifecycle dispatch for first-party observers and plugins.\"\"\"\n\nfrom __future__ import annotations\n\nimport logging\nfrom typing import Any, List\n\nlogger = logging.getLogger(__name__)\n\n\ndef _observe(hook_name: str, **kwargs: Any) -> None:\n    from agent.safe_worker_policy import safe_worker_enabled\n\n    if safe_worker_enabled():\n        return\n    try:\n        from hermes_cli.observability import observe_lifecycle\n\n        observe_lifecycle(hook_name, **kwargs)\n    except Exception:\n        logger.warning(\"Built-in observability hook failed\", exc_info=True)\n\n\ndef _plugin_hooks(hook_name: str, **kwargs: Any) -> list[Any]:\n    from hermes_cli import plugins\n\n    return plugins.invoke_hook(hook_name, **kwargs)\n\n\ndef invoke_hook(hook_name: str, **kwargs: Any) -> list[Any]:\n=== shell hook observer registration ===\nhermes_cli/lifecycle.py:11:def _observe(hook_name: str, **kwargs: Any) -> None:\nhermes_cli/lifecycle.py:36:    _observe(hook_name, **kwargs)\nhermes_cli/lifecycle.py:43:    _observe(hook_name, **kwargs)\nhermes_cli/lifecycle.py:83:    _observe(\"on_session_finalize\", **kwargs)", "exit_code": 0, "error": null}
