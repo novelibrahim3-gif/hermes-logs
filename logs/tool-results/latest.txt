@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T02:07:44+07:00
+Waktu: 2026-11-11T02:08:05+07:00
 Status: ok
-Durasi: 7513 ms
+Durasi: 3767 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "/root/craftworld-vision/.venv/bin/python -c \"\nimport cv2\nimg = cv2.imread('/root/.hermes/cache/scratch/now2.jpg')\nbig = cv2.resize(img, None, fx=2, fy=2, interpolation=cv2.INTER_LANCZOS4)\nbig = cv2.detailEnhance(big)\ncv2.imwrite('/root/.hermes/cache/scratch/now2_2x.png', big)\nprint(big.shape)\n\" && tesseract /root/.hermes/cache/scratch/now2_2x.png - --psm 11 tsv 2>/dev/null | awk -F'\\t' '$12 != \"\" && $12 != \" \" {print $7, $8, $9, $10, $12}' | head -50"
+  "command": "/root/craftworld-vision/.venv/bin/python -c \"\nimport cv2\nimg = cv2.imread('/root/.hermes/cache/scratch/now2.jpg')\nregions = {\n 'A_top':    (100, 520, 500, 640),   # above body\n 'B_body':   (100, 620, 500, 800),   # body\n 'C_below':  (100, 780, 500, 950),   # below body\n}\nfor name, (x1,y1,x2,y2) in regions.items():\n    crop = img[y1:y2, x1:x2]\n    crop = cv2.resize(crop, None, fx=3, fy=3, interpolation=cv2.INTER_LANCZOS4)\n    crop = cv2.detailEnhance(crop)\n    fn = f'/root/.hermes/cache/scratch/reg_{name}.png'\n    cv2.imwrite(fn, crop)\n    print(fn, crop.shape)\n\" && for r in A_top B_body C_below; do echo \"=== $r ===\"; tesseract /root/.hermes/cache/scratch/reg_$r.png - --psm 6 2>/dev/null; done"
 }
 
 HASIL:
-{"output": "(3200, 1440, 3)\nleft top width height text\n53 200 45 26 oe\n317 204 14 22 J\n616 220 6 13 ‘\n636 178 34 62 u\n676 201 6 12 1\n622 226 78 41 Tare\n804 209 26 35 0\n45 270 65 30 =|\n124 301 48 6 su\n688 270 12 15 a\n1059 264 12 18 u\n254 376 21 24 =\n100 445 51 30 LES\n245 424 109 51 \"315k\n827 445 66 30 439\n974 368 98 106 bal\n49 360 142 123 ©\n159 485 50 12 (==\n322 531 41 10 —\n434 376 100 99 o.\n568 370 23 66 :\n613 361 100 176 é.\n962 531 41 9 —\n1278 529 43 27 th\n157 533 89 65 Peet\n605 529 106 59 pee\n795 535 91 63 eet\n959 555 47 28 “PN\n1245 529 106 60 poy\n581 607 10 14 Ii\n1189 616 34 17 i\n1293 619 19 21 gi\n285 579 106 90 ple\n42 659 34 35 =\n690 786 60 28 —;,\n647 843 34 40 49)\n764 840 28 43 Ki\n334 882 18 8 ~\n680 882 81 14 MADR\n746 877 17 29 -A\n631 912 3 23 |\n664 942 113 37 315k\n446 949 40 21 ON\n496 954 32 13 eS.\n535 949 92 53 my\n4 944 442 108 =e\n1077 1065 8 9 .\n1384 1065 8 9 +\n622 1031 84 86 ae", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
+{"output": "/root/.hermes/cache/scratch/reg_A_top.png (360, 1200, 3)\n/root/.hermes/cache/scratch/reg_B_body.png (540, 1200, 3)\n/root/.hermes/cache/scratch/reg_C_below.png (510, 1200, 3)\n=== A_top ===\noa\n-r a : phat a ‘2 <4\n=== B_body ===\n=== C_below ===\n? - a .\n= — A\niy F -\ni ¢ 7 _—_ *f\nTe aN , : A\nbd a’,\n= a ei 1 ~s Re =\ns? - We =< Te =<\nf~,. Re ‘ , ‘4 “¥\n. Ya be . : + ; - w", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
