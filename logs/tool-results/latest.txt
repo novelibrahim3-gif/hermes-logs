@@ -1,14 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-11T12:40:33+07:00
+Waktu: 2026-11-11T12:40:45+07:00
 Tool: terminal
 Status: ok
-Durasi: 2421 ms
+Durasi: 5629 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "command": "echo \"=== is /root/hermes-logs-sync a symlink? ===\"; ls -ld /root/hermes-logs-sync; readlink -f /root/hermes-logs-sync\necho \"=== Path.home() resolution ===\"; /usr/bin/python3 -c \"from pathlib import Path; print('Path.home() ->', Path.home()); print('resolve   ->', Path.home().resolve())\"\necho \"=== HOME env ===\"; echo \"HOME=$HOME\"\necho \"=== git config (safe to change) ===\"; cd /root/hermes-logs-sync && git config --get-all credential.helper"
+  "command": "hermes config set --help 2>&1 | head -30"
 }
 
 HASIL:
-{"output": "=== is /root/hermes-logs-sync a symlink? ===\ndrwxr-xr-x+ 8 root root 3452 Nov 11 12:40 /root/hermes-logs-sync\n/root/hermes-logs-sync\n=== Path.home() resolution ===\nPath.home() -> /root\nresolve   -> /root\n=== HOME env ===\nHOME=/root\n=== git config (safe to change) ===\ncache --timeout=3600", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
+{"output": "usage: hermes config set [-h] [--force] [key] [value]\n\npositional arguments:\n  key         Configuration key (e.g., model, terminal.backend)\n  value       Value to set\n\noptions:\n  -h, --help  show this help message and exit\n  --force     Write a key the running version doesn't recognize: an unknown\n              path under a known section is otherwise refused, and an unknown\n              top-level key is written with a notice.", "exit_code": 0, "error": null}
