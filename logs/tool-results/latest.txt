@@ -1,14 +1,15 @@
 Hermes — hasil tool
-Waktu: 2026-11-11T13:03:43+07:00
+Waktu: 2026-11-11T13:04:00+07:00
 Tool: terminal
 Status: ok
-Durasi: 1 ms
-Direktori: /root
+Durasi: 5803 ms
+Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "command": "echo hi"
+  "command": "echo \"=== cron alternatives ===\"\ncommand -v cron crond crontab 2>/dev/null || echo \"(no cron binaries)\"\nls /etc/init.d/ 2>/dev/null | head\necho \"=== termux cron? ===\"\nls /data/data/com.termux/files/usr/bin/cron* 2>/dev/null || echo \"(none)\"\necho \"=== hermes cron system (built-in) ===\"\nhermes cron --help 2>&1 | head -20",
+  "timeout": 60
 }
 
 HASIL:
-ok
+{"output": "=== cron alternatives ===\n(no cron binaries)\ndbus\nprocps\nx11-common\n=== termux cron? ===\n(none)\n=== hermes cron system (built-in) ===\nusage: hermes cron [-h] [--accept-hooks]\n                   {list,create,add,edit,pause,resume,run,cancel,remove,rm,delete,status,runs,history,incidents,notepad,doctor,tick} ...\n\nManage scheduled tasks\n\npositional arguments:\n  {list,create,add,edit,pause,resume,run,cancel,remove,rm,delete,status,runs,history,incidents,notepad,doctor,tick}\n    list                List scheduled jobs\n    create (add)        Create a scheduled job\n    edit                Edit an existing scheduled job\n    pause               Pause a scheduled job\n    resume              Resume a paused job\n    run                 Run a job on the next scheduler tick\n    cancel              Stop a job's live run (its schedule is untouched)\n    remove (rm, delete)\n                        Remove a scheduled job\n    status              Check if cron scheduler is running\n    runs (history)      Show durable execution attempts\n    incidents           List or acknowledge durable cron failure incidents\n    notepad             Read/write a job's durable notepad (persistent KV", "exit_code": 0, "error": null}
