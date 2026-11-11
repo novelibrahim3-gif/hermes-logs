@@ -1,14 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-11T12:44:15+07:00
+Waktu: 2026-11-11T12:44:29+07:00
 Tool: terminal
 Status: ok
-Durasi: 33359 ms
+Durasi: 1750 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "command": "cd /root/hermes-logs-sync\necho \"=== queue growth over 30s ===\"\nfor i in 1 2 3; do echo \"$(date +%H:%M:%S) pending=$(ls .queue/*.json 2>/dev/null | wc -l)\"; sleep 10; done\necho \"=== last 5 sync-errors ===\"; tail -5 logs/tool-results/sync-errors.log\necho \"=== git log count last 2 min ===\"; git log --oneline --since=\"2 minutes ago\" | wc -l\necho \"=== latest commit ===\"; git log -1 --format=\"%H %s\"\necho \"=== remote HEAD ===\"; git ls-remote origin main | cut -f1\necho \"=== local HEAD ===\"; git rev-parse HEAD"
+  "command": "cd /root/hermes-logs-sync\necho \"=== worker process details ===\"\nps -o pid,lstart,etime,cmd -p 11617 2>/dev/null || echo \"(gone)\"\necho \"=== pid file ===\"; cat .locks/worker.pid 2>/dev/null; echo\necho \"=== worker.out ===\"; cat logs/tool-results/worker.out 2>/dev/null | tail -5 || echo \"(empty)\"\necho \"=== is worker script executable? ===\"; ls -la autopush_worker.sh autopush_worker.py"
 }
 
 HASIL:
-{"output": "=== queue growth over 30s ===\n12:43:43 pending=22\n12:43:53 pending=22\n12:44:03 pending=22\n=== last 5 sync-errors ===\n2026-11-11T12:43:58+07:00 push ok (commit 2bb1c636 + push origin/main); sisa antrean=22\n2026-11-11T12:44:02+07:00 push ok (commit d0cf61a1 + push origin/main); sisa antrean=22\n2026-11-11T12:44:05+07:00 push ok (commit e21b9f36 + push origin/main); sisa antrean=22\n2026-11-11T12:44:09+07:00 push ok (commit 133bce2c + push origin/main); sisa antrean=22\n2026-11-11T12:44:12+07:00 push ok (commit 5dab641a + push origin/main); sisa antrean=22\n=== git log count last 2 min ===\n34\n=== latest commit ===\na707ad5666a0da56c39d49f41f49c0b76ee755f6 Sync Hermes logs 20261111-124412\n=== remote HEAD ===\n5dab641a65ac8154ff2b38fc543a4e929226e649\n=== local HEAD ===\na707ad5666a0da56c39d49f41f49c0b76ee755f6", "exit_code": 0, "error": null}
+{"output": "=== worker process details ===\n  PID                  STARTED     ELAPSED CMD\n11617 Thu Mar 30 01:23:22 2023       03:58 /usr/bin/python3 -u /root/hermes-logs-sync/autopush_worker.py\n=== pid file ===\n11617\n\n=== worker.out ===\n=== is worker script executable? ===\n-rw-r--r--+ 1 root root 3425 Nov 11 12:42 autopush_worker.py\n-rw-r--r--+ 1 root root  610 Nov 11 12:42 autopush_worker.sh", "exit_code": 0, "error": null}
