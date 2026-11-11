@@ -1,13 +1,14 @@
-Hermes — hasil tool terminal
-Waktu: 2026-11-11T11:58:13+07:00
+Hermes — hasil tool
+Waktu: 2026-11-11T12:40:31+07:00
+Tool: terminal
 Status: ok
-Durasi: 2636 ms
+Durasi: 5280 ms
 Direktori: /root/.hermes/hermes-agent
 
-PERINTAH:
+INPUT:
 {
-  "command": "printf '%s\\n' 'HERMES_E2E_20261111_115742'"
+  "command": "hermes config --help 2>&1 | head -60"
 }
 
 HASIL:
-{"output": "HERMES_E2E_20261111_115742", "exit_code": 0, "error": null}
+{"output": "usage: hermes config [-h]\n                     {show,edit,get,set,unset,path,env-path,check,migrate} ...\n\nManage Hermes Agent configuration\n\npositional arguments:\n  {show,edit,get,set,unset,path,env-path,check,migrate}\n    show                Show current configuration\n    edit                Open config file in editor\n    get                 Print a resolved configuration value\n    set                 Set a configuration value\n    unset               Remove a configuration value\n    path                Print config file path\n    env-path            Print .env file path\n    check               Check for missing/outdated config\n    migrate             Update config with new options\n\noptions:\n  -h, --help            show this help message and exit", "exit_code": 0, "error": null}
