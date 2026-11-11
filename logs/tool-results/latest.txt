@@ -1,14 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-11T12:40:45+07:00
+Waktu: 2026-11-11T12:40:58+07:00
 Tool: terminal
 Status: ok
-Durasi: 5629 ms
+Durasi: 7355 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "command": "hermes config set --help 2>&1 | head -30"
+  "command": "hermes config get hooks 2>&1 | head -40"
 }
 
 HASIL:
-{"output": "usage: hermes config set [-h] [--force] [key] [value]\n\npositional arguments:\n  key         Configuration key (e.g., model, terminal.backend)\n  value       Value to set\n\noptions:\n  -h, --help  show this help message and exit\n  --force     Write a key the running version doesn't recognize: an unknown\n              path under a known section is otherwise refused, and an unknown\n              top-level key is written with a notice.", "exit_code": 0, "error": null}
+{"output": "post_tool_call:\n  - matcher: ^terminal$\n    command: /root/hermes-logs-sync/sync_logs.py\n    timeout: 120\npost_llm_call:\n  - command: /root/hermes-logs-sync/log_llm.py\n    timeout: 120", "exit_code": 0, "error": null}
