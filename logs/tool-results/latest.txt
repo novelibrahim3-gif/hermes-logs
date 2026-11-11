@@ -1,15 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-11T13:05:41+07:00
+Waktu: 2026-11-11T13:05:51+07:00
 Tool: terminal
 Status: ok
-Durasi: 24624 ms
-Direktori: /root/.hermes/hermes-agent
+Durasi: 1 ms
+Direktori: /root
 
 INPUT:
 {
-  "command": "cd /root/hermes-logs-sync\nchmod +x /root/.hermes/scripts/hermes_logs_autopush.sh\nbash install_cron.sh 2>&1 | tail -10\necho \"=== verify ===\"; hermes cron list 2>/dev/null | grep -iA6 \"autopush\"",
-  "timeout": 120
+  "command": "echo restart-test"
 }
 
 HASIL:
-{"output": "RC=0\n    Name:      hermes-logs-autopush-fallback\n    Schedule:  */10 * * * *\n    Repeat:    ∞\n    Next run:  2026-11-11T13:10:00+07:00\n    Deliver:   local\n    Script:    hermes_logs_autopush.sh\n    Mode:      no-agent (script stdout delivered directly)\n    Workdir:   /root/hermes-logs-sync\n\n=== verify ===\n    Name:      hermes-logs-autopush-fallback\n    Schedule:  */10 * * * *\n    Repeat:    ∞\n    Next run:  2026-11-11T13:10:00+07:00\n    Deliver:   local\n    Script:    hermes_logs_autopush.sh\n    Mode:      no-agent (script stdout delivered directly)\n    Workdir:   /root/hermes-logs-sync", "exit_code": 0, "error": null}
+ok
