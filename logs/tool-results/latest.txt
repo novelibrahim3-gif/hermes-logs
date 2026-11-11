@@ -1,15 +1,16 @@
 Hermes — hasil tool
-Waktu: 2026-11-11T12:50:22+07:00
+Waktu: 2026-11-11T12:50:30+07:00
 Tool: terminal
 Status: ok
-Durasi: 3356 ms
+Durasi: 2105 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "command": "cd /root/hermes-logs-sync\nkill \"$(cat .locks/worker.pid 2>/dev/null)\" 2>/dev/null; sleep 1\nrm -f .locks/worker.pid .locks/git.lock/worker.lock\necho \"killed old worker\"",
-  "timeout": 60
+  "background": true,
+  "command": "/bin/bash /root/hermes-logs-sync/autopush_worker.sh",
+  "notify": true
 }
 
 HASIL:
-{"output": "killed old worker", "exit_code": 0, "error": null}
+{"output": "Background process started", "session_id": "proc_ed90a1c97e38", "pid": 15626, "exit_code": 0, "error": null, "notify_on_complete": true}
