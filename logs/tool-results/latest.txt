@@ -1,14 +1,15 @@
 Hermes — hasil tool
-Waktu: 2026-11-11T13:06:11+07:00
+Waktu: 2026-11-11T13:06:20+07:00
 Tool: terminal
 Status: ok
-Durasi: 1 ms
-Direktori: /root
+Durasi: 11097 ms
+Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "command": "echo hi"
+  "command": "cd /root/hermes-logs-sync\necho \"=== LATENCY COMPARISON ===\"\necho \"--- BEFORE (old sync_logs.py: local-only, no enqueue) ---\"\nBK=backups/20261111-123725-pre-autopush\n/usr/bin/python3 - <<EOF\nimport json, subprocess, time\npayload = {\"hook_event_name\":\"post_tool_call\",\"tool_name\":\"terminal\",\"session_id\":\"LAT\",\"cwd\":\"/root\",\"tool_input\":{\"command\":\"echo hi\"},\"extra\":{\"status\":\"ok\",\"duration_ms\":1,\"result\":\"ok\"}}\nts=[]\nfor _ in range(5):\n    t0=time.perf_counter()\n    subprocess.run([\"/usr/bin/python3\",\"$BK/sync_logs.py\"],input=json.dumps(payload),capture_output=True,text=True,cwd=\"$BK\")\n    ts.append((time.perf_counter()-t0)*1000)\nprint(\"BEFORE hook ms:\", [round(x,1) for x in ts], \"avg=\", round(sum(ts)/len(ts),1))\nEOF\necho \"--- AFTER (new sync_logs.py: local + enqueue) ---\"\n/usr/bin/python3 - <<'EOF'\nimport json, subprocess, time\npayload = {\"hook_event_name\":\"post_tool_call\",\"tool_name\":\"terminal\",\"session_id\":\"LAT\",\"cwd\":\"/root\",\"tool_input\":{\"command\":\"echo hi\"},\"extra\":{\"status\":\"ok\",\"duration_ms\":1,\"result\":\"ok\"}}\nts=[]\nfor _ in range(5):\n    t0=time.perf_counter()\n    subprocess.run([\"/usr/bin/python3\",\"sync_logs.py\"],input=json.dumps(payload),capture_output=True,text=True)\n    ts.append((time.perf_counter()-t0)*1000)\nprint(\"AFTER  hook ms:\", [round(x,1) for x in ts], \"avg=\", round(sum(ts)/len(ts),1))\nEOF\necho\necho \"=== FULL FINAL VERIFICATION ===\"\necho \"local : $(git rev-parse HEAD)\"\necho \"remote: $(git ls-remote origin main | cut -f1)\"\necho \"queue : $(ls .queue/*.json 2>/dev/null | wc -l)\"\necho \"worker: $(pgrep -af 'autopush_worker[.]py' | head -1)\"\necho \"cron  : $(hermes cron list 2>/dev/null | grep -c autopush) job(s)\"\necho\necho \"=== git status ===\"; git status --short | head -20",
+  "timeout": 180
 }
 
 HASIL:
-ok
+{"output": "=== LATENCY COMPARISON ===\n--- BEFORE (old sync_logs.py: local-only, no enqueue) ---\nBEFORE hook ms: [55.5, 61.3, 59.1, 56.5, 57.1] avg= 57.9\n--- AFTER (new sync_logs.py: local + enqueue) ---\nAFTER  hook ms: [223.5, 229.0, 219.1, 274.2, 255.7] avg= 240.3\n\n=== FULL FINAL VERIFICATION ===\nlocal : c47525af231ca4096fe259ee415a1f6953297fe6\nremote: 30b516725aa58808593a5a7e98e4764f1935e89e\nqueue : 5\nworker: 24071 /usr/bin/python3 -u /root/hermes-logs-sync/autopush_worker.py\ncron  : 2 job(s)\n\n=== git status ===\n M logs/tool-results/calls-20261111.jsonl\n M logs/tool-results/sync-errors.log\n?? .gitignore\n?? autopush_push.py\n?? autopush_queue.py\n?? autopush_worker.py\n?? autopush_worker.sh\n?? backups/\n?? install_cron.sh\n?? log_llm.py\n?? sync_logs.py\n?? sync_push.py", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via heredoc) and auto-approved by an 'always' approval the user saved earlier."}
