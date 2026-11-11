@@ -85,3 +85,10 @@
 2026-11-11T12:59:39+07:00 push ok (commit 954df2d4 + push origin/main); request dihapus=1; sisa antrean=0
 2026-11-11T13:00:12+07:00 push ok (commit 1c1bb469 + push origin/main); request dihapus=1; sisa antrean=0
 2026-11-11T13:00:46+07:00 push ok (commit dc28a428 + push origin/main); request dihapus=1; sisa antrean=0
+2026-11-11T13:01:00+07:00 git gagal: fatal: Unable to create '/root/hermes-logs-sync/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.
