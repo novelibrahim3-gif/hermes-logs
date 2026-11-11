@@ -1,8 +1,8 @@
 Hermes — hasil tool
-Waktu: 2026-11-11T13:08:49+07:00
+Waktu: 2026-11-11T13:08:56+07:00
 Tool: skill_manage
 Status: ok
-Durasi: 1238 ms
+Durasi: 863 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
@@ -10,13 +10,12 @@ INPUT:
   "operations": [
     {
       "action": "patch",
-      "file_path": "references/config-audit-and-optimization.md",
       "name": "hermes-agent",
-      "new_string": "## Real-time auto-push: hook enqueues, worker pushes\n\nWhen the requirement is *every* tool/LLM output pushed to a remote within\nseconds (not batched at session end), split the work:\n\n```\nhook (sync, cheap)  ->  .queue/*.json + touch .trigger  ->  daemon worker  ->  git push\n```\n\n- **Hook** appends the local JSONL/snapshot (so the log survives a push\n  failure) and writes one queue request + trigger. Never runs git.\n- **Worker** is a long-lived daemon launched by the hook (idempotent via a PID\n  file). It polls the trigger, pushes, then drains the queue.\n- **Manual batch** (`sync_push.py`) shares the same push function for a\n  fallback/cron path; it must not run concurrently with the worker.\n\nPitfalls that cost real time:\n\n- **A lock-file-existence check is not a lock-held check.** `any(lockdir.glob(\"*\"))`\n  is true forever once a daemon creates its lock file, so every request is\n  classified busy and dropped. Test the lock with `fcntl.flock(fd, LOCK_EX |\n  LOCK_NB)` and treat `OSError` as held.\n- **A worker that only counts queue files sleeps through work.** Hooks may\n  enqueue while it sleeps; poll the trigger's mtime (or use `inotify`/a short\n  sleep) so it wakes on demand.\n- **Serialize the whole git operation, not just the push.** A concurrent batch\n  and worker collide on the git index lock (`fatal: Unable to create\n  .../index.lock`). Wrap add/commit/push in one exclusive `flock`.\n- **Remote ahead + dirty tree blocks rebase.** Use `git rebase --autostash`\n  when the push is rejected as non-fast-forward and the working tree has\n  uncommitted log changes.\n- **Unique commit messages** (`Sync ... <timestamp>`) keep duplicate-commit\n  detection honest; an identical message on every push hides real duplicates.\n- **Never delete or roll back local logs on push failure** — retain the queue\n  and retry with backoff. The local JSONL is the source of truth.\n- **Hook latency budget**: local append + enqueue adds ~200-300 ms (Python\n  startup dominates). Report it; if it matters, merge the hook scripts into a\n  persistent process rather than paying interpreter startup per call.\n- **Credentials**: the hook environment has a minimal PATH and no TTY; rely on\n  the git credential cache/helper and an absolute interpreter path. A push\n  that works interactively can still fail from a hook.\n\nVerify the way you would verify the batched path: run a nested `hermes -z`\nthat forces one tool call, then assert local HEAD == `git ls-remote` HEAD and\ngrep the pushed JSONL for the nonce. Also test the failure paths — kill the\nworker and confirm the next hook restarts it; run a concurrent batch and\nconfirm no index-lock error; force a divergent remote and confirm the\nautostash rebase recovers.\n\n## Git push exit 128 from a non-interactive hook",
-      "old_string": "## Git push exit 128 from a non-interactive hook"
+      "new_string": "| Hooks (`post_tool_call`/`post_llm_call`) slow, failing, or doing network/git work | `references/config-audit-and-optimization.md` |\n| Real-time auto-push of every tool/LLM output to a git remote (queue + worker) | `references/config-audit-and-optimization.md` |\n| Verifying a logging hook actually captures a run end-to-end | `references/config-audit-and-optimization.md` |",
+      "old_string": "| Hooks (`post_tool_call`/`post_llm_call`) slow, failing, or doing network/git work | `references/config-audit-and-optimization.md` |\n| Verifying a logging hook actually captures a run end-to-end | `references/config-audit-and-optimization.md` |"
     }
   ]
 }
 
 HASIL:
-{"success": true, "operations_applied": 1, "results": [{"name": "hermes-agent", "action": "patch", "file_path": "references/config-audit-and-optimization.md", "success": true}]}
+{"success": true, "operations_applied": 1, "results": [{"name": "hermes-agent", "action": "patch", "file_path": null, "success": true}]}
