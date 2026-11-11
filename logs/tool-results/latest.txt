@@ -1,14 +1,15 @@
 Hermes — hasil tool
-Waktu: 2026-11-11T12:44:29+07:00
+Waktu: 2026-11-11T12:50:22+07:00
 Tool: terminal
 Status: ok
-Durasi: 1750 ms
+Durasi: 3356 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "command": "cd /root/hermes-logs-sync\necho \"=== worker process details ===\"\nps -o pid,lstart,etime,cmd -p 11617 2>/dev/null || echo \"(gone)\"\necho \"=== pid file ===\"; cat .locks/worker.pid 2>/dev/null; echo\necho \"=== worker.out ===\"; cat logs/tool-results/worker.out 2>/dev/null | tail -5 || echo \"(empty)\"\necho \"=== is worker script executable? ===\"; ls -la autopush_worker.sh autopush_worker.py"
+  "command": "cd /root/hermes-logs-sync\nkill \"$(cat .locks/worker.pid 2>/dev/null)\" 2>/dev/null; sleep 1\nrm -f .locks/worker.pid .locks/git.lock/worker.lock\necho \"killed old worker\"",
+  "timeout": 60
 }
 
 HASIL:
-{"output": "=== worker process details ===\n  PID                  STARTED     ELAPSED CMD\n11617 Thu Mar 30 01:23:22 2023       03:58 /usr/bin/python3 -u /root/hermes-logs-sync/autopush_worker.py\n=== pid file ===\n11617\n\n=== worker.out ===\n=== is worker script executable? ===\n-rw-r--r--+ 1 root root 3425 Nov 11 12:42 autopush_worker.py\n-rw-r--r--+ 1 root root  610 Nov 11 12:42 autopush_worker.sh", "exit_code": 0, "error": null}
+{"output": "killed old worker", "exit_code": 0, "error": null}
