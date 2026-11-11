@@ -1,8 +1,8 @@
 Hermes — hasil tool
-Waktu: 2026-11-11T13:08:56+07:00
+Waktu: 2026-11-11T13:09:24+07:00
 Tool: skill_manage
 Status: ok
-Durasi: 863 ms
+Durasi: 902 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
@@ -10,12 +10,13 @@ INPUT:
   "operations": [
     {
       "action": "patch",
+      "file_path": "references/config-audit-and-optimization.md",
       "name": "hermes-agent",
-      "new_string": "| Hooks (`post_tool_call`/`post_llm_call`) slow, failing, or doing network/git work | `references/config-audit-and-optimization.md` |\n| Real-time auto-push of every tool/LLM output to a git remote (queue + worker) | `references/config-audit-and-optimization.md` |\n| Verifying a logging hook actually captures a run end-to-end | `references/config-audit-and-optimization.md` |",
-      "old_string": "| Hooks (`post_tool_call`/`post_llm_call`) slow, failing, or doing network/git work | `references/config-audit-and-optimization.md` |\n| Verifying a logging hook actually captures a run end-to-end | `references/config-audit-and-optimization.md` |"
+      "new_string": "- **Credentials**: the hook environment has a minimal PATH and no TTY; rely on\n  the git credential cache/helper and an absolute interpreter path. A push\n  that works interactively can still fail from a hook.\n- **Back up the scripts and config before editing them** (`cp -a <files>\n  backups/<timestamp>-pre-change/`), and record their SHA256 so a rollback is\n  verifiable. A hook script is live infrastructure: a bad edit silently stops\n  every future log write.\n- **Scheduled fallback**: on hosts without system `crontab`, use Hermes' own\n  scheduler (`hermes cron create ... --script <name> --no-agent --deliver\n  local`) with the script placed under `~/.hermes/scripts/`. The script path\n  must be relative to that directory; an absolute path is refused.\n\nVerify the way you would verify the batched path: run a nested `hermes -z`",
+      "old_string": "- **Credentials**: the hook environment has a minimal PATH and no TTY; rely on\n  the git credential cache/helper and an absolute interpreter path. A push\n  that works interactively can still fail from a hook.\n\nVerify the way you would verify the batched path: run a nested `hermes -z`"
     }
   ]
 }
 
 HASIL:
-{"success": true, "operations_applied": 1, "results": [{"name": "hermes-agent", "action": "patch", "file_path": null, "success": true}]}
+{"success": true, "operations_applied": 1, "results": [{"name": "hermes-agent", "action": "patch", "file_path": "references/config-audit-and-optimization.md", "success": true}]}
