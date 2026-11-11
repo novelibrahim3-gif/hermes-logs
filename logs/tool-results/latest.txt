@@ -1,14 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-11T12:40:58+07:00
+Waktu: 2026-11-11T12:41:09+07:00
 Tool: terminal
 Status: ok
-Durasi: 7355 ms
+Durasi: 10370 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "command": "hermes config get hooks 2>&1 | head -40"
+  "command": "hermes config set hooks.post_tool_call '[{\"matcher\": \".*\", \"command\": \"/root/hermes-logs-sync/sync_logs.py\", \"timeout\": 120}]' 2>&1 | head -20; echo \"RC=$?\""
 }
 
 HASIL:
-{"output": "post_tool_call:\n  - matcher: ^terminal$\n    command: /root/hermes-logs-sync/sync_logs.py\n    timeout: 120\npost_llm_call:\n  - command: /root/hermes-logs-sync/log_llm.py\n    timeout: 120", "exit_code": 0, "error": null}
+{"output": "✓ Set hooks.post_tool_call = [{'matcher': '.*', 'command': '/root/hermes-logs-sync/sync_logs.py', 'timeout': 120}] in /root/.hermes/config.yaml\nRC=0", "exit_code": 0, "error": null}
