@@ -1,5 +1,5 @@
 Hermes — hasil tool
-Waktu: 2026-11-11T13:05:51+07:00
+Waktu: 2026-11-11T13:06:11+07:00
 Tool: terminal
 Status: ok
 Durasi: 1 ms
@@ -7,7 +7,7 @@ Direktori: /root
 
 INPUT:
 {
-  "command": "echo restart-test"
+  "command": "echo hi"
 }
 
 HASIL:
