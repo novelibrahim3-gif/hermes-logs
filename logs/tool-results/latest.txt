@@ -1,13 +1,13 @@
 Hermes — hasil tool terminal
-Waktu: 2026-11-11T11:12:55+07:00
+Waktu: 2026-11-11T11:58:13+07:00
 Status: ok
-Durasi: 1635 ms
+Durasi: 2636 ms
 Direktori: /root/.hermes/hermes-agent
 
 PERINTAH:
 {
-  "command": "python3 /root/.hermes/cache/scratch/hooktest_subproc.py 2>&1"
+  "command": "printf '%s\\n' 'HERMES_E2E_20261111_115742'"
 }
 
 HASIL:
-{"output": "[PASS] log_llm.py exit code 0 rc=0 stderr=\n[PASS] log_llm.py stdout JSON ok {\"status\": \"ok\", \"action\": \"logged\"}\n[PASS] JSONL assistant dibuat \n[PASS] latest.md diperbarui \n[PASS] 1 record JSONL valid n=1\n[PASS] timestamp ISO ada 2026-11-11T11:12:54+07:00\n[PASS] token disanitasi \n[PASS] password disanitasi \n[PASS] latest.md berisi jawaban \n[PASS] latest.md token disanitasi \n[PASS] sync_logs.py exit code 0 rc=0 stderr=\n[PASS] sync_logs.py stdout JSON ok {\"status\": \"ok\", \"action\": \"logged\"}\n[PASS] JSONL tool dibuat \n[PASS] latest.txt tool diperbarui \n[PASS] 1 record tool JSONL valid n=1\n[PASS] tool record valid \n[PASS] event lain diabaikan \n\nTOTAL: 17 checks, 0 gagal\nSEMUA PENGUJIAN SUBPROCESS LULUS", "exit_code": 0, "error": null}
+{"output": "HERMES_E2E_20261111_115742", "exit_code": 0, "error": null}
