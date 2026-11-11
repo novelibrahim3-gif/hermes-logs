@@ -1,16 +1,15 @@
 Hermes — hasil tool
-Waktu: 2026-11-11T12:56:55+07:00
+Waktu: 2026-11-11T12:57:08+07:00
 Tool: terminal
 Status: ok
-Durasi: 2496 ms
+Durasi: 6756 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "background": true,
-  "command": "/bin/bash /root/hermes-logs-sync/autopush_worker.sh",
-  "notify": true
+  "command": "cd /root/hermes-logs-sync\nsleep 3\necho \"=== worker ===\"; pgrep -af \"autopush_worker[.]py\" | head -2\necho \"=== queue ===\"; ls .queue/*.json 2>/dev/null | wc -l\necho \"=== local vs remote ===\"; echo \"local : $(git rev-parse HEAD)\"; echo \"remote: $(git ls-remote origin main | cut -f1)\"\necho \"=== worker log ===\"; tail -3 logs/tool-results/sync-errors.log",
+  "timeout": 60
 }
 
 HASIL:
-{"output": "Background process started", "session_id": "proc_8774ba584634", "pid": 17825, "exit_code": 0, "error": null, "notify_on_complete": true}
+{"output": "=== worker ===\n17769 /usr/bin/python3 -u /root/hermes-logs-sync/autopush_worker.py\n=== queue ===\n0\n=== local vs remote ===\nlocal : 39cbad7e291bf12ff6aad036a2033e98b40aa836\nremote: 39cbad7e291bf12ff6aad036a2033e98b40aa836\n=== worker log ===\n2026-11-11T12:56:25+07:00 push ok (commit 40d60e58 + push origin/main); request dihapus=1; sisa antrean=0\n2026-11-11T12:56:50+07:00 push ok (commit e662e593 + push origin/main); request dihapus=3; sisa antrean=0\n2026-11-11T12:57:04+07:00 push ok (commit 39cbad7e + push origin/main); request dihapus=1; sisa antrean=0", "exit_code": 0, "error": null}
