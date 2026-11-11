@@ -1,15 +1,16 @@
 Hermes — hasil tool
-Waktu: 2026-11-11T12:56:46+07:00
+Waktu: 2026-11-11T12:56:55+07:00
 Tool: terminal
 Status: ok
-Durasi: 3413 ms
+Durasi: 2496 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "command": "cd /root/hermes-logs-sync\nkill \"$(cat .locks/worker.pid 2>/dev/null)\" 2>/dev/null; sleep 1\nrm -f .locks/worker.pid .locks/git.lock/worker.lock\n/usr/bin/python3 -m py_compile autopush_queue.py autopush_worker.py autopush_push.py && echo \"syntax OK\"\necho \"=== verify request_push no longer drops ===\"\n/usr/bin/python3 -c \"\nimport sys; sys.path.insert(0,'.')\nimport autopush_queue as q\nprint(q.request_push(reason='selftest'))\nprint('trigger age:', __import__('time').time() - __import__('pathlib').Path(q.TRIGGER).stat().st_mtime)\n\"",
-  "timeout": 60
+  "background": true,
+  "command": "/bin/bash /root/hermes-logs-sync/autopush_worker.sh",
+  "notify": true
 }
 
 HASIL:
-{"output": "syntax OK\n=== verify request_push no longer drops ===\n{'status': 'ok', 'action': 'queued'}\ntrigger age: 0.005167722702026367", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by an 'always' approval the user saved earlier."}
+{"output": "Background process started", "session_id": "proc_8774ba584634", "pid": 17825, "exit_code": 0, "error": null, "notify_on_complete": true}
