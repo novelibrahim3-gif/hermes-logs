@@ -180,3 +180,15 @@ remove the file manually to continue.
 2026-11-13T05:15:16+07:00 push ok (commit 3e7b0c42 + push origin/main); request dihapus=1; sisa antrean=0
 2026-11-13T05:16:05+07:00 push ok (commit dc19b15a + push origin/main); request dihapus=1; sisa antrean=0
 2026-11-13T05:16:38+07:00 push ok (commit 1231d9f9 + push origin/main); request dihapus=1; sisa antrean=0
+2026-11-13T05:17:53+07:00 push gagal: error: unknown option `file=/root/hermes-logs-sync/.locks/git-credential-cache'
+usage: git credential-cache [<options>] <action>
+
+    --[no-]timeout <n>    number of seconds to cache credentials
+    --[no-]socket <path>  path of cache-daemon socket
+
+remote: Internal Server Error        
+remote: Request ID 195F:38E480:36A037:56A581:6AF63B0F        
+remote: Time 2026-11-12T22:17:52Z
+To https://github.com/novelibrahim3-gif/hermes-logs.git
+ ! [remote rejected] main -> main (Internal Server Error)
+error: failed to push some refs to 'https://github.com/novelibrahim3-gif/hermes-logs.git'; retry dalam 5s
