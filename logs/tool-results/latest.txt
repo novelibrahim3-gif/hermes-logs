@@ -1,14 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-13T00:44:19+07:00
+Waktu: 2026-11-13T00:44:32+07:00
 Tool: terminal
-Status: error
-Durasi: 485 ms
+Status: ok
+Durasi: 808 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "command": "echo \"== probe dengan header MCP ==\"; curl -s -m 15 -X POST http://127.0.0.1:8765/mcp -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' -d '{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"tools/list\"}' -D /tmp/hdr.txt -o /tmp/mcp_out.txt; echo \"exit=$?\"; echo \"--- headers ---\"; cat /tmp/hdr.txt 2>/dev/null | head -15; echo \"--- body (first 3000) ---\"; head -c 3000 /tmp/mcp_out.txt 2>/dev/null; echo; echo \"== ukuran body ==\"; wc -c /tmp/mcp_out.txt 2>/dev/null"
+  "command": "echo \"== port listening ==\"; (ss -tlnp 2>/dev/null || netstat -tlnp 2>/dev/null) | head -30; echo \"== proses buddy ==\"; ps aux 2>/dev/null | grep -i -E \"buddy|8765\" | grep -v grep | head -10; echo \"== config mcp ==\"; grep -A 20 -i \"mcp\" /root/.hermes/config.yaml 2>/dev/null | head -40"
 }
 
 HASIL:
-{"output": "== probe dengan header MCP ==\nexit=7\n--- headers ---\n--- body (first 3000) ---\n\n== ukuran body ==", "exit_code": 1, "error": null}
+{"output": "== port listening ==\nState Recv-Q Send-Q Local Address:Port Peer Address:PortProcess\n== proses buddy ==\n== config mcp ==\nmcp_servers:\n  buddy:\n    url: \"http://127.0.0.1:8765/mcp\"\n    headers:\n      Authorization: [DISEMBUNYIKAN]]"Bearer ${BUDDY_TOKEN}\"\n    timeout: 120\n    connect_timeout: 30\n    enabled: true\n  craftworld-vision:\n    command: /root/craftworld-vision/.venv/bin/python\n    args:\n      - /root/craftworld-vision/server.py\n    enabled: true\ntelemetry:\n  shared_metrics:\n    enabled: false\n    send: false\n    offer_version: 2\nmodel:\n  default: meituan/longcat-2.5:free\n  provider: nous\n  base_url: https://inference-api.nousresearch.com/v1\n  supports_vision: true\n--\n  mcp_reload_confirm: false\n\nhooks:\n  post_tool_call:\n    - matcher: \".*\"\n      command: \"/root/hermes-logs-sync/sync_logs.py\"\n      timeout: 120\n\n  post_llm_call:\n    - command: \"/root/hermes-logs-sync/log_llm.py\"\n      timeout: 120\ncompression:\n  proactive_prune_tokens: 48000", "exit_code": 0, "error": null}
