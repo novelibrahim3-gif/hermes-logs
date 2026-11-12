@@ -1,14 +1,20 @@
 Hermes — hasil tool
-Waktu: 2026-11-13T00:43:36+07:00
-Tool: terminal
+Waktu: 2026-11-13T00:43:41+07:00
+Tool: tool_search
 Status: ok
-Durasi: 457 ms
+Durasi: 4939 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "command": "ls -la /root/craftworld-operator/ 2>&1; echo \"---\"; find /root/craftworld-operator -maxdepth 3 -type f \\( -name \"*.sh\" -o -name \"*.json\" -o -name \"*.md\" \\) 2>/dev/null | head -50"
+  "queries": [
+    "mcp buddy phone",
+    "read_screen app window",
+    "screenshot android device",
+    "tap swipe input text",
+    "home screen navigation"
+  ]
 }
 
 HASIL:
-{"output": "total 22\ndrwxr-xr-x+  2 root root  3452 Nov 13 00:42 .\ndrwx------+ 32 root root  3452 Nov 13 00:41 ..\n-rw-r--r--+  1 root root 15473 Nov 13 00:42 .hermes.md\n---\n/root/craftworld-operator/.hermes.md", "exit_code": 0, "error": null}
+{"queries": ["mcp buddy phone", "read_screen app window", "screenshot android device", "tap swipe input text", "home screen navigation"], "total_available": 14, "results": [{"query": "mcp buddy phone", "matches": [], "available_sources": [{"name": "browser", "tool_count": 1}, {"name": "computer_use", "tool_count": 1}, {"name": "craftworld-vision", "tool_count": 7}, {"name": "cronjob", "tool_count": 1}, {"name": "session_search", "tool_count": 1}, {"name": "terminal", "tool_count": 1}, {"name": "todo", "tool_count": 1}], "hint": "This query returned no lexical matches, but the sources above are connected and their tools remain available. Retry tool_search with the service name plus a concrete action or object before concluding the capability is unavailable."}, {"query": "read_screen app window", "matches": ["computer_use"]}, {"query": "screenshot android device", "matches": ["browser_vault"]}, {"query": "tap swipe input text", "matches": [], "available_sources": [{"name": "browser", "tool_count": 1}, {"name": "computer_use", "tool_count": 1}, {"name": "craftworld-vision", "tool_count": 7}, {"name": "cronjob", "tool_count": 1}, {"name": "session_search", "tool_count": 1}, {"name": "terminal", "tool_count": 1}, {"name": "todo", "tool_count": 1}], "hint": "This query returned no lexical matches, but the sources above are connected and their tools remain available. Retry tool_search with the service name plus a concrete action or object before concluding the capability is unavailable."}, {"query": "home screen navigation", "matches": ["connectors__shopify__CREATE_RESOURCE_FEEDBACK"]}], "tools": {"computer_use": {"source": "plugin", "source_name": "computer_use", "description": "Drive the desktop via cua-driver: screenshots, mouse, keyboard, scroll, drag. macOS, Windows, and Linux. Input is background-FIRST, not background-only: the default delivery routes to the target window without stealing the user's cursor or focus (works even on hidden/minimized windows), and when a result's `verdict` says to escalate you climb — pixel coordinates, or delivery_mode='foreground' (briefly fronts the window; separate approval). Each result carries a `verdict` with the next step; foll…", "required": ["action"]}, "browser_vault": {"source": "plugin", "source_name": "browser", "description": "Fill saved logins, 2FA codes, cards and addresses on the CURRENT browser page. Secrets never enter the conversation. Actions: list (call first: saved logins/cards/addresses as handles; logins carry the identifier you type yourself with `fill_input` inside browser_exec; locked password managers appear under `locked`); fill (handle: the password for a login, card fields after the user confirms, address fields; refused unless the page origin matches the item); save_login (nothing saved for this sit…", "required": ["action"]}, "connectors__shopify__CREATE_RESOURCE_FEEDBACK": {"source": "connectors", "source_name": "shopify", "description": "Creates shop-level resource feedback to notify Shopify merchants about app setup requirements or successful configuration. Feedback appears on the merchant's admin home screen. Each new submission automatically replaces previous feedback. Use state='requires_action' to alert merchants about mandatory setup steps, or state='success' to confirm proper configuration.", "required": ["state", "feedback_generated_at"]}}}
