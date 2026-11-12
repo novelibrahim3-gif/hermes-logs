@@ -1,14 +1,18 @@
 Hermes — hasil tool
-Waktu: 2026-11-13T05:02:28+07:00
-Tool: mcp__buddy__open_app
+Waktu: 2026-11-13T05:02:44+07:00
+Tool: mcp__buddy__swipe
 Status: ok
-Durasi: 120 ms
+Durasi: 66 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "app": "Craft World"
+  "x1": 540,
+  "y1": 800,
+  "x2": 540,
+  "y2": 1900,
+  "duration_ms": 400
 }
 
 HASIL:
-{"result": "Opened Craft World (com.angrydynomiteslab.craftworld)."}
+{"result": "Swipe not performed: UNAVAILABLE."}
