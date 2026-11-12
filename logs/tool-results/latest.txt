@@ -1,12 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-13T05:02:01+07:00
-Tool: mcp__buddy__device_status
+Waktu: 2026-11-13T05:02:28+07:00
+Tool: mcp__buddy__open_app
 Status: ok
-Durasi: 98 ms
+Durasi: 120 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
-{}
+{
+  "app": "Craft World"
+}
 
 HASIL:
-{"result": "Battery: 100%, charging\nNetwork: Wi-Fi\nLocal time: Friday 2026-11-13 05:02 (Asia/Jakarta)\nStorage: 81.3 GB free of 242.0 GB\nRinger: normal"}
+{"result": "Opened Craft World (com.angrydynomiteslab.craftworld)."}
