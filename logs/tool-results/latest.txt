@@ -1,12 +1,12 @@
 Hermes — hasil tool
-Waktu: 2026-11-13T05:01:49+07:00
-Tool: mcp__buddy__screenshot
-Status: error
-Durasi: 74 ms
+Waktu: 2026-11-13T05:02:01+07:00
+Tool: mcp__buddy__device_status
+Status: ok
+Durasi: 98 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {}
 
 HASIL:
-{"error": "Error: KernelSU/su could not be started. Grant Buddy root access in KernelSU, then retry."}
+{"result": "Battery: 100%, charging\nNetwork: Wi-Fi\nLocal time: Friday 2026-11-13 05:02 (Asia/Jakarta)\nStorage: 81.3 GB free of 242.0 GB\nRinger: normal"}
