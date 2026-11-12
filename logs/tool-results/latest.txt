@@ -1,14 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-12T15:12:22+07:00
+Waktu: 2026-11-12T15:12:41+07:00
 Tool: terminal
 Status: ok
-Durasi: 1846 ms
+Durasi: 3968 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "command": "git status --short && echo \"---BRANCH---\" && git branch -vv && echo \"---GRAPHIFY---\" && which graphify && ls -la graphify-out/ 2>/dev/null || echo \"no graphify-out\""
+  "command": "graphify update . 2>&1 | tail -30"
 }
 
 HASIL:
-{"output": "M targets.py\n?? graphify-out/.graphify_build.json\n?? graphify-out/.graphify_root\n---BRANCH---\n* main 9c0f1e4 [origin/main: ahead 21] Update Ubuntu shell log\n---GRAPHIFY---\n/root/.local/bin/graphify\ntotal 49\ndrwxr-xr-x+ 3 root root  3452 Nov 10 14:14 .\ndrwxr-xr-x+ 9 root root  3452 Nov 10 20:00 ..\n-rw-r--r--+ 1 root root    19 Nov 10 14:14 .graphify_build.json\n-rw-r--r--+ 1 root root    23 Nov 10 14:14 .graphify_root\ndrwxr-xr-x+ 3 root root  3452 Nov 11 01:15 cache\n-rw-r--r--+ 1 root root 26201 Nov 10 14:14 graph.json\n-rw-r--r--+ 1 root root   787 Nov 10 14:14 manifest.json", "exit_code": 0, "error": null}
+{"output": "Updating code graph in . (no LLM needed)...\n[graphify watch] 2 file(s) not classified (no supported extension or shebang), skipped: .gitignore, .graphifyignore\n[graphify watch] Incremental: re-extracting 2 of 5 scanned files that changed since the last build.\n  AST cache: 0/1 files served from cache (0%); 1 to extract\n[graphify watch] Rebuilt: 51 nodes, 84 edges, 10 communities\n[graphify watch] graph.json, graph.html and GRAPH_REPORT.md updated in graphify-out\nCode graph updated. For doc/paper/image changes run /graphify --update in your AI assistant.\nTip: set GEMINI_API_KEY or GOOGLE_API_KEY to use Gemini for semantic extraction.", "exit_code": 0, "error": null}
