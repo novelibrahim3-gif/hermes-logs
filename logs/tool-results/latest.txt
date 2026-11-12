@@ -1,22 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-13T00:44:47+07:00
-Tool: tool_describe
+Waktu: 2026-11-13T00:45:52+07:00
+Tool: terminal
 Status: ok
-Durasi: 26 ms
+Durasi: 64685 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "names": [
-    "mcp__craftworld_vision__analyze_screenshot",
-    "mcp__craftworld_vision__compare_screenshots",
-    "mcp__craftworld_vision__find_objects",
-    "mcp__craftworld_vision__get_prompt",
-    "mcp__craftworld_vision__list_prompts",
-    "mcp__craftworld_vision__list_resources",
-    "mcp__craftworld_vision__read_resource"
-  ]
+  "command": "echo \"== BUDDY_TOKEN diset? ==\"; if [ -n \"$BUDDY_TOKEN\" ]; then echo \"YES (panjang ${#BUDDY_TOKEN})\"; else echo \"NO\"; fi; echo \"== cari definisi token buddy ==\"; grep -rl \"BUDDY_TOKEN\" /root/.hermes 2>/dev/null | head -5; echo \"== log buddy terakhir ==\"; find /root -maxdepth 4 -iname \"*buddy*\" -newermt \"-2 days\" 2>/dev/null | head -20"
 }
 
 HASIL:
-{"tools": {"mcp__craftworld_vision__analyze_screenshot": {"description": "Analisis resolusi, fitur visual ORB, dan teks pada screenshot Craft World.", "parameters": {"properties": {"image_path": {"title": "Image Path", "type": "string"}}, "required": ["image_path"], "title": "analyze_screenshotArguments", "type": "object"}}, "mcp__craftworld_vision__compare_screenshots": {"description": "Bandingkan dua screenshot menggunakan ORB dan RANSAC.", "parameters": {"properties": {"image1": {"title": "Image1", "type": "string"}, "image2": {"title": "Image2", "type": "string"}}, "required": ["image1", "image2"], "title": "compare_screenshotsArguments", "type": "object"}}, "mcp__craftworld_vision__find_objects": {"description": "Deteksi banyak objek sekaligus berdasarkan warna, bentuk, ukuran, dan posisi relatif.", "parameters": {"properties": {"image_path": {"title": "Image Path", "type": "string"}, "target": {"title": "Target", "type": "string"}}, "required": ["image_path", "target"], "title": "find_objectsArguments", "type": "object"}}, "mcp__craftworld_vision__get_prompt": {"description": "Get a prompt by name from MCP server 'craftworld-vision'", "parameters": {"type": "object", "properties": {"name": {"type": "string", "description": "Name of the prompt to retrieve"}, "arguments": {"type": "object", "description": "Optional arguments to pass to the prompt", "properties": {}, "additionalProperties": true, "required": []}}, "required": ["name"]}}, "mcp__craftworld_vision__list_prompts": {"description": "List available prompts from MCP server 'craftworld-vision'", "parameters": {"type": "object", "properties": {}, "required": []}}, "mcp__craftworld_vision__list_resources": {"description": "List available resources from MCP server 'craftworld-vision'", "parameters": {"type": "object", "properties": {}, "required": []}}, "mcp__craftworld_vision__read_resource": {"description": "Read a resource by URI from MCP server 'craftworld-vision'", "parameters": {"type": "object", "properties": {"uri": {"type": "string", "description": "URI of the resource to read"}}, "required": ["uri"]}}}}
+{"output": "== BUDDY_TOKEN diset? ==\nYES (panjang 48)\n== cari definisi token buddy ==\n/root/.hermes/logs/errors.log\n/root/.hermes/logs/agent.log.1\n/root/.hermes/cache/scratch/hermes-snap-3bd591907473.sh\n/root/.hermes/cron/output/c907ad0d21fc/2026-11-08_04-42-51.md\n/root/.hermes/skills/autonomous-ai-agents/buddy-mobile-control/references/mcp-http-api.md\n== log buddy terakhir ==\n/root/buddy-android\n/root/buddy-android/docs/buddy-demo.mp4\n/root/buddy-android/linux/buddy-browser\n/root/buddy-android/linux/buddy-run", "exit_code": 0, "error": null}
