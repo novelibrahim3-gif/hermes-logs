@@ -1,14 +1,12 @@
 Hermes — hasil tool
-Waktu: 2026-11-13T05:03:59+07:00
-Tool: mcp__buddy__open_app
-Status: ok
-Durasi: 630 ms
+Waktu: 2026-11-13T05:04:09+07:00
+Tool: mcp__buddy__screenshot
+Status: error
+Durasi: 82 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
-{
-  "app": "Craft World"
-}
+{}
 
 HASIL:
-{"result": "Opened Craft World (com.angrydynomiteslab.craftworld)."}
+{"error": "Error: KernelSU/su could not be started. Grant Buddy root access in KernelSU, then retry."}
