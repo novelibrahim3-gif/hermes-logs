@@ -1,20 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-13T00:43:22+07:00
-Tool: tool_search
+Waktu: 2026-11-13T00:43:36+07:00
+Tool: terminal
 Status: ok
-Durasi: 1909 ms
+Durasi: 457 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "queries": [
-    "buddy android tap screenshot",
-    "buddy open app notify",
-    "schedule cron job list",
-    "todo list task",
-    "browser vault login"
-  ]
+  "command": "ls -la /root/craftworld-operator/ 2>&1; echo \"---\"; find /root/craftworld-operator -maxdepth 3 -type f \\( -name \"*.sh\" -o -name \"*.json\" -o -name \"*.md\" \\) 2>/dev/null | head -50"
 }
 
 HASIL:
-{"queries": ["buddy android tap screenshot", "buddy open app notify", "schedule cron job list", "todo list task", "browser vault login"], "total_available": 13, "results": [{"query": "buddy android tap screenshot", "matches": [], "available_sources": [{"name": "browser", "tool_count": 1}, {"name": "computer_use", "tool_count": 1}, {"name": "craftworld-vision", "tool_count": 7}, {"name": "cronjob", "tool_count": 1}, {"name": "session_search", "tool_count": 1}, {"name": "terminal", "tool_count": 1}, {"name": "todo", "tool_count": 1}], "hint": "This query returned no lexical matches, but the sources above are connected and their tools remain available. Retry tool_search with the service name plus a concrete action or object before concluding the capability is unavailable."}, {"query": "buddy open app notify", "matches": [], "available_sources": [{"name": "browser", "tool_count": 1}, {"name": "computer_use", "tool_count": 1}, {"name": "craftworld-vision", "tool_count": 7}, {"name": "cronjob", "tool_count": 1}, {"name": "session_search", "tool_count": 1}, {"name": "terminal", "tool_count": 1}, {"name": "todo", "tool_count": 1}], "hint": "This query returned no lexical matches, but the sources above are connected and their tools remain available. Retry tool_search with the service name plus a concrete action or object before concluding the capability is unavailable."}, {"query": "schedule cron job list", "matches": ["cronjob_manage"]}, {"query": "todo list task", "matches": ["todo_list"]}, {"query": "browser vault login", "matches": ["browser_vault"]}], "tools": {"cronjob_manage": {"source": "plugin", "source_name": "cronjob", "description": "Schedule recurring or one-off agent tasks (cron jobs): create, list, edit, run. action='create' schedules a job from a prompt and/or skills; 'list' inspects jobs; 'update'/'pause'/'resume'/'remove' manage one by job_id (always list first — never guess job IDs); 'run' fires a job immediately in the BACKGROUND (returns a handle at once, outcome re-enters the conversation when done — do not wait or poll; optional 'prompt' adds transient context for that fire only); 'cancel' stops a job's LIVE run w…", "required": ["action"]}, "todo_list": {"source": "plugin", "source_name": "todo", "description": "Track a task list for multi-step work (3+ steps). Use for complex tasks with 3+ steps or when the user provides multiple tasks. For 'all N items' tasks, enumerate every instance as its own checklist item so none are silently dropped. Call with no parameters to read the current list.\nList order is priority. Only ONE item in_progress at a time. Break large phases into subtasks via parent. Mark an item completed only after the work is verified done, never based on intent. If something fails, cancel…", "required": []}, "browser_vault": {"source": "plugin", "source_name": "browser", "description": "Fill saved logins, 2FA codes, cards and addresses on the CURRENT browser page. Secrets never enter the conversation. Actions: list (call first: saved logins/cards/addresses as handles; logins carry the identifier you type yourself with `fill_input` inside browser_exec; locked password managers appear under `locked`); fill (handle: the password for a login, card fields after the user confirms, address fields; refused unless the page origin matches the item); save_login (nothing saved for this sit…", "required": ["action"]}}}
+{"output": "total 22\ndrwxr-xr-x+  2 root root  3452 Nov 13 00:42 .\ndrwx------+ 32 root root  3452 Nov 13 00:41 ..\n-rw-r--r--+  1 root root 15473 Nov 13 00:42 .hermes.md\n---\n/root/craftworld-operator/.hermes.md", "exit_code": 0, "error": null}
