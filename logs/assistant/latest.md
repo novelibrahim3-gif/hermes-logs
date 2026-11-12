@@ -1,3 +1,15 @@
-Selesai. Konvensi tersimpan di memory (97% terpakai) dan sudah diterapkan: jawaban ini di-append ke /root/craftworld-vision/hermes-logs/answers.md, commit f9a7e59, ter-push ke origin/main (github.com/novelibrahim3-gif/craftworld-vision).
+Craft World berhasil dibuka, tapi scroll tidak bisa dilakukan.
 
-Mulai sekarang setiap jawaban saya akan otomatis dicatat dan di-push ke repo itu.
+Hasil cek:
+- App: terbuka, foreground com.angrydynomiteslab.craftworld
+- Layar: ON, unlocked
+- Root: KernelSU NOT GRANTED untuk Buddy
+- screenshot: gagal — "KernelSU/su could not be started"
+- swipe: "Swipe not performed: UNAVAILABLE"
+- Accessibility: OFF
+
+Semua kontrol gesture/screenshot Buddy butuh root, dan root sedang ditolak, jadi saya tidak bisa scroll maupun memverifikasi layar.
+
+Yang perlu kamu lakukan: buka KernelSU di HP, lalu authorize/hidupkan akses root untuk Buddy. Setelah itu bilang "ulangi", saya buka lagi dan scroll ke resource screws.
+
+Catatan ini sudah saya push ke repo (commit b3e3d93).
