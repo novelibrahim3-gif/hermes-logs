@@ -1,15 +1,16 @@
-Craft World berhasil dibuka, tapi scroll tidak bisa dilakukan.
+Masih gagal — root belum aktif.
 
-Hasil cek:
-- App: terbuka, foreground com.angrydynomiteslab.craftworld
-- Layar: ON, unlocked
-- Root: KernelSU NOT GRANTED untuk Buddy
-- screenshot: gagal — "KernelSU/su could not be started"
-- swipe: "Swipe not performed: UNAVAILABLE"
-- Accessibility: OFF
+- root_status: KernelSU: NOT GRANTED (sama seperti sebelumnya)
+- screenshot: "KernelSU/su could not be started"
+- swipe: UNAVAILABLE
 
-Semua kontrol gesture/screenshot Buddy butuh root, dan root sedang ditolak, jadi saya tidak bisa scroll maupun memverifikasi layar.
+Craft World tetap bisa dibuka, tapi tanpa root semua gesture/screenshot Buddy mati.
 
-Yang perlu kamu lakukan: buka KernelSU di HP, lalu authorize/hidupkan akses root untuk Buddy. Setelah itu bilang "ulangi", saya buka lagi dan scroll ke resource screws.
+Kemungkinan penyebab:
+1. Grant diberikan ke aplikasi yang salah. Di KernelSU, buka tab Superuser — pastikan yang diizinkan adalah Buddy/bantuan root-nya (bukan cuma app Buddy biasa).
+2. Ada dialog superuser yang belum kamu setujui (cek notifikasi KernelSU).
+3. Service root Buddy perlu di-restart setelah grant.
 
-Catatan ini sudah saya push ke repo (commit b3e3d93).
+Tolong cek KernelSU > Superuser, izinkan Buddy/root helper, lalu bilang "ulangi". Saya cek ulang root_status dan lanjut scroll kalau sudah NOT GRANTED hilang.
+
+Sudah saya push: commit b5e4250.
