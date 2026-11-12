@@ -1,15 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-12T15:13:26+07:00
+Waktu: 2026-11-12T15:13:39+07:00
 Tool: terminal
 Status: ok
-Durasi: 4612 ms
+Durasi: 2547 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "command": "cd /root/hermes-logs-sync && timeout 180 python3 autopush_push.py; echo \"EXIT=$?\"",
-  "timeout": 200
+  "command": "cd /root/hermes-logs-sync && echo \"=== LOCAL HEAD ===\" && git rev-parse HEAD && echo \"=== REMOTE HEAD ===\" && git ls-remote origin main | awk '{print $1}' && echo \"=== STATUS ===\" && git status --short --branch && echo \"=== LOG ===\" && git log -3 --oneline && echo \"=== QUEUE ===\" && ls -la .queue/ && echo \"=== WORKER ===\" && pgrep -af autopush_worker.py | grep -v pgrep"
 }
 
 HASIL:
-{"output": "PUSH OK: commit cda6f454 + push origin/main\nEXIT=0", "exit_code": 0, "error": null}
+{"output": "=== LOCAL HEAD ===\n7014b5092aef70299c0ae9248fa2b726c8e45f62\n=== REMOTE HEAD ===\n7014b5092aef70299c0ae9248fa2b726c8e45f62\n=== STATUS ===\n## main...origin/main\n M logs/tool-results/sync-errors.log\n?? .gitignore\n?? autopush_push.py\n?? autopush_queue.py\n?? autopush_worker.py\n?? autopush_worker.sh\n?? backups/\n?? install_cron.sh\n?? log_llm.py\n?? sync_logs.py\n?? sync_push.py\n=== LOG ===\n7014b50 Sync Hermes logs 20261112-151331\ncda6f45 Sync Hermes logs 20261112-151322\n4db71f0 Sync Hermes logs 20261112-151312\n=== QUEUE ===\ntotal 6\ndrwxr-xr-x+ 2 root root 3452 Nov 12 15:13 .\ndrwxr-xr-x+ 8 root root 3452 Nov 11 13:05 ..\n=== WORKER ===\n26949 /usr/bin/python3 -u /root/hermes-logs-sync/autopush_worker.py", "exit_code": 0, "error": null}
