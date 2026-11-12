@@ -1,4 +1,4 @@
-Hasil lengkap root_status:
+Hasil root_status (satu panggilan, tanpa tindakan lain):
 
 ```
 Root MCP: responding.
@@ -11,6 +11,6 @@ Install from Buddy: not allowed (needed for install_apk/update_buddy).
 Background helper paired: no; Phone commands setting: off; Linux tools in this chat: unknown (no chat id).
 ```
 
-Ringkas: MCP merespons, tapi root belum diizinkan — KernelSU NOT GRANTED, accessibility OFF, dan beberapa izin (notification approval, overlay, install) belum aktif. Kalau mau pakai fitur root (screencap, tap/overlay), buka KernelSU dan authorize Buddy dulu.
+Ringkasan: Root MCP merespons, tapi KernelSU belum di-grant ke Buddy dan Accessibility OFF — jadi kontrol gesture (swipe/tap koordinat) dan screenshot via root belum bisa dipakai. Layar ON dan sudah unlocked.
 
-Mau saya lanjut push hasil ini ke repo GitHub (sesuai aturan log) atau berhenti di sini saja?
+Hasil ini sudah di-append ke hermes-logs/answers.md dan di-push ke origin/main (commit d581333).
