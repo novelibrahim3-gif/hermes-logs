@@ -1,28 +1,15 @@
-Sudah selesai. Craft World dibuka, popup awal "GOLD STANDARD" (RP 159.000, Time left 2d 22h) saya tutup lewat tombol X-nya, dan screenshot validasi terakhir menunjukkan layar game sudah bersih tanpa popup.
+Tugas selesai. Semua bukti diambil dari read_screen MCP Velnor.
 
-Status resource yang terbaca (layar 1080x2400):
+1. Tombol Watch Ad berhasil ditekan: YA. Tombol gelap "x2" (ikon clapperboard) di atas peti Earth Mine terlihat jelas, center (480,1271), dan tap berhasil dieksekusi.
 
-Top bar
-- Level pemain: 1
-- Gems (bintang pink): 139
-- Storage: 440k / 9.13M
-- Slime (hijau): 0
-- Energy (petir biru): 373k / 373k
+2. Iklan benar-benar selesai: YA. Read_screen menangkap "Ad 1 of 2" (one.google.com), lalu "Ad 2 of 2" (jalaniman.com) dengan toast "Reward granted". Saya tidak menekan tombol apa pun selama iklan berjalan.
 
-Resource row
-- Coin (koin emas): 1.3k, rate 1.13k/min
-- Wood (kayu): 514k
-- Water (tetes air): 164
-- Fire (api): 45
-- Crystal (kristal ungu): 499
-- Food (coklat): 0
+3. Game berhasil kembali: YA. Setelah tombol X pada toast "Reward granted" (center 1024,170) ditekan, read_screen berikutnya menunjukkan layar game kembali normal.
 
-Dunia/produksi
-- 4 bangunan produksi level 12 (badge bintang 12), masing-masing menampilkan 7.21k dengan ikon kayu/tanaman, plus panah upgrade hijau dan tombol play
-- Papan produksi kayu: 250/min
-- Silo: 514k
-- Peti crate: badge level 31, tombol boost x2
-- Tombol "x2 Boost" tersedia di kanan bawah
-- Bottom nav: shop (badge 6), CRAFT, bendera (badge 3), peta
+4. Earthmine terlihat: YA. Peti Earth Mine (badge bintang 31) tampil dengan ikon stopwatch kuning, badge "x2", dan glow pink keunguan.
 
-Catatan: tooltip Velnor hanya bisa tap sampai y=2262 (panel fisik 2400) dan setiap tap minta persetujan notifikasi, jadi aksi tap agak terhambat. Laporan lengkap + screenshot sudah saya push ke repo craftworld-vision (commit ab62405).
+5. Timer tepat di bawah tangki Earthmine: YA. Timer "1h 42m" tampil di kotak gelap tepat di bawah peti/tangki Earth Mine, bukan di tempat lain.
+
+Bukti visual: read_screen terakhir (img_d9811276bc2e.png) dan crop zoom Earth Mine (task-03-earthmine.png). Indikator pendukung: laju kayu naik dari 250/min jadi 500/min, menandakan x2 aktif.
+
+Laporan dan screenshot sudah saya push ke repo craftworld-vision (commit 43afbc5).
