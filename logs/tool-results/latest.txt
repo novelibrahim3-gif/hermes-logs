@@ -1,21 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-13T19:15:51+07:00
-Tool: tool_call
-Status: blocked
-Durasi: 0 ms
+Waktu: 2026-11-13T19:16:09+07:00
+Tool: mcp__buddy__wait
+Status: ok
+Durasi: 5101 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "calls": [
-    {
-      "arguments": {
-        "seconds": 5
-      },
-      "name": "mcp__buddy__wait"
-    }
-  ]
+  "ms": 5000
 }
 
 HASIL:
-{"error": "tool_call to 'mcp__buddy__wait' is missing required argument(s): ms. The tool was NOT invoked. Parameters schema: {\"type\": \"object\", \"properties\": {\"ms\": {\"type\": \"integer\", \"description\": \"Milliseconds, 0 to 10000\"}}, \"required\": [\"ms\"]}. Retry tool_call with 'arguments' matching the parameters schema above."}
+{"result": "Waited 5000 ms."}
