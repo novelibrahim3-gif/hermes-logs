@@ -1,14 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T04:53:48+07:00
+Waktu: 2026-11-14T04:54:02+07:00
 Tool: terminal
 Status: ok
-Durasi: 3125 ms
+Durasi: 2704 ms
 Direktori: /root
 
 INPUT:
 {
-  "command": "su -c \"id -Z\" 2>&1; su -c \"getenforce\" 2>&1; echo \"== ps ==\"; su -c \"ps -A\" 2>&1 | head -5; echo \"== cmd list ==\"; su -c \"/system/bin/cmd -l\" 2>&1 | head -10"
+  "command": "su -c \"/system/bin/cmd -l\" 2>&1 | grep -i \"activity\\|activity\" | head -5; echo \"== try am ==\"; su -c \"/system/bin/cmd activity\" 2>&1 | head -5; echo \"== try force-stop ==\"; su -c \"/system/bin/cmd activity force-stop com.angrydynomiteslab.craftworld\" 2>&1 | head -5"
 }
 
 HASIL:
-{"output": "id: --context (-Z) works only on an SELinux/SMACK-enabled kernel\nbash: line 1: getenforce: command not found\n== ps ==\n  PID TTY          TIME CMD\n 5098 ?        00:51:08 com.termux\n 7161 pts/26   00:02:17 hermes\n 7233 ?        00:00:01 python\n 7800 ?        00:00:00 python3\n== cmd list ==\nCurrently running services:\n  BpfService\n  HyperPackageManager\n  JXNetworkPolicyService\n  MiuiBackup\n  MiuiForceVkService\n  MiuiFreeDragService\n  MiuiInit\n  MiuiInputManager\n  MiuiWifiService", "exit_code": 0, "error": null}
+{"output": "activity\n  activity_task\n  whetstone.activity\n== try am ==\n== try force-stop ==", "exit_code": 0, "error": null}
