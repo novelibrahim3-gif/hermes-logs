@@ -1,15 +1,33 @@
 Hermes — hasil tool
-Waktu: 2026-11-13T19:21:23+07:00
-Tool: skill_view
+Waktu: 2026-11-13T19:22:22+07:00
+Tool: skill_manage
 Status: ok
-Durasi: 276 ms
+Durasi: 1912 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "file_path": "references/skills-management.md",
-  "name": "hermes-agent"
+  "operations": [
+    {
+      "action": "patch",
+      "name": "craftworld-visual-inspector",
+      "new_string": "6. **Bila bukan Craft World**: jangan teruskan ke Vision Engine. Pesan sukses\n   `open_app` BUKAN bukti app sudah tampil — verifikasi lewat screenshot. Buka\n   Craft World kembali, tunggu beberapa detik, lalu screenshot ulang — terbatas\n   (maks. 2-3 percobaan). Bila masih gagal, berhenti dan laporkan FAILED;\n   jangan mengulang launch identik tanpa diagnosis tambahan.",
+      "old_string": "6. **Bila bukan Craft World**: jangan teruskan ke Vision Engine. Buka Craft World\n   kembali dan screenshot ulang — terbatas (maks. 2-3 percobaan)."
+    },
+    {
+      "action": "patch",
+      "name": "buddy-mobile-control",
+      "new_string": "if a screenshot shows a terminal, re-open the game instead of concluding a tap missed.\n- **`open_app`'s success message is a launch attempt, not a foreground confirmation.** It reports \"Opened <app>\" even when the activity never comes forward (crash on start, MIUI background limits, another task holding focus). Verify with a screenshot after a few seconds — never from the tool reply alone. If the target is still absent after ~3 open → wait → capture cycles, stop and report FAILED; do not keep re-launching the same way, and do not read or act on whatever app is actually up. First prove the capture stream is live (status-bar clock or on-screen content changes between two captures) so a stale cached image is not mistaken for \"the app won't open\".",
+      "old_string": "if a screenshot shows a terminal, re-open the game instead of concluding a tap missed."
+    },
+    {
+      "action": "patch",
+      "name": "buddy-mobile-control",
+      "new_string": "When the user says \"stop\" or \"just give me\" the result, stop calling tools immediately and report what the current capture already shows — no further background jobs, re-runs, or verification passes.\n\nFor a read-only verification request (smoke test, vision test), the report must carry evidence, not narration: name every tool actually called together with its actual output (resolution, app seen, error text), and state explicitly when an image never reached the model as visual input (e.g. VISION FAILED) instead of substituting OCR, a text description, or guesses for the requested visual read.",
+      "old_string": "When the user says \"stop\" or \"just give me\" the result, stop calling tools immediately and report what the current capture already shows — no further background jobs, re-runs, or verification passes."
+    }
+  ]
 }
 
 HASIL:
-{"success": true, "name": "hermes-agent", "file": "references/skills-management.md", "content": "# Managing Hermes Skills\n\nInstall, update, inspect, and remove skills — from a registry identifier, a\nGitHub repo, or a direct SKILL.md URL.\n\n## Install\n\n```bash\nhermes skills install <identifier> [--category DIR] [--name NAME] [--force] [-y]\n```\n\n`<identifier>` is either a registry identifier (`owner/repo/skill-name`) or a\ndirect HTTP(S) URL to the SKILL.md file itself. For a GitHub repo, resolve the\nraw URL to the exact SKILL.md path — the repo root is not an identifier:\n\n```\nhttps://raw.githubusercontent.com/<owner>/<repo>/<branch>/<path>/SKILL.md\n```\n\nFind the path in the repo tree\n(`https://api.github.com/repos/<owner>/<repo>/git/trees/<branch>?recursive=1`)\nor on the file page. `-y` skips the confirmation prompt (needed in\nnon-interactive contexts).\n\nThe installer prints a security-scan verdict and hash. Read a non-SAFE verdict\nbefore retrying with `--force`, which bypasses the block.\n\n## Name collisions — back up before --force\n\nA skill with the same name already present (bundled, hub-installed, or a local\ncopy) makes the install refuse or replace it; `--force` is the intended way\npast that, but it overwrites the live skill directory and takes any local edits\nwith it.\n\nBefore forcing an overwrite:\n\n```bash\ncp -a \"$HERMES_HOME/skills/<name>\" \"$TMPDIR/<name>.bak.$(date +%s)\"\n```\n\nThen `diff -u` the backup against the incoming file to see exactly what will be\nlost. Curator's archive/rollback only covers skills with agent provenance, so a\nhand-edited or URL-installed skill has no automatic recovery path.\n\nResolve paths with `$HERMES_HOME` when a profile is active — never hardcode\n`~/.hermes`.\n\n## Verify after install\n\nThree checks, cheapest first:\n\n1. `diff -q \"$HERMES_HOME/skills/<name>/SKILL.md\" /tmp/incoming.md` — the\n   installed bytes equal the source you asked for.\n2. `hermes skills list | grep <name>` — status `enabled`; a URL install shows\n   `source: url` and `trust: community` until vetted.\n3. `skill_view('<name>')` loads the NEW content — the proof the loader sees the\n   replacement, not the previously cached copy.\n\n## Stub skills depend on their CLI\n\nMany upstream repos ship a SKILL.md that is deliberately a discovery stub: it\ntells the agent to run `<cli> skills get <topic>`, and the real procedure text is\nserved by a companion CLI binary matching the installed version. Installing the\nSKILL.md therefore does NOT make the skill usable.\n\nBefore calling the install done, check for the companion binary:\n\n```bash\ncommand -v <cli>\n```\n\nIf it is absent, report the separate install step (e.g.\n`npm i -g <pkg> && <cli> install`) and let the user decide — that step usually\nfetches a browser/runtime and is too large to run silently. Never claim a skill\n\"works\" when only the stub landed.\n\n## Verbs worth knowing\n\n- `hermes skills inspect <identifier>` — preview a candidate skill's\n  frontmatter and description before installing it.\n- `hermes skills list`, `list-modified`, `diff` — library state, local edits to\n  bundled skills, and divergence from stock.\n- `hermes skills check`, `update` — hub-tracked skills only; a URL or local\n  install is not tracked, so refresh those deliberately.\n- `hermes skills uninstall <name>`, `reset <name>` (clear user-modified\n  tracking on a bundled skill), `config` (enable/disable individual skills).\n- `hermes skills tap` — manage alternate skill sources/registries.\n", "file_type": ".md"}
+{"success": true, "operations_applied": 3, "results": [{"name": "craftworld-visual-inspector", "action": "patch", "file_path": null, "success": true}, {"name": "buddy-mobile-control", "action": "patch", "file_path": null, "success": true}, {"name": "buddy-mobile-control", "action": "patch", "file_path": null, "success": true}]}
