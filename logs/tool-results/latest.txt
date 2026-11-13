@@ -1,14 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-13T19:04:55+07:00
+Waktu: 2026-11-13T19:05:40+07:00
 Tool: terminal
 Status: ok
-Durasi: 6981 ms
+Durasi: 29527 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "command": "cd /root && hermes skills list 2>&1 | grep -iE 'agent-browser|name|^-' | head -30; echo '=== diff existing vs repo ==='; curl -fsSL https://raw.githubusercontent.com/vercel-labs/agent-browser/main/skills/agent-browser/SKILL.md -o /tmp/ab-skill.md && diff -u /root/.hermes/skills/agent-browser/SKILL.md /tmp/ab-skill.md; echo \"diff exit=$?\""
+  "command": "cp -a /root/.hermes/skills/agent-browser /root/.hermes/cache/scratch/agent-browser.bak.$(date +%s) && ls -d /root/.hermes/cache/scratch/agent-browser.bak.* | tail -1\ncd /root && hermes skills install https://raw.githubusercontent.com/vercel-labs/agent-browser/main/skills/agent-browser/SKILL.md --force -y 2>&1 | tail -20"
 }
 
 HASIL:
-{"output": "┃ Name                    ┃ Category             ┃ Source  ┃ Trust   ┃ Status  ┃\n│ agent-browser           │                      │ local   │ local   │ enabled │\n=== diff existing vs repo ===\n--- /root/.hermes/skills/agent-browser/SKILL.md\t2026-11-07 16:23:28.920000634 +0700\n+++ /tmp/ab-skill.md\t2026-11-13 19:04:55.413741214 +0700\n@@ -33,8 +33,9 @@\n agent-browser skills get dogfood           # Exploratory testing / QA / bug hunts\n agent-browser skills get derive-client     # Record a HAR, derive a standalone API client for a site\n agent-browser skills get webmcp-gen        # Build and validate WebMCP tools for a page\n+agent-browser skills get modern-web-guidance  # Apply Modern Web Guidance, then verify the page\n agent-browser skills get vercel-sandbox    # agent-browser inside Vercel Sandbox microVMs\n-agent-browser skills get protected-vercel-deployments  # Access protected Vercel deployments\n+agent-browser skills get vercel  # Protected Vercel deployments and flag overrides\n agent-browser skills get agentcore         # AWS Bedrock AgentCore cloud browsers\n ```\n \ndiff exit=1", "exit_code": 0, "error": null, "cwd": "/root"}
+{"output": "/root/.hermes/cache/scratch/agent-browser.bak.1794571511\nhttps://raw.githubusercontent.com/vercel-labs/agent-browser/main/skills/agent-br\nowser/SKILL.md\nQuarantined to .hub/quarantine/agent-browser\nRunning security scan...\nScan: agent-browser \n(https://raw.githubusercontent.com/vercel-labs/agent-browser/main/skills/agent-b\nrowser/SKILL.md/community)  Verdict: SAFE\n  LOW      privilege_escalation SKILL.md:4                     \"allowed-tools: \nBash(agent-browser:*)\"\n\nDecision: ALLOWED — Allowed (community source, safe verdict)\nScan provenance: fresh; scanner skills-guard-v10; hash \nsha256:f76a4ee958261040b97bddcfbf05f040681f8ea56eabfbb03e221a6c895bf7a3\nSource: \nhttps://raw.githubusercontent.com/vercel-labs/agent-browser/main/skills/agent-br\nowser/SKILL.md; scanned 2026-11-13T12:05:37.569086+00:00; rules: \nallowed_tools_field\nInstalled: agent-browser\nFiles: SKILL.md", "exit_code": 0, "error": null}
