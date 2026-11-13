@@ -1,16 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T04:55:31+07:00
-Tool: tool_describe
+Waktu: 2026-11-14T04:55:43+07:00
+Tool: mcp__velnor__press
 Status: ok
-Durasi: 116 ms
+Durasi: 91 ms
 Direktori: /root
 
 INPUT:
 {
-  "names": [
-    "mcp__velnor__ask"
-  ]
+  "button": "home"
 }
 
 HASIL:
-{"tools": {"mcp__velnor__ask": {"description": "Ask the user a question through a notification with 2 to 4 answer buttons and an optional typed reply. highlight accepts coordinate marks only and needs Display over other apps permission; browser_highlight accepts item refs from browser_read and opens the marked browser view from the question notification.", "parameters": {"type": "object", "properties": {"question": {"type": "string", "description": "Short, clear question"}, "options": {"type": "array", "minItems": 2, "maxItems": 4, "items": {"type": "string", "description": "One short answer choice"}}, "highlight": {"type": "array", "maxItems": 6, "items": {"type": "object", "properties": {"x": {"type": "integer", "description": "Screen X coordinate"}, "y": {"type": "integer", "description": "Screen Y coordinate"}, "label": {"type": "string", "description": "Optional short label, max 64 characters"}}, "required": ["x", "y"]}, "description": "Optional coordinate marks shown while asking; no element ids."}, "browser_highlight": {"type": "array", "maxItems": 6, "items": {"type": "object", "properties": {"ref": {"type": "integer", "description": "Item number from browser_read"}, "label": {"type": "string", "description": "Optional short label for the user"}}, "required": ["ref"]}, "description": "Optional items in the current Background Browser tab to highlight for the user."}}, "required": ["question", "options"]}}}}
+{"result": "Pressed home using KernelSU."}
