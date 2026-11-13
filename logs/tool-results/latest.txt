@@ -1,14 +1,15 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T05:38:35+07:00
-Tool: terminal
+Waktu: 2026-11-14T05:38:58+07:00
+Tool: mcp__velnor__tap
 Status: ok
-Durasi: 6642 ms
+Durasi: 570 ms
 Direktori: /root
 
 INPUT:
 {
-  "command": "cd /root/.hermes/cache/scratch && cp /root/.hermes/cache/images/img_0890cc732f9c.png task-02.png && /root/craftworld-vision/.venv/bin/python - <<'EOF'\nfrom PIL import Image\nim = Image.open('task-02.png')\nim.crop((900,110,1080,230)).resize((900,600), Image.LANCZOS).save('task-02-x.png')\nprint('ok')\nEOF"
+  "x": 1024,
+  "y": 170
 }
 
 HASIL:
-{"output": "ok", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via heredoc) and auto-approved by an 'always' approval the user saved earlier."}
+{"result": "Tapped (1024, 170) using KernelSU."}
