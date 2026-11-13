@@ -1,11 +1,10 @@
-Screenshot berhasil diambil, tanpa tap/swipe/scroll/ketik, dan tanpa AccessibilityService.
+Sudah dipindah ke folder Download internal HP:
 
-- Tool: mcp__buddy__screenshot (KernelSU screencap) — root GRANTED (UID 0), layar ON, unlocked.
-- Gambar asli: PNG 1080x2400 RGBA, 288 KB.
-  Path asli: /root/.hermes/cache/images/img_34f384999baf.png
-  Salinan di repo: /root/craftworld-vision/hermes-logs/screenshots/2026-11-13_13-51_screenshot-1080x2400.png
-- Isi layar saat capture: Termux (terminal Linux/PRoot) dengan keyboard on-screen — bukan Craft World, jadi tidak ada state game yang dibaca.
+/sdcard/Download/screenshot-2026-11-13_13-51_1080x2400.png
 
-Catatan: tool mengembalikan gambar ke konteks saya (versi 540x1200 untuk vision); di CLI tag MEDIA tidak dirender inline, jadi path absolut di atas yang bisa kamu buka.
+- Asal: /root/.hermes/cache/images/img_34f384999baf.png (dipindah, bukan disalin)
+- Verifikasi: 1080x2400 RGBA, 288.247 bytes, bisa dibuka; permission 644
+- /sdcard langsung writable dari shell PRoot, jadi tanpa tool Buddy
+- Salinan lama di repo tetap ada: hermes-logs/screenshots/2026-11-13_13-51_screenshot-1080x2400.png
 
-Log jawaban + screenshot sudah di-push: commit 18492ca ke origin/main.
+Log di-push: commit 083e848 ke origin/main.
