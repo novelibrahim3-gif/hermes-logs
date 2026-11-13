@@ -1,57 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T04:59:25+07:00
-Tool: web_search
+Waktu: 2026-11-14T04:59:59+07:00
+Tool: terminal
 Status: ok
-Durasi: 1127 ms
+Durasi: 3004 ms
 Direktori: /root
 
 INPUT:
 {
-  "limit": 6,
-  "query": "Craft World idle game earth mine boost x2 rewarded ad no more ads"
+  "command": "cd /root/.hermes/cache/scratch && cp /root/.hermes/cache/images/img_2578febc3678.png cycle-r2.png && /root/craftworld-vision/.venv/bin/python - <<'EOF'\nfrom PIL import Image\nim = Image.open('cycle-r2.png')\nim.crop((820,1900,1080,2120)).resize((1040,880), Image.LANCZOS).save('r2-boost.png')\nim.crop((0,400,1080,760)).resize((1620,540), Image.LANCZOS).save('r2-pumps.png')\nprint('ok')\nEOF"
 }
 
 HASIL:
-{
-  "success": true,
-  "data": {
-    "web": [
-      {
-        "title": "Idle Craft World",
-        "url": "https://apps.apple.com/us/app/idle-craft-world/id1582438064",
-        "description": ">\n### I like to make a suggestion to a huge potential app! I love it!\nHello developers team and developer\n> I like to make a suggestion about the no ad’s option i bought it today!\nHere is what i beg you guys to add “ who those who buy/bought the 2.99$ “ no ad’s” will have the option to active the boosters with no ad’s and who bought it all they will need to do is “ click restore button” and they will have the bonus.\nWho has not bought it after purchase you will get the bonus as well.\n...\nThe app cant stop playing it!\nBut the annoying thing is even though i bought no ads i still to watch ads to active boosters+ to extend them you need more ads please add the option who bought no ads can active the booster with “ No Ad’s” pleaseee…\n...\n### Was ok\nWas so ok I paid $4 for no ads.\nStill got ads and now I think I’ve finished the game since there’s nothing new to buy and I can only go back to the first island.\nI think there are only 2 islands and that’s not enough.\nAlso still get ads for the x3.\nThe $4 is for the random 5 second ads and that’s all.\nI wouldn’t recommend downloading let alone paying.\n<UPDATE> The devs admit that they’re double dipping.\nThe no ads is for the random pop-up ads but they still want you to give them ad revenue for those rewards!\nThey’ll take your money and then they’ll take your money again.\n### Developer Response ,\n> Hi!\nThank you for review, it helps us to become better.\nPurchases work only for the banner and pop-up ads, which distracts players from the game process, but the rewarded ads will be still active.\nIf you don't want to watch rewarded ads, you can easily skip it.",
-        "position": 1
-      },
-      {
-        "title": "Craft World: A Beginner's Guide - Ronin’s Newsletter",
-        "url": "https://blog.roninchain.com/p/craft-world-a-beginners-guide",
-        "description": "# The Basics\nIn Craft World, you start with a single earth mine, where your Dynomites begin extracting it to produce Mud.\nThis is your first crafted material and your main source of experience to level up.\n...\nThis flexible plot is especially important, as it allows you to research new materials and boost efficiency by adding extra factories.\n...\nRemember: Craft World is completely free-to-play.\nThat said, like most games, it includes optional monetization features that provide certain advantages.\nNone of them are required to enjoy or progress in the game.\nIf you end up liking Craft World, the one option worth mentioning is the **“No Ads Offer.”** It’s a one-time purchase that permanently doubles your production speed and unlocks daily free items in the in-game shop.\nFully optional, but a solid quality-of-life upgrade if you plan to stick around.\n...\n# Ways to Earn\n## Masterpieces\nThe rewards themselves are quite diverse.\nThey range from raw materials to cosmetics such as avatars and base decorations, but can also include production boosters or free energy regeneration.",
-        "position": 2
-      },
-      {
-        "title": "Idle World - Planet Miner App - App Store",
-        "url": "https://apps.apple.com/ro/app/idle-world-planet-miner/id1410042592",
-        "description": "# Idle World - Planet Miner\nMy Little Planet Earth Craft!\nFree · In-App Purchases · Designed for iPad.\nNot verified for macOS.\n- 148 Ratings\n...\nThe most addictive Idle Clicker game ever!\nIn this brand new idle game you can decide about the creation of the earth.\nThe more you upgrade the planet, the more energy you will get.\nSpend energy to colonize the planet.\nPlant plants to allow animals to grow!\n...\nSUBSCRIPTION PRICING AND TERMS: Idle World VIP offers a weekly subscription for $5.99 after a 3-days of free trial or a monthly subscription of $19.99/Month or a yearly subscription of $99.99/Year.\nThis is an auto renewable subscription.\nIt gives you: - No Ads - X2 multiplier - +60 Diamonds every day - Free flying bonuses - Unlock all planets - Infinite offline production End of trial and subscription renewal This price is for United States customers.\nPricing in other countries may vary and actual charges may be converted to your local currency depending on the country of residence.\n...\n# App Privacy\n## Information\n13+ - 13+ - **Infrequent** Mature or Suggestive Themes Sexual Content or Nudity **Contains** Advertising\n- **In-App Purchases**\nYes - Weekly Subscription 29,99 lei - Remove Interstitial Ads 14,99 lei - Diamond Pack 1 14,99 lei - Limited Offer 14,99 lei - Idle Combo 39,99 lei - Starter Pack For Earth 14,99 lei - Unlock Mars 49,99 lei - Diamond Pack 4 99,99 lei - Remove all types of ads 79,99 lei - No Ads Forever 49,99 lei",
-        "position": 3
-      },
-      {
-        "title": "Idle Craft World - App Store",
-        "url": "https://apps.apple.com/us/app/idle-craft-world/id1582438064?l=pt-BR&platform=ipad",
-        "description": "# Idle Craft World\nI paid for the “no ads” option, but I’m still getting bombarded with ads every few seconds!!\n...\nWhen you hit restore purchases it locks you out of the game completely!\n...\nI didn't read the reviews in time so I bought the \"no ads\" option for $4.\nIt somehow made even more ads appear.\n...\nHello developers team and developer I like to make a suggestion about the no ad’s option i bought it today!\nHere is what i beg you guys to add “ who those who buy/bought the 2.99$ “ no ad’s” will have the option to active the boosters with no ad’s and who bought it all they will need to do is “ click restore button” and they will have the bonus.\nWho has not bought it after purchase you will get the bonus as well.I love it!\nThe app cant stop playing it!\nBut the annoying thing is even though i bought no ads i still to watch ads to active boosters+ to extend them you need more ads please add the option who bought no ads can active the booster with “ No Ad’s” pleaseee…So i can enjoy this app to my heart’s content please make mine and all who use to play it, who is playing at this moment, who will play it, make there and my wish to come true no ad’s for anything you do that will safe soo much time in not wasting time in continuous interruptions but 24/7 play!\n...\nRobLB3\nAlmost every action gets you another ad.\nWalk to lumberjack Ad, collect resources Ad, walk to stonecutter Ad, level up Ad, walk a few feet ad.\nWalk to sell items.\nWatch an ad to get double resources.\n“You can pay $3.99 to remove ads” bro you are holding me hostage here.\n...\nThe choices are “Fight through a million ads or pay $4 to remove them.”\nI choose neither.\n...\nAds help us to improve our game and develop new games for our beloved players, but we'll take into consideration all your wishes and try to balance the number of ads in our game.",
-        "position": 4
-      },
-      {
-        "title": "Craft World Guide: The Ultimate Beginner's Guide",
-        "url": "https://games.gg/craft-world/guides/craft-world-guide-the-ultimate-beginners-guide/",
-        "description": "# Craft World Guide: The Ultimate Beginner's Guide\n## Energy System\nWatching ads can help speed up this process or boost your production, and while it may feel repetitive, it can give you a meaningful advantage if used strategically.\n...\n## Tips and Tricks for Staying Ahead\n- Use ads strategically, particularly when you are low on batteries or need to speed up the crafting of important items.\n...\n## Final Thoughts\nCraft World Guide: How to Boost Your Play-to-Airdrop Rewards",
-        "position": 5
-      },
-      {
-        "title": "Idle World - Planet Miner - App Store - Apple",
-        "url": "https://apps.apple.com/gb/app/idle-world-planet-miner/id1410042592",
-        "description": "# Idle World - Planet Miner\nAs with all idle clickers it can become a bit of an exercise in ad watching, though... and tbh the reward for ad watching are quite mean compared with other games.\nFor example, watching a 30 second ad will only get you one minutes worth of double speed or just 2 minutes time travel....pretty stingy.\nOther games give you two hours of double speed for watching an ad....developers note.\n- ### Ehh\n...\n- ### Game v2\n...\nBut as time went on and on and on, i had to do more and more waiting to the point where i can only update a few things despite having ALL MAX upgrades.I also wanna point out that it’s quite cruel how every time i watch an ad for the 10X power for 100seconds powerup it’s\nALWAYS followed up by another ad roughly about a few seconds after clicking multiple times (and then features another ad later.) which would be fine for me if it wasn’t for the fact that the powerup timer decreases WHILE the ad is playing.And btw, the ads your game shows me are almost always 30seconds long which leads to more excessive time wasting.\n...\n## Requires iOS 15.0 or later. - **iPhone** Requires iOS 15.0 or later. - - **iPad** Requires iPadOS 15.0 or later. - - **iPod touch** Requires iOS 15.0 or later. - - **Mac** Requires macOS 12.0 or later and a Mac with Apple M1 chip or later. - - **Apple Vision** Requires visionOS 1.0 or later.\n...\n- **In-App Purchases**\nYesWeekly Subscription £5.99Remove Interstitial Ads £2.99Diamond Pack 1 £2.99Idle Combo £7.99Limited Offer £2.99Diamond Pack 2 £4.99Diamond Pack 3 £9.99Unlock Mars £9.99Starter Pack For Earth £2.99Remove all types of ads £14.99",
-        "position": 6
-      }
-    ]
-  }
-}
+{"output": "ok", "exit_code": 0, "error": null, "cwd": "/root/.hermes/cache/scratch", "approval": "Command was flagged (script execution via heredoc) and auto-approved by an 'always' approval the user saved earlier."}
