@@ -1,16 +1,11 @@
-Hasil root_status (satu panggilan, tanpa tindakan lain):
+Screenshot berhasil diambil, tanpa tap/swipe/scroll/ketik, dan tanpa AccessibilityService.
 
-```
-Root MCP: responding.
-Accessibility: OFF.
-KernelSU: NOT GRANTED; open KernelSU and authorize Buddy.
-Display: ON; keyguard: UNLOCKED.
-Approval notifications: NOT READY; enable Buddy notifications and its approval channel.
-Display over other apps: not allowed (needed for point_out/ask.highlight).
-Install from Buddy: not allowed (needed for install_apk/update_buddy).
-Background helper paired: no; Phone commands setting: off; Linux tools in this chat: unknown (no chat id).
-```
+- Tool: mcp__buddy__screenshot (KernelSU screencap) — root GRANTED (UID 0), layar ON, unlocked.
+- Gambar asli: PNG 1080x2400 RGBA, 288 KB.
+  Path asli: /root/.hermes/cache/images/img_34f384999baf.png
+  Salinan di repo: /root/craftworld-vision/hermes-logs/screenshots/2026-11-13_13-51_screenshot-1080x2400.png
+- Isi layar saat capture: Termux (terminal Linux/PRoot) dengan keyboard on-screen — bukan Craft World, jadi tidak ada state game yang dibaca.
 
-Ringkasan: Root MCP merespons, tapi KernelSU belum di-grant ke Buddy dan Accessibility OFF — jadi kontrol gesture (swipe/tap koordinat) dan screenshot via root belum bisa dipakai. Layar ON dan sudah unlocked.
+Catatan: tool mengembalikan gambar ke konteks saya (versi 540x1200 untuk vision); di CLI tag MEDIA tidak dirender inline, jadi path absolut di atas yang bisa kamu buka.
 
-Hasil ini sudah di-append ke hermes-logs/answers.md dan di-push ke origin/main (commit d581333).
+Log jawaban + screenshot sudah di-push: commit 18492ca ke origin/main.
