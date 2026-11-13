@@ -1,32 +1,56 @@
-LIVE GAME VISION TEST — Craft World
+LIVE GAME VISION TEST — CRAFT WORLD (BERHASIL)
 
-Hasil inti: pipeline Buddy berfungsi, tapi Craft World GAGAL masuk foreground. Analisis game tidak bisa dilakukan, dan saya tidak menjalankan Craftworld Vision di screenshot yang salah.
+Kali ini game memang sudah foreground saat dicek, jadi tidak perlu open_app.
 
-URAIAN LANGKAH + TOOL AKTUAL
+TOOL YANG DIPANGGIL + HASIL AKTUAL
 
-1. .hermes.md: dimuat.
-2. mcp__buddy__root_status (1×): "Root MCP: responding. KernelSU: GRANTED (UID 0). Display: ON; keyguard: UNLOCKED." → lanjut.
-3. Foreground check: mcp__buddy__read_screen → MEDIA img_cfde6889315f.png, isinya Termux (bukan game).
-4. mcp__buddy__open_app {"app":"com.angrydynomiteslab.craftworld"} → "Opened Craft World (...)".
-   read_screen ulang (img_40a9d75598c5.png) → masih Termux.
-   read_screen lagi (img_5b5da16906f7.png) → masih Termux.
-   mcp__buddy__wait 5000 + read_screen (img_f2f2c91b36ed.png) → masih Termux.
-5. mcp__buddy__list_apps → "Craft World · com.angrydynomiteslab.craftworld" terpasang.
-6. open_app dengan label "Craft World" + wait 6000 + read_screen (img_9e3f952c1bd0.png) → masih Termux.
-7. mcp__buddy__device_status → Battery 86% charging, mobile data, local time 19:17 Asia/Jakarta, storage 79.1GB free.
-8. open_app package (percobaan ke-3) + wait 5000 + read_screen (img_304a95341b18.png) → masih Termux.
-   Bukti capture live, bukan cache: jam di status bar maju 7:15 → 7:16 → 7:17 → 7:18.
-9. mcp__buddy__notifications → tidak ada notifikasi crash/error dari Craft World.
+1. mcp__buddy__root_status → "Root MCP: responding. KernelSU: GRANTED (UID 0). Display: ON; keyguard: UNLOCKED."
+2. mcp__buddy__read_screen → MEDIA img_c0cd9dab4253.png, 1080x2400 — isinya Craft World (layar utama BASE), bukan terminal. Gambar terlampir ke model sebagai input visual native.
+3. Salinan screenshot → /root/.hermes/cache/scratch/live-test-00.png (persiapan craftworld-vision; bukan pengganti capture).
+4. mcp__craftworld_vision__analyze_screenshot → 1080x2400, ORB 2502, OCR noisy: terbaca "7.21k" ×4, "39k", "es 260/min", "BASE", "x".
+5. mcp__craftworld_vision__find_objects green_play → 5 objek, center (koordinat gambar 1080x2400): (420,549), (900,549), (180,609), (660,609), (335,1267).
+6. mcp__craftworld_vision__find_objects pink_x2 → 1 objek: box [407,1223,146,88], center (480,1267); relative_to tombol hijau (335,1267) → tepat di kanannya.
+7. mcp__craftworld_vision__find_objects earth_mine → 1 objek, confidence 0.908; button (335,1267), body (419,1414).
 
-TABEL
+ANALISIS VISUAL LONGCAT (native, bukan OCR)
+
+Layar/menu: layar utama base, label "BASE" di bawah tengah. Tidak ada menu, panel info, atau popup terbuka.
+
+HUD atas: badge level "1" dengan avatar; gem ungu "139"; angka "440k/9.13M"; ikon kristal hijau "0" (dengan +); ikon teal "373k/373k" (dengan +); tombol "?" kanan atas.
+
+Baris material (kiri→kanan): koin emas "1.3k" dengan teks "13k/min" di dekatnya; tumpukan emas "512k"; tetes biru "164"; api oranye "45"; kristal pelangi "~303k" (ada angka kecil kedua yang kurang jelas); balok kayu "0"; ikon gear/settings di ujung kanan.
+
+Mesin & struktur:
+- Tiga mesin besar terlihat penuh di atas (tangki berdiri di enclosure ungu), masing-masing: tombol play hijau di atasnya, plakat "7.21k", badge level "12" (bintang emas), plus penanda panah-naik hijau (indikator upgrade). Struktur mesin ke-4 terpotong di tepi kanan layar.
+- Dua pedestal batu bertumpuk di tengah: tumpukan atas "1.39k", tumpukan bawah "512k".
+- Bar produksi di kiri tengah: "250 / min" dengan ikon fast-forward.
+- Earth Mine: rig kayu dengan kontainer biru, badge level "31".
+
+Tombol (warna & posisi, koordinat gambar asli):
+- Play hijau (segitiga putih di kotak hijau): 4 di baris atas menghadap mesin + 1 di kiri Earth Mine, center (335,1267).
+- Pink/magenta "x2" dengan ikon video: center (480,1267) — tepat di kanan tombol hijau mine.
+- Bulat magenta besar "x2 Boost" dengan ikon video: kanan bawah (~x=940,y=1960).
+- Bottom nav (grafis): panah back, ikon shop badge "6", flask CRAFT, ikon pulau badge "2", bendera pink badge "1"?, ikon hijau, panah forward.
+
+UNKNOWN (tidak bisa dipastikan dari frame ini):
+- Angka kecil kedua pada chip kristal pelangi (~"99"?).
+- Angka pasti bar produksi: LongCat baca "250/min", OCR engine baca "260/min" → salah satu salah, nilai pasti UNKNOWN.
+- Apakah teks "13k/min" milik chip koin.
+- Makna plakat "7.21k" (stok vs hitung mundur) dan status RUNNING/STOPPED tiap mesin — tidak ada timer/produksi per mesin yang terbaca → UNKNOWN.
+- Mesin ke-4 di tepi kanan hanya terpotong → detail UNKNOWN.
+- Status Boost aktif/expired dan cooldown tombol pink "x2" → UNKNOWN.
+
+PERBANDINGAN LONGCAT vs CRAFTWORLD VISION
+
+- Cocok: lokasi pink_x2 persis di kanan tombol hijau mine; earth_mine = tombol + badan di bawahnya sesuai tata letak; teks "BASE" terbaca engine dan terlihat visual.
+- Selisih jumlah: engine menghitung 5 play hijau vs LongCat 4 (3 mesin penuh + 1 mine). Penjelasannya: engine juga membaca "7.21k" sebanyak 4× dan menemukan play ke-4 di (660,609) — mengarah ke mesin ke-4 yang terpotong di tepi kanan. Jadi kemungkinan besar ada 4 mesin, bukan 3; elemen yang tadinya luput dari pengamatan visual.
+- Keterbatasan engine: OCR-nya noisy untuk HUD (gagal membaca sebagian besar angka), jadi angka HUD bersumber dari pembacaan visual LongCat dengan penanda UNKNOWN bila ragu. Engine tidak mengenali mesin secara semantik — identitas fasilitas tetap ditarik dari teks/visual.
+
+TABEL AKHIR
 
 ROOT_STATUS | APP_FOREGROUND | BUDDY_SCREENSHOT | LONGCAT_NATIVE_VISION | CRAFTWORLD_VISION | KESIMPULAN
-responding, KernelSU GRANTED (UID 0), Display ON, keyguard UNLOCKED | FAILED — 3× open_app semua balas "Opened Craft World", tapi setelah total ~16 detik wait, read_screen selalu menampilkan Termux | SUCCESS — 4× read_screen 1080x2400 live (jam 7:15→7:18), bukan cache | SUCCESS (bukan VISION FAILED) — gambar masuk sebagai input visual native; isinya terminal Termux + keyboard, bukan game | NOT RUN — validasi layar gagal (bukan Craft World); menjalankannya di screenshot terminal hanya menghasilkan data palsu | Buddy + screenshot + vision model terbukti jalan; langkah membawa Craft World ke foreground gagal; analisis game TIDAK SELESAI
+responding, KernelSU GRANTED (UID 0), Display ON, keyguard UNLOCKED | OK — Craft World foreground (sudah aktif sebelum pengujian) | OK — img_c0cd9dab4253.png, 1080x2400 live | SUCCESS (bukan VISION FAILED) — layar BASE, HUD, mesin, tombol terbaca native | OK — analyze_screenshot + find_objects (green_play 5, pink_x2 1, earth_mine 1); cocok dengan visual, kecuali jumlah play hijau dijelaskan oleh mesin ke-4 di tepi | Tes berhasil end-to-end: root → screenshot Buddy → vision LongCat → cross-check engine; beberapa angka/status tetap UNKNOWN dan belum ditetapkan
 
-CATATAN
+Batasan dipatuhi: tanpa tap/swipe/press/keyevent, tanpa mengubah kondisi game, jadwal, atau konfigurasi; terminal hanya dipakai menyalin file screenshot (persiapan analisis), bukan menggantikan Buddy.
 
-- Tidak ada tap/swipe/press/keyevent, tidak membuka/menutup app lain, tidak memakai terminal/ADB/screencap sebagai pengganti Buddy, tidak membuat/mengubah jadwal atau konfigurasi.
-- Penyebab Craft World tidak muncul UNKNOWN: open_app sukses dilaporkan tapi activity tidak pernah tampil; notifikasi tidak menunjukkan crash.
-- Saran: buka Craft World manual di HP untuk memastikan app bisa tampil sama sekali. Kalau manual pun gagal, kemungkinan app perlu update/reinstall atau ada pembatasan MIUI; kalau manual berhasil, masalah ada di jalur open_app Buddy dan bisa ditelusuri terpisah.
-
-Log lengkap sudah di-push ke GitHub: commit e3698d1.
+Log lengkap sudah di-push ke GitHub: commit 1d684e5.
