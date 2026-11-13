@@ -1,14 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T04:49:17+07:00
-Tool: mcp__velnor__press
+Waktu: 2026-11-14T04:49:34+07:00
+Tool: terminal
 Status: ok
-Durasi: 132 ms
+Durasi: 4114 ms
 Direktori: /root
 
 INPUT:
 {
-  "button": "back"
+  "command": "su -c \"am force-stop com.angrydynomiteslab.craftworld\" 2>&1; echo \"exit=$?\"; echo \"---\"; su -c \"pidof com.angrydynomiteslab.craftworld\" 2>&1; echo \"exit2=$?\""
 }
 
 HASIL:
-{"result": "Pressed back using KernelSU.\n\n[BUDDY_USER_UPDATE] The user added this while you were working; it comes from the user, through Velnor, not from the screen. Take it into account now, it may change or stop the task. If it asks something, answer it in your final reply too, not only the first task:\nJika layar gelap hentikan aplikasi dengan root metode"}
+{"output": "bash: line 1: am: command not found\nexit=127\n---\nexit2=1", "exit_code": 0, "error": null}
