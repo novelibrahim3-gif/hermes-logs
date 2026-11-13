@@ -1,14 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-13T19:17:42+07:00
-Tool: mcp__buddy__open_app
+Waktu: 2026-11-13T19:17:57+07:00
+Tool: mcp__buddy__wait
 Status: ok
-Durasi: 190 ms
+Durasi: 5057 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "app": "com.angrydynomiteslab.craftworld"
+  "ms": 5000
 }
 
 HASIL:
-{"result": "Opened Craft World (com.angrydynomiteslab.craftworld)."}
+{"result": "Waited 5000 ms."}
