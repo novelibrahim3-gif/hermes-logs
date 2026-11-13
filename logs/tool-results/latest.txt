@@ -1,20 +1,15 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T04:50:14+07:00
-Tool: tool_search
+Waktu: 2026-11-14T04:50:29+07:00
+Tool: mcp__velnor__phone_shell
 Status: ok
-Durasi: 4112 ms
+Durasi: 78 ms
 Direktori: /root
 
 INPUT:
 {
-  "limit": 10,
-  "queries": [
-    "force stop app kill",
-    "close app terminate",
-    "app manager running apps",
-    "root shell command run"
-  ]
+  "command": "am force-stop com.angrydynomiteslab.craftworld",
+  "timeout_s": 30
 }
 
 HASIL:
-{"queries": ["force stop app kill", "close app terminate", "app manager running apps", "root shell command run"], "total_available": 64, "results": [{"query": "force stop app kill", "matches": [], "available_sources": [{"name": "browser", "tool_count": 1}, {"name": "craftworld-vision", "tool_count": 7}, {"name": "cronjob", "tool_count": 1}, {"name": "session_search", "tool_count": 1}, {"name": "terminal", "tool_count": 1}, {"name": "todo", "tool_count": 1}, {"name": "velnor", "tool_count": 51}], "hint": "This query returned no lexical matches, but the sources above are connected and their tools remain available. Retry tool_search with the service name plus a concrete action or object before concluding the capability is unavailable."}, {"query": "close app terminate", "matches": ["connectors__shopify__CLOSE_ORDER", "process_manage", "mcp__velnor__browser_tabs"]}, {"query": "app manager running apps", "matches": ["cronjob_manage", "process_manage", "mcp__velnor__browser_tabs", "browser_vault"]}, {"query": "root shell command run", "matches": ["mcp__velnor__phone_shell"]}], "tools": {"connectors__shopify__CLOSE_ORDER": {"source": "connectors", "source_name": "shopify", "description": "Closes an open Shopify order. Use when all line items have been fulfilled or canceled and all financial transactions are complete.", "required": ["order_id"]}, "process_manage": {"source": "plugin", "source_name": "terminal", "description": "Poll, wait on, send input to, or kill terminal(background=true) processes. Completed results remain retrievable by session_id when resuming their owning conversation (up to 7 days, newest 64 results per profile; rolling output tail). poll: status + new output. log: full output, paged. wait: block until exit or timeout (partial output on timeout). write vs submit: submit appends Enter — use it to answer prompts; write sends raw bytes, no newline. close: EOF stdin. kill: terminate. handoff (subage…", "required": ["action"]}, "mcp__velnor__browser_tabs": {"source": "mcp", "source_name": "mcp-velnor", "description": "Manage the background browser's tabs (this chat's own): with no arguments, list them as numbered lines with title and address, the current one marked; with switch_to, make that tab current (the browser_* tools act on the current tab); with close, close it. Tabs open with browser_open new_tab or when a page opens a link in a new tab.", "required": []}, "cronjob_manage": {"source": "plugin", "source_name": "cronjob", "description": "Schedule recurring or one-off agent tasks (cron jobs): create, list, edit, run. action='create' schedules a job from a prompt and/or skills; 'list' inspects jobs; 'update'/'pause'/'resume'/'remove' manage one by job_id (always list first — never guess job IDs); 'run' fires a job immediately in the BACKGROUND (returns a handle at once, outcome re-enters the conversation when done — do not wait or poll; optional 'prompt' adds transient context for that fire only); 'cancel' stops a job's LIVE run w…", "required": ["action"]}, "browser_vault": {"source": "plugin", "source_name": "browser", "description": "Fill saved logins, 2FA codes, cards and addresses on the CURRENT browser page. Secrets never enter the conversation. Actions: list (call first: saved logins/cards/addresses as handles; logins carry the identifier you type yourself with `fill_input` inside browser_exec; locked password managers appear under `locked`); fill (handle: the password for a login, card fields after the user confirms, address fields; refused unless the page origin matches the item); save_login (nothing saved for this sit…", "required": ["action"]}, "mcp__velnor__phone_shell": {"source": "mcp", "source_name": "mcp-velnor", "description": "Run a command as Android shell user through Velnor Wireless debugging helper, not as root. Requires Settings → Background mode → Phone commands and Linux tools. Common direct screen-control/root commands and commands targeting Velnor/accessibility settings are blocked. This is an opt-in shell feature, not a sandbox; user approval follows the Phone commands setting.", "required": ["command"]}}}
+{"result": "Phone commands are off. The user must enable Settings → Background mode → Phone commands and set up Background mode first."}
