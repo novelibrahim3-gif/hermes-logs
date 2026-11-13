@@ -1,14 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T05:07:28+07:00
-Tool: terminal
+Waktu: 2026-11-14T05:07:51+07:00
+Tool: mcp__velnor__wait
 Status: ok
-Durasi: 2209 ms
+Durasi: 2606 ms
 Direktori: /root
 
 INPUT:
 {
-  "command": "ls -la /data/adb/ 2>&1 | head -20; echo \"=== ksu ===\"; ls -la /data/adb/ksu 2>&1 | head; echo \"=== debug_ramdisk ===\"; ls -la /debug_ramdisk 2>&1 | head; echo \"=== file su ===\"; file /system/bin/su 2>&1; head -c 20 /system/bin/su | xxd 2>&1 | head -2"
+  "ms": 2500
 }
 
 HASIL:
-{"output": "ls: cannot access '/data/adb/': No such file or directory\n=== ksu ===\nls: cannot access '/data/adb/ksu': No such file or directory\n=== debug_ramdisk ===\nls: cannot access '/debug_ramdisk': No such file or directory\n=== file su ===\n/system/bin/su: cannot open `/system/bin/su' (No such file or directory)\nhead: cannot open '/system/bin/su' for reading: No such file or directory\n/usr/bin/bash: line 5: xxd: command not found", "exit_code": 0, "error": null}
+{"result": "Waited 2500 ms."}
