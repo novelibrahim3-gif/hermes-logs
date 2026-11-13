@@ -1,14 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-13T19:05:56+07:00
+Waktu: 2026-11-13T19:06:08+07:00
 Tool: terminal
 Status: ok
-Durasi: 6041 ms
+Durasi: 1969 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "command": "cd /root && diff -q /root/.hermes/skills/agent-browser/SKILL.md /tmp/ab-skill.md && echo 'SKILL.md == repo main'; find /root/.hermes/skills/agent-browser -type f | head; echo '--- quarantine ---'; ls -la /root/.hermes/skills/.hub/quarantine/ 2>/dev/null; echo '--- list ---'; hermes skills list 2>&1 | grep -iE 'Name|agent-browser'"
+  "command": "which agent-browser npx node npm 2>&1; node -v 2>/dev/null; npm -v 2>/dev/null"
 }
 
 HASIL:
-{"output": "SKILL.md == repo main\n/root/.hermes/skills/agent-browser/SKILL.md\n--- quarantine ---\ntotal 6\ndrwxr-xr-x+ 2 root root 3452 Nov 13 19:05 .\ndrwxr-xr-x+ 5 root root 3452 Nov 13 19:05 ..\n--- list ---\n┃ Name                  ┃ Category             ┃ Source  ┃ Trust     ┃ Status  ┃\n│ agent-browser         │                      │ url     │ community │ enabled │", "exit_code": 0, "error": null}
+{"output": "/usr/local/bin/npx\n/usr/bin/node\n/usr/local/bin/npm\nv22.22.1\n10.9.10", "exit_code": 0, "error": null}
