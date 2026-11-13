@@ -1,15 +1,33 @@
 Hermes — hasil tool
-Waktu: 2026-11-13T21:38:19+07:00
-Tool: skill_view
+Waktu: 2026-11-13T21:38:22+07:00
+Tool: skill_manage
 Status: ok
-Durasi: 345 ms
+Durasi: 2329 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "file_path": "references/skills-management.md",
-  "name": "hermes-agent"
+  "operations": [
+    {
+      "action": "patch",
+      "name": "buddy-mobile-control",
+      "new_string": "- **Clipboard tools ask the user for approval on every call** (`clipboard_read`, `clipboard_write`). To paste into a field: `clipboard_write` the text, tap the field, `long_press` it, then tap \"Paste\" in the popup.\n- **Overlay tools (`ask`, `point_out`, `highlight`) need \"Display over other apps\",** which `root_status` reports. Even when it is granted, `ask` does not produce an in-app popup bubble while another app is foregrounded — it surfaces as a heads-up notification at the top of the screen (its own description: \"a notification with 2 to 4 answer buttons\"); the bubble form belongs to the Buddy app's chat view. `ask` also blocks until the user answers — an unanswered call times out (~300 s) — so never use it as a fire-and-forget ping. Use `notify` for a non-blocking status line and `point_out` for coordinate-only non-touchable marks.",
+      "old_string": "- **Clipboard tools ask the user for approval on every call** (`clipboard_read`, `clipboard_write`). To paste into a field: `clipboard_write` the text, tap the field, `long_press` it, then tap \"Paste\" in the popup."
+    },
+    {
+      "action": "patch",
+      "name": "craftworld-visual-inspector",
+      "new_string": "Engine lokal hanya membaca teks (OCR) dan mencocokkan fitur (ORB); ia tidak\nmengenali bentuk atau ikon secara semantik. Identifikasi fasilitas mengandalkan\nteks yang terbaca, bukan klaim visual yang tidak didukung engine.\n\n**Bacaan utama = gambar yang melempat ke konteks.** MEDIA: dari\n`read_screen`/`screenshot` melempat sebagai input visual model — baca HUD,\ntimer, level, dan angka produksi dari situ dulu. Vision native lebih akurat\ndaripada OCR lokal pada font pixel-art dan tidak kena rate limit; engine lokal\njadi lapisan kedua (posisi/tombol), bukan sumber utama angka.\n\n**Fallback vision model:** bila gambar tidak melempat ke konteks dan OCR lokal\ngagal membaca teks kecil/berbayang (timer, angka produksi), gunakan\n`vision_analyze` bawaan Hermes — tool internal,\nbukan layanan vision pihak ketiga. Ia auto-detect model vision provider utama,\nlalu fallback ke model agent bila kena rate limit (429) — bisa lambat (puluhan\ndetik).",
+      "old_string": "Engine lokal hanya membaca teks (OCR) dan mencocokkan fitur (ORB); ia tidak\nmengenali bentuk atau ikon secara semantik. Identifikasi fasilitas mengandalkan\nteks yang terbaca, bukan klaim visual yang tidak didukung engine.\n\n**Fallback vision model:** bila OCR lokal gagal membaca teks kecil/berbayang\n(timer, angka produksi), gunakan `vision_analyze` bawaan Hermes — tool internal,\nbukan layanan vision pihak ketiga. Ia auto-detect model vision provider utama,\nlalu fallback ke model agent bila kena rate limit (429) — bisa lambat (puluhan\ndetik)."
+    },
+    {
+      "action": "patch",
+      "name": "craftworld-visual-inspector",
+      "new_string": "Jangan menebak fungsi bangunan hanya berdasarkan penampilannya.\n\n**PITFALL — rekonsiliasi engine vs vision native:** bila engine menghitung\nobjek LEBIH BANYAK daripada yang terlihat penuh (mis. tombol play), periksa\ndulu elemen yang terpotong di tepi layar sebelum menyimpulkan false positive —\njangan menimpa pengamatan visual dengan hitungan engine, dan jangan menimpa\nengine dengan asumsi. Bila OCR dan vision native membaca angka yang berbeda,\nlaporkan KEDUA bacaan dan tandai UNKNOWN; jangan memilih salah satu secara\ndiam-diam.",
+      "old_string": "Jangan menebak fungsi bangunan hanya berdasarkan penampilannya."
+    }
+  ]
 }
 
 HASIL:
-{"success": true, "name": "hermes-agent", "file": "references/skills-management.md", "content": "# Managing Hermes Skills\n\nInstall, update, inspect, and remove skills — from a registry identifier, a\nGitHub repo, or a direct SKILL.md URL.\n\n## Install\n\n```bash\nhermes skills install <identifier> [--category DIR] [--name NAME] [--force] [-y]\n```\n\n`<identifier>` is either a registry identifier (`owner/repo/skill-name`) or a\ndirect HTTP(S) URL to the SKILL.md file itself. For a GitHub repo, resolve the\nraw URL to the exact SKILL.md path — the repo root is not an identifier:\n\n```\nhttps://raw.githubusercontent.com/<owner>/<repo>/<branch>/<path>/SKILL.md\n```\n\nFind the path in the repo tree\n(`https://api.github.com/repos/<owner>/<repo>/git/trees/<branch>?recursive=1`)\nor on the file page. `-y` skips the confirmation prompt (needed in\nnon-interactive contexts).\n\nThe installer prints a security-scan verdict and hash. Read a non-SAFE verdict\nbefore retrying with `--force`, which bypasses the block.\n\n## Name collisions — back up before --force\n\nA skill with the same name already present (bundled, hub-installed, or a local\ncopy) makes the install refuse or replace it; `--force` is the intended way\npast that, but it overwrites the live skill directory and takes any local edits\nwith it.\n\nBefore forcing an overwrite:\n\n```bash\ncp -a \"$HERMES_HOME/skills/<name>\" \"$TMPDIR/<name>.bak.$(date +%s)\"\n```\n\nThen `diff -u` the backup against the incoming file to see exactly what will be\nlost. Curator's archive/rollback only covers skills with agent provenance, so a\nhand-edited or URL-installed skill has no automatic recovery path.\n\nResolve paths with `$HERMES_HOME` when a profile is active — never hardcode\n`~/.hermes`.\n\n## Verify after install\n\nThree checks, cheapest first:\n\n1. `diff -q \"$HERMES_HOME/skills/<name>/SKILL.md\" /tmp/incoming.md` — the\n   installed bytes equal the source you asked for.\n2. `hermes skills list | grep <name>` — status `enabled`; a URL install shows\n   `source: url` and `trust: community` until vetted.\n3. `skill_view('<name>')` loads the NEW content — the proof the loader sees the\n   replacement, not the previously cached copy.\n\n## Stub skills depend on their CLI\n\nMany upstream repos ship a SKILL.md that is deliberately a discovery stub: it\ntells the agent to run `<cli> skills get <topic>`, and the real procedure text is\nserved by a companion CLI binary matching the installed version. Installing the\nSKILL.md therefore does NOT make the skill usable.\n\nBefore calling the install done, check for the companion binary:\n\n```bash\ncommand -v <cli>\n```\n\nIf it is absent, report the separate install step (e.g.\n`npm i -g <pkg> && <cli> install`) and let the user decide — that step usually\nfetches a browser/runtime and is too large to run silently. Never claim a skill\n\"works\" when only the stub landed.\n\n## Verbs worth knowing\n\n- `hermes skills inspect <identifier>` — preview a candidate skill's\n  frontmatter and description before installing it.\n- `hermes skills list`, `list-modified`, `diff` — library state, local edits to\n  bundled skills, and divergence from stock.\n- `hermes skills check`, `update` — hub-tracked skills only; a URL or local\n  install is not tracked, so refresh those deliberately.\n- `hermes skills uninstall <name>`, `reset <name>` (clear user-modified\n  tracking on a bundled skill), `config` (enable/disable individual skills).\n- `hermes skills tap` — manage alternate skill sources/registries.\n", "file_type": ".md"}
+{"success": true, "operations_applied": 3, "results": [{"name": "buddy-mobile-control", "action": "patch", "file_path": null, "success": true}, {"name": "craftworld-visual-inspector", "action": "patch", "file_path": null, "success": true}, {"name": "craftworld-visual-inspector", "action": "patch", "file_path": null, "success": true}]}
