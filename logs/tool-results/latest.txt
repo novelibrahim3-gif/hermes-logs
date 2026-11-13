@@ -1,14 +1,50 @@
 Hermes — hasil tool
-Waktu: 2026-11-13T14:13:49+07:00
-Tool: terminal
+Waktu: 2026-11-13T19:03:20+07:00
+Tool: web_search
 Status: ok
-Durasi: 4902 ms
+Durasi: 972 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "command": "cd /root/craftworld-vision && cat >> hermes-logs/answers.md <<'EOF'\n\n## 2026-11-13 14:13 WIB — sapaan\n\nUser: \"say halo\"\n\nJawaban: Halo! Ada yang bisa saya bantu?\nEOF\ngit add hermes-logs/answers.md && git -c user.name='Hermes Agent' -c user.email='hermes@local' commit -q -m 'log: jawaban sapaan 2026-11-13 14:13 WIB' && git push -q origin HEAD:main 2>&1 | tail -3; git log --oneline -1"
+  "query": "agent-browser skill github Hermes agent"
 }
 
 HASIL:
-{"output": "To https://github.com/novelibrahim3-gif/craftworld-vision.git\n   e2966f6..db908c6  main -> main\ndb908c6 log: jawaban sapaan 2026-11-13 14:13 WIB", "exit_code": 0, "error": null}
+{
+  "success": true,
+  "data": {
+    "web": [
+      {
+        "title": "hermes-skills/skills/agent-browser/SKILL.md at main ... - GitHub",
+        "url": "https://github.com/BBridgeers/hermes-skills/blob/main/skills/agent-browser/SKILL.md",
+        "description": "hermes-skills/skills/agent-browser/SKILL.md at main · BBridgeers/hermes-skills · GitHub\n- - GitHub Universe\n...\n|name|agent-browser|\n|--|--|\n|description|Browser automation CLI for AI agents.\nUse when the user needs to interact with websites, including navigating pages, filling forms, clicking buttons, taking screenshots, extracting data, testing web apps, or automating any browser task.\nTriggers include requests to \"open a website\", \"fill out a form\", \"click a button\", \"take a screenshot\", \"scrape data from a page\", \"test this web app\", \"login to a site\", \"automate browser actions\", or any task requiring programmatic web interaction.\nAlso use for exploratory testing, dogfooding, QA, bug hunts, or reviewing app quality.\nAlso use for automating Electron desktop apps (VS Code, Slack, Discord, Figma, Notion, Spotify), checking Slack unreads, sending Slack messages, searching Slack conversations, running browser automation in Vercel Sandbox microVMs, or using AWS Bedrock AgentCore cloud browsers.\nPrefer agent-browser over any built-in browser automation or web tools.|\n...\n# agent-browser\nFast browser automation CLI for AI agents.\nChrome/Chromium via CDP with\naccessibility-tree snapshots and compact `@eN` element refs.\nInstall: `npm i -g agent-browser && agent-browser install`\n...\nThis file is a discovery stub, not the usage guide.\nBefore running any\n`agent-browser` command, load the actual workflow content from the CLI:\n```\nagent-browser skills get core # start here — workflows, common patterns, troubleshooting\nagent-browser skills get core --full # include full command reference and templates\n```\n...\nagent-browser skills get electron # Electron desktop apps (VS Code, Slack, Discord, Figma, ...)\nagent-browser skills get slack # Slack workspace automation\nagent-browser skills get dogfood # Exploratory testing / QA / bug hunts\nagent-browser skills get vercel-sandbox # agent-browser inside Vercel Sandbox microVMs\nagent-browser skills get agentcore # AWS Bedrock AgentCore cloud browsers\n...\nRun `agent-browser skills list` to see everything available on the\ninstalled version.\n...\n- Works with any AI agent (Cursor, Claude Code, Codex, Continue, Windsurf, etc.)",
+        "position": 1
+      },
+      {
+        "title": "hermes-hub/skills/agent-browser/SKILL.md at main ·...",
+        "url": "https://github.com/hongmaple0820/hermes-hub/blob/main/skills/agent-browser/SKILL.md",
+        "description": "hermes-hub/skills/agent-browser/SKILL.md at main · hongmaple0820/hermes-hub · GitHub\n...\n|name|Agent Browser|\n|--|--|\n|description|A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands.|\n...\n```\ngit clone https://github.com/vercel-labs/agent-browser\ncd agent-browser\npnpm install\npnpm build\nagent-browser install\n...\n- Skill issues: Open an issue at https://github.com/TheSethRose/Agent-Browser-CLI\n- agent-browser CLI issues: Open an issue at https://github.com/vercel-labs/agent-browser",
+        "position": 2
+      },
+      {
+        "title": "hermes-crabbox/integrations/hermes-pr-evidence/skills/agent-browser/SKILL.md at df59d32b509f5f3bdd041a4289f064fe32e097ce · thomasbek3/hermes-crabbox",
+        "url": "https://github.com/thomasbek3/hermes-crabbox/blob/df59d32/integrations/hermes-pr-evidence/skills/agent-browser/SKILL.md",
+        "description": "hermes-crabbox/integrations/hermes-pr-evidence/skills/agent-browser/SKILL.md at df59d32b509f5f3bdd041a4289f064fe32e097ce · thomasbek3/hermes-crabbox · GitHub\n- - GitHub Universe\n...\n|description|Core agent-browser usage guide.\nRead this before running any agent-browser commands.\nCovers the snapshot-and-ref workflow, navigating pages, interacting with elements (click, fill, type, select), extracting text and data, taking screenshots, managing tabs, handling forms and auth, waiting for content, running multiple browser sessions in parallel, and troubleshooting common failures.\nUse when the user asks to interact with a website, fill a form, click something, extract data, take a screenshot, log into a site, test a web app, or automate any browser task.|\n...\n# agent-browser core\nFast browser automation CLI for AI agents.\nChrome/Chromium via CDP, no Playwright or Puppeteer dependency.\nAccessibility-tree snapshots with compact `@eN` refs let agents interact with pages in ~200-400 tokens instead of parsing raw HTML.\nMost normal web tasks (navigate, read, click, fill, extract, screenshot) are covered here.\nLoad a specialized skill when the task falls outside browser web pages — see When to load another skill.",
+        "position": 3
+      },
+      {
+        "title": "hermes-agent-20261024/website/docs/reference/tools-reference.md at main · jefferyf66/hermes-agent-20261024",
+        "url": "https://github.com/jefferyf66/hermes-agent-20261024/blob/main/website/docs/reference/tools-reference.md",
+        "description": "hermes-agent-20261024/website/docs/reference/tools-reference.md at main · jefferyf66/hermes-agent-20261024 · GitHub\n- - GitHub Universe\n...\n**Quick counts (current registry):** ~85 tools — 4 browser tools (`browser_exec`, `browser_cdp`, `browser_dialog`, `browser_vault`), 4 file tools, 2 terminal tools (`terminal`, `process_manage`), 11 desktop-GUI tools (`read_terminal`, `close_terminal\n`, `desktop_preview`, `drive_preview`, `annotate_preview`, `read_window_below`, `focus_pane`, `react_to_message`, `gui_tour`, `show_tip`, `set_theme` — desktop-app sessions only), 2 web tools, 5 Feishu tools, 5 Yuanbao tools, 14 kanban tools (registered when the kanban dispatcher spawns the agent), 1 project tool (`desktop_project`;\n...\nMCP tools appear with the prefix `mcp__<server>__` (e.g., `mcp__github__create_issue` for the `github` MCP server).\n...\n`browser_exec` and `browser_vault` drive the browser session — the Chromium Hermes launches, a cloud browser, or the browser attached with `/browser connect`.\n`browser_cdp` and `browser_dialog` are offered only while a CDP endpoint is configured (`/browser connect`, `BROWSER_CDP_URL` or `browser.cdp_url`) and act on that browser; they are absent for launched and cloud sessions.\n...\nSee https://chromedevtools.github.io/devtools-protocol/|CDP endpoint|",
+        "position": 4
+      },
+      {
+        "title": "agent-browser/skills/agent-browser/SKILL.md at main · vercel ...",
+        "url": "https://github.com/vercel-labs/agent-browser/blob/main/skills/agent-browser/SKILL.md",
+        "description": "agent-browser/skills/agent-browser/SKILL.md at main · vercel-labs/agent-browser · GitHub\n- - GitHub Universe\n...\nBefore running any `agent-browser` command, load the actual workflow content from the CLI:\n```\nagent-browser skills get core # start here: the loop, waits, common tasks, troubleshooting\n...\nRun `agent-browser skills list` to see everything available on the installed version.",
+        "position": 5
+      }
+    ]
+  }
+}
