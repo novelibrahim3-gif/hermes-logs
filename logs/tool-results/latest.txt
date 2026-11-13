@@ -1,14 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T04:52:29+07:00
+Waktu: 2026-11-14T04:52:52+07:00
 Tool: terminal
 Status: ok
-Durasi: 693 ms
+Durasi: 2521 ms
 Direktori: /root
 
 INPUT:
 {
-  "command": "echo \"== /system/bin/su ==\"; /system/bin/su -c \"id\" 2>&1 | head -3; echo \"== su 0 id ==\"; su 0 id 2>&1 | head -3; echo \"== ls -la /system/bin/su ==\"; ls -la /system/bin/su 2>&1; echo \"== cat su ==\"; head -c 300 /system/bin/su 2>&1 | strings | head -10"
+  "command": "echo \"== proc 1 ==\"; su -c \"cat /proc/1/cmdline\" 2>&1 | tr '\\0' ' '; echo; echo \"== count ==\"; su -c \"ls /proc\" 2>&1 | wc -l; echo \"== grep craft ==\"; su -c \"ls /proc\" 2>&1 | head -40"
 }
 
 HASIL:
-{"output": "== /system/bin/su ==\n/usr/bin/bash: line 5: /system/bin/su: No such file or directory\n== su 0 id ==\nsu: user 0 does not exist or the user entry does not contain all the required fields\n== ls -la /system/bin/su ==\n-rwxr-xr-x 1 root 2000 328432 Jan  1  2009 /system/bin/su\n== cat su ==\nhead: cannot open '/system/bin/su' for reading: No such file or directory", "exit_code": 0, "error": null}
+{"output": "== proc 1 ==\ncat: /proc/1/cmdline: No such file or directory\n\n== count ==\n153\n== grep craft ==\n10036\n11619\n11916\n11927\n11928\n11930\n15024\n15028\n15079\n15080\n23401\n28661\n28665\n28714\n28715\n28936\n5098\n7161\n7233\n7800\naed\napupwr\nasound\natf_log\nbattery\nbootprof\nbuddyinfo\nbus\nccci_dump\nccci_log\nccci_lp_mem\nccci_sib\ncgroups\ncharger\ncm_mgr\ncmdline\nconfig.gz\nconsoles\ncpufreq\ncpuhvfs", "exit_code": 0, "error": null}
