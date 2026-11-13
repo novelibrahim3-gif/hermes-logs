@@ -1,14 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T04:42:53+07:00
+Waktu: 2026-11-14T04:43:00+07:00
 Tool: terminal
 Status: ok
-Durasi: 626 ms
+Durasi: 1178 ms
 Direktori: /root
 
 INPUT:
 {
-  "command": "ls -la /root/craftworld-operator/ 2>/dev/null; echo \"--- wm ---\"; wm size 2>&1; wm density 2>&1; echo \"--- dumpsys ---\"; dumpsys display 2>/dev/null | grep -i -m5 \"real\\|base\\|DisplayInfo\" | head -10"
+  "command": "ls /system/bin/wm 2>&1; /system/bin/wm size 2>&1 | head -5; echo \"---\"; su -c \"/system/bin/wm size\" 2>&1 | head -5"
 }
 
 HASIL:
-{"output": "total 38\ndrwxr-xr-x+  2 root root  3452 Nov 14 02:28 .\ndrwx------+ 37 root root  3452 Nov 14 02:50 ..\n-rw-r--r--+  1 root root 15476 Nov 14 02:28 .hermes.md\n-rw-r--r--+  1 root root 15473 Nov 14 02:28 .hermes.md.bak-velnor\n--- wm ---\n/usr/bin/bash: line 5: wm: command not found\n/usr/bin/bash: line 5: wm: command not found\n--- dumpsys ---", "exit_code": 0, "error": null}
+{"output": "/system/bin/wm\ncmd: Can't find service: window\n---\n/system/bin/wm[2]: cmd: inaccessible or not found", "exit_code": 0, "error": null}
