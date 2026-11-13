@@ -1,13 +1,13 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T05:36:37+07:00
+Waktu: 2026-11-14T05:36:59+07:00
 Tool: terminal
 Status: ok
-Durasi: 4364 ms
+Durasi: 2525 ms
 Direktori: /root
 
 INPUT:
 {
-  "command": "cd /root/.hermes/cache/scratch && cp /root/.hermes/cache/images/img_cd303554713d.png task-01.png && /root/craftworld-vision/.venv/bin/python - <<'EOF'\nfrom PIL import Image\nim = Image.open('task-01.png')\nim.crop((360,1140,580,1300)).resize((1100,800), Image.LANCZOS).save('task-01-x2.png')\nprint('ok')\nEOF"
+  "command": "cd /root/.hermes/cache/scratch && /root/craftworld-vision/.venv/bin/python - <<'EOF'\nfrom PIL import Image\nim = Image.open('task-01.png')\nim.crop((360,1150,620,1390)).resize((1040,960), Image.LANCZOS).save('task-01-x2b.png')\nprint('ok')\nEOF"
 }
 
 HASIL:
