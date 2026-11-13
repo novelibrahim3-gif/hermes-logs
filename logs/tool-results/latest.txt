@@ -1,15 +1,15 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T04:44:56+07:00
+Waktu: 2026-11-14T04:45:14+07:00
 Tool: mcp__velnor__tap
 Status: ok
-Durasi: 142 ms
+Durasi: 106 ms
 Direktori: /root
 
 INPUT:
 {
-  "x": 1010,
-  "y": 336
+  "x": 994,
+  "y": 530
 }
 
 HASIL:
-{"result": "Tapped (1010, 336) using KernelSU."}
+{"result": "Tapped (994, 530) using KernelSU."}
