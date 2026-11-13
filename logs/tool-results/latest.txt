@@ -1,8 +1,8 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T05:45:25+07:00
+Waktu: 2026-11-14T05:45:48+07:00
 Tool: skill_manage
-Status: error
-Durasi: 2122 ms
+Status: ok
+Durasi: 3417 ms
 Direktori: /root
 
 INPUT:
@@ -11,7 +11,7 @@ INPUT:
     {
       "action": "patch",
       "name": "buddy-mobile-control",
-      "new_string": "description: \"Drive Android apps via Buddy/Velnor MCP: open, tap, read screen.\"",
+      "new_string": "description: \"Drive Android apps via Buddy/Velnor: open, tap, read.\"",
       "old_string": "description: \"Drive Android apps via Buddy: open, tap, read screen.\""
     },
     {
@@ -24,4 +24,4 @@ INPUT:
 }
 
 HASIL:
-{"success": false, "error": "operations[0] (patch on 'buddy-mobile-control') failed: Description is 64 chars; a skill description must fit the 60-char skill index (one sentence, trigger first, ends with a period, without repeating the category name). The index clips anything longer. Move detail into the skill body. — batch aborted, all touched skills rolled back.", "failed_index": 0, "completed_before_failure": 0}
+{"success": true, "operations_applied": 2, "results": [{"name": "buddy-mobile-control", "action": "patch", "file_path": null, "success": true}, {"name": "buddy-mobile-control", "action": "patch", "file_path": null, "success": true}]}
