@@ -1,14 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-13T19:05:40+07:00
+Waktu: 2026-11-13T19:05:56+07:00
 Tool: terminal
 Status: ok
-Durasi: 29527 ms
+Durasi: 6041 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "command": "cp -a /root/.hermes/skills/agent-browser /root/.hermes/cache/scratch/agent-browser.bak.$(date +%s) && ls -d /root/.hermes/cache/scratch/agent-browser.bak.* | tail -1\ncd /root && hermes skills install https://raw.githubusercontent.com/vercel-labs/agent-browser/main/skills/agent-browser/SKILL.md --force -y 2>&1 | tail -20"
+  "command": "cd /root && diff -q /root/.hermes/skills/agent-browser/SKILL.md /tmp/ab-skill.md && echo 'SKILL.md == repo main'; find /root/.hermes/skills/agent-browser -type f | head; echo '--- quarantine ---'; ls -la /root/.hermes/skills/.hub/quarantine/ 2>/dev/null; echo '--- list ---'; hermes skills list 2>&1 | grep -iE 'Name|agent-browser'"
 }
 
 HASIL:
-{"output": "/root/.hermes/cache/scratch/agent-browser.bak.1794571511\nhttps://raw.githubusercontent.com/vercel-labs/agent-browser/main/skills/agent-br\nowser/SKILL.md\nQuarantined to .hub/quarantine/agent-browser\nRunning security scan...\nScan: agent-browser \n(https://raw.githubusercontent.com/vercel-labs/agent-browser/main/skills/agent-b\nrowser/SKILL.md/community)  Verdict: SAFE\n  LOW      privilege_escalation SKILL.md:4                     \"allowed-tools: \nBash(agent-browser:*)\"\n\nDecision: ALLOWED — Allowed (community source, safe verdict)\nScan provenance: fresh; scanner skills-guard-v10; hash \nsha256:f76a4ee958261040b97bddcfbf05f040681f8ea56eabfbb03e221a6c895bf7a3\nSource: \nhttps://raw.githubusercontent.com/vercel-labs/agent-browser/main/skills/agent-br\nowser/SKILL.md; scanned 2026-11-13T12:05:37.569086+00:00; rules: \nallowed_tools_field\nInstalled: agent-browser\nFiles: SKILL.md", "exit_code": 0, "error": null}
+{"output": "SKILL.md == repo main\n/root/.hermes/skills/agent-browser/SKILL.md\n--- quarantine ---\ntotal 6\ndrwxr-xr-x+ 2 root root 3452 Nov 13 19:05 .\ndrwxr-xr-x+ 5 root root 3452 Nov 13 19:05 ..\n--- list ---\n┃ Name                  ┃ Category             ┃ Source  ┃ Trust     ┃ Status  ┃\n│ agent-browser         │                      │ url     │ community │ enabled │", "exit_code": 0, "error": null}
