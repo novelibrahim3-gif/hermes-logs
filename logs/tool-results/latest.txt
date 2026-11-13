@@ -1,14 +1,16 @@
 Hermes — hasil tool
-Waktu: 2026-11-13T14:12:47+07:00
-Tool: terminal
+Waktu: 2026-11-13T14:13:17+07:00
+Tool: search_files
 Status: ok
-Durasi: 2146 ms
+Durasi: 29439 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "command": "pwd; ls -d */ 2>/dev/null | head; ls -la /root/craftworld-operator 2>/dev/null | head -30"
+  "path": "/root",
+  "pattern": "craftworld-vision",
+  "target": "files"
 }
 
 HASIL:
-{"output": "/root/craftworld-operator\ntotal 22\ndrwxr-xr-x+  2 root root  3452 Nov 13 00:42 .\ndrwx------+ 34 root root  3452 Nov 13 05:20 ..\n-rw-r--r--+  1 root root 15473 Nov 13 00:42 .hermes.md", "exit_code": 0, "error": null}
+{"total_count": 1, "files": ["/root/craftworld-vision"]}
