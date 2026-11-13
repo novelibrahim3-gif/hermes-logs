@@ -1,14 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T05:07:06+07:00
+Waktu: 2026-11-14T05:07:28+07:00
 Tool: terminal
 Status: ok
-Durasi: 7049 ms
+Durasi: 2209 ms
 Direktori: /root
 
 INPUT:
 {
-  "command": "su -c \"/system/bin/cmd activity force-stop com.angrydynomiteslab.craftworld\" 2>&1; echo \"force-stop exit=$?\"; su -c \"/system/bin/cmd activity kill com.angrydynomiteslab.craftworld\" 2>&1; echo \"kill exit=$?\"; su -c \"/system/bin/cmd package list packages\" 2>&1 | grep -i craft | head -3"
+  "command": "ls -la /data/adb/ 2>&1 | head -20; echo \"=== ksu ===\"; ls -la /data/adb/ksu 2>&1 | head; echo \"=== debug_ramdisk ===\"; ls -la /debug_ramdisk 2>&1 | head; echo \"=== file su ===\"; file /system/bin/su 2>&1; head -c 20 /system/bin/su | xxd 2>&1 | head -2"
 }
 
 HASIL:
-{"output": "force-stop exit=255\nkill exit=255", "exit_code": 0, "error": null}
+{"output": "ls: cannot access '/data/adb/': No such file or directory\n=== ksu ===\nls: cannot access '/data/adb/ksu': No such file or directory\n=== debug_ramdisk ===\nls: cannot access '/debug_ramdisk': No such file or directory\n=== file su ===\n/system/bin/su: cannot open `/system/bin/su' (No such file or directory)\nhead: cannot open '/system/bin/su' for reading: No such file or directory\n/usr/bin/bash: line 5: xxd: command not found", "exit_code": 0, "error": null}
