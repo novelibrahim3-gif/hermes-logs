@@ -1,21 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-13T19:14:59+07:00
-Tool: tool_call
-Status: blocked
-Durasi: 0 ms
+Waktu: 2026-11-13T19:15:07+07:00
+Tool: mcp__buddy__open_app
+Status: ok
+Durasi: 1224 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "calls": [
-    {
-      "arguments": {
-        "app_name_or_package": "com.angrydynomiteslab.craftworld"
-      },
-      "name": "mcp__buddy__open_app"
-    }
-  ]
+  "app": "com.angrydynomiteslab.craftworld"
 }
 
 HASIL:
-{"error": "tool_call to 'mcp__buddy__open_app' is missing required argument(s): app. The tool was NOT invoked. Parameters schema: {\"type\": \"object\", \"properties\": {\"app\": {\"type\": \"string\", \"description\": \"App name or package\"}}, \"required\": [\"app\"]}. Retry tool_call with 'arguments' matching the parameters schema above."}
+{"result": "Opened Craft World (com.angrydynomiteslab.craftworld)."}
