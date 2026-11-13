@@ -1,18 +1,19 @@
 Hermes — hasil tool
-Waktu: 2026-11-13T21:28:39+07:00
-Tool: tool_describe
-Status: ok
-Durasi: 185 ms
+Waktu: 2026-11-13T21:34:01+07:00
+Tool: mcp__buddy__ask
+Status: error
+Durasi: 300237 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "names": [
-    "mcp__buddy__ask",
-    "mcp__buddy__point_out",
-    "mcp__buddy__notify"
-  ]
+  "options": [
+    "Popup terlihat",
+    "Tidak terlihat"
+  ],
+  "question": "Tes overlay Buddy: apakah popup pertanyaan ini muncul di layar HP?",
+  "seconds": 60
 }
 
 HASIL:
-{"tools": {"mcp__buddy__ask": {"description": "Ask the user a question through a notification with 2 to 4 answer buttons and an optional typed reply. highlight accepts coordinate marks only and needs Display over other apps permission; browser_highlight accepts item refs from browser_read and opens the marked browser view from the question notification.", "parameters": {"type": "object", "properties": {"question": {"type": "string", "description": "Short, clear question"}, "options": {"type": "array", "minItems": 2, "maxItems": 4, "items": {"type": "string", "description": "One short answer choice"}}, "highlight": {"type": "array", "maxItems": 6, "items": {"type": "object", "properties": {"x": {"type": "integer", "description": "Screen X coordinate"}, "y": {"type": "integer", "description": "Screen Y coordinate"}, "label": {"type": "string", "description": "Optional short label, max 64 characters"}}, "required": ["x", "y"]}, "description": "Optional coordinate marks shown while asking; no element ids."}, "browser_highlight": {"type": "array", "maxItems": 6, "items": {"type": "object", "properties": {"ref": {"type": "integer", "description": "Item number from browser_read"}, "label": {"type": "string", "description": "Optional short label for the user"}}, "required": ["ref"]}, "description": "Optional items in the current Background Browser tab to highlight for the user."}}, "required": ["question", "options"]}}, "mcp__buddy__point_out": {"description": "Show up to six coordinate-only, non-touchable overlay marks. Requires Android Display over other apps permission. No element ids or completion detection; wait=true is unsupported.", "parameters": {"type": "object", "properties": {"marks": {"type": "array", "maxItems": 6, "items": {"type": "object", "properties": {"x": {"type": "integer", "description": "Screen X coordinate"}, "y": {"type": "integer", "description": "Screen Y coordinate"}, "label": {"type": "string", "description": "Optional short label, max 64 characters"}}, "required": ["x", "y"]}, "description": "Coordinate marks; an empty array clears existing marks."}, "style": {"type": "string", "enum": ["box", "circle", "arrow"]}, "seconds": {"type": "integer", "description": "1 to 300 seconds, default 60"}, "wait": {"type": "boolean", "description": "Must be false; completion cannot be detected"}}, "required": ["marks"]}}, "mcp__buddy__notify": {"description": "Update the persistent Buddy root-runtime notification with a short status message.", "parameters": {"type": "object", "properties": {"text": {"type": "string", "description": "Status text, max 180 characters"}}, "required": ["text"]}}}}
+{"error": "MCP call failed: TimeoutError: MCP call timed out after 300.0s (configured timeout: 300.0s)"}
