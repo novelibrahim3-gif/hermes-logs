@@ -1,14 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T04:49:34+07:00
+Waktu: 2026-11-14T04:49:54+07:00
 Tool: terminal
 Status: ok
-Durasi: 4114 ms
+Durasi: 6011 ms
 Direktori: /root
 
 INPUT:
 {
-  "command": "su -c \"am force-stop com.angrydynomiteslab.craftworld\" 2>&1; echo \"exit=$?\"; echo \"---\"; su -c \"pidof com.angrydynomiteslab.craftworld\" 2>&1; echo \"exit2=$?\""
+  "command": "echo \"== am force-stop ==\"; su -c \"/system/bin/am force-stop com.angrydynomiteslab.craftworld\" 2>&1; echo \"exit=$?\"; echo \"== ps ==\"; su -c \"ps -A\" 2>&1 | grep -i craft | head; echo \"== pidof ==\"; su -c \"pidof com.angrydynomiteslab.craftworld\" 2>&1; echo \"== which am ==\"; ls -la /system/bin/am 2>&1"
 }
 
 HASIL:
-{"output": "bash: line 1: am: command not found\nexit=127\n---\nexit2=1", "exit_code": 0, "error": null}
+{"output": "== am force-stop ==\n/system/bin/am[9]: cmd: inaccessible or not found\nexit=127\n== ps ==\n== pidof ==\n== which am ==\n-rwxr-xr-x+ 1 root 2000 207 Jan  1  2009 /system/bin/am", "exit_code": 0, "error": null}
