@@ -1,17 +1,15 @@
 Hermes — hasil tool
-Waktu: 2026-11-13T21:12:35+07:00
-Tool: tool_describe
+Waktu: 2026-11-13T21:12:49+07:00
+Tool: mcp__craftworld_vision__find_objects
 Status: ok
-Durasi: 371 ms
+Durasi: 171 ms
 Direktori: /root/.hermes/hermes-agent
 
 INPUT:
 {
-  "names": [
-    "mcp__craftworld_vision__analyze_screenshot",
-    "mcp__craftworld_vision__find_objects"
-  ]
+  "image_path": "/root/.hermes/cache/scratch/live-test-00.png",
+  "target": "earth_mine"
 }
 
 HASIL:
-{"tools": {"mcp__craftworld_vision__analyze_screenshot": {"description": "Analisis resolusi, fitur visual ORB, dan teks pada screenshot Craft World.", "parameters": {"properties": {"image_path": {"title": "Image Path", "type": "string"}}, "required": ["image_path"], "title": "analyze_screenshotArguments", "type": "object"}}, "mcp__craftworld_vision__find_objects": {"description": "Deteksi banyak objek sekaligus berdasarkan warna, bentuk, ukuran, dan posisi relatif.", "parameters": {"properties": {"image_path": {"title": "Image Path", "type": "string"}, "target": {"title": "Target", "type": "string"}}, "required": ["image_path", "target"], "title": "find_objectsArguments", "type": "object"}}}}
+{"result": "{\n  \"target\": \"earth_mine\",\n  \"count\": 1,\n  \"image\": \"live-test-00.png\",\n  \"resolution\": \"1080x2400\",\n  \"scale\": 1.5,\n  \"objects\": [\n    {\n      \"box\": [\n        290,\n        1225,\n        202,\n        273\n      ],\n      \"center\": [\n        391.0,\n        1361.5\n      ],\n      \"area\": 14133,\n      \"confidence\": 0.908,\n      \"button\": {\n        \"box\": [\n          290,\n          1225,\n          91,\n          84\n        ],\n        \"center\": [\n          335.0,\n          1267.0\n        ]\n      },\n      \"body\": {\n        \"box\": [\n          347,\n          1330,\n          145,\n          168\n        ],\n        \"center\": [\n          419.0,\n          1414.0\n        ],\n        \"area\": 14133\n      },\n      \"relative\": {\n        \"dx\": 84.0,\n        \"dy\": 147.0\n      }\n    }\n  ]\n}", "structuredContent": {"result": "{\n  \"target\": \"earth_mine\",\n  \"count\": 1,\n  \"image\": \"live-test-00.png\",\n  \"resolution\": \"1080x2400\",\n  \"scale\": 1.5,\n  \"objects\": [\n    {\n      \"box\": [\n        290,\n        1225,\n        202,\n        273\n      ],\n      \"center\": [\n        391.0,\n        1361.5\n      ],\n      \"area\": 14133,\n      \"confidence\": 0.908,\n      \"button\": {\n        \"box\": [\n          290,\n          1225,\n          91,\n          84\n        ],\n        \"center\": [\n          335.0,\n          1267.0\n        ]\n      },\n      \"body\": {\n        \"box\": [\n          347,\n          1330,\n          145,\n          168\n        ],\n        \"center\": [\n          419.0,\n          1414.0\n        ],\n        \"area\": 14133\n      },\n      \"relative\": {\n        \"dx\": 84.0,\n        \"dy\": 147.0\n      }\n    }\n  ]\n}"}}
