@@ -1,8 +1,8 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T12:46:19+07:00
+Waktu: 2026-11-14T12:46:37+07:00
 Tool: skill_manage
 Status: ok
-Durasi: 686 ms
+Durasi: 671 ms
 Direktori: /root
 
 INPUT:
@@ -10,13 +10,13 @@ INPUT:
   "operations": [
     {
       "action": "patch",
-      "file_path": "references/scheduled-automation.md",
+      "file_path": "references/mcp-http-api.md",
       "name": "buddy-mobile-control",
-      "new_string": "For \"keep doing X to this app every so often\" requests (watch a timer, restart a machine when it finishes, keep a boost topped up), use `cronjob_manage` rather than manual turn-by-turn polling.\n\n## Opsi jadwal Velnor (chat)\n\nTool Velnor `schedule_message`/`list_scheduled`/`cancel_scheduled` mengirim pesan/reminder ke chat Velnor. Syarat: koneksi MCP harus membawa `?chat=<id>` di URL; chat id sesi ini `08dfd2386522` (12-hex, sama dengan `HERMES_SESSION_CHAT_ID`). Bila tool mengembalikan \"Only in Velnor's own chats.\", panggil server Velnor langsung (HTTP JSON-RPC, `references/mcp-http-api.md`).\n\nPilih jadwal Velnor bila hasilnya cukup sebuah pesan/reminder di chat; pilih `cronjob_manage` bila diperlukan agen yang membaca layar dan mengetik.\n",
-      "old_string": "For \"keep doing X to this app every so often\" requests (watch a timer, restart a machine when it finishes, keep a boost topped up), use `cronjob_manage` rather than manual turn-by-turn polling.\n"
+      "new_string": "- `read_screen` mengembalikan GAMBAR screenshot (KernelSU screencap), BUKAN daftar elemen; tidak ada accessibility tree / element id. Validasi layar lewat vision (+ OCR lokal bila perlu).\n- `tap` takes screen-pixel `x`/`y`; `wait` takes `ms` capped near 10000.\n- Velnor: screenshot penuh 1080x2400 dan koordinat layar = koordinat gambar (faktor 1:1); tap dibatasi 1080x2262. Tool jadwal butuh `?chat=<id>` di URL.",
+      "old_string": "- `read_screen` returns the numbered element list with `@x,y` centers for native UI.\n- `tap` takes screen-pixel `x`/`y` (or an `element` id from the last `read_screen`); `wait` takes `ms` capped near 10000."
     }
   ]
 }
 
 HASIL:
-{"success": true, "operations_applied": 1, "results": [{"name": "buddy-mobile-control", "action": "patch", "file_path": "references/scheduled-automation.md", "success": true}]}
+{"success": true, "operations_applied": 1, "results": [{"name": "buddy-mobile-control", "action": "patch", "file_path": "references/mcp-http-api.md", "success": true}]}
