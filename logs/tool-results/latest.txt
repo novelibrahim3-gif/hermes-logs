@@ -1,14 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T11:59:57+07:00
-Tool: mcp__velnor__wait
+Waktu: 2026-11-14T12:00:14+07:00
+Tool: mcp__velnor__open_app
 Status: ok
-Durasi: 2069 ms
+Durasi: 373 ms
 Direktori: /root
 
 INPUT:
 {
-  "ms": 2000
+  "app": "Craft World"
 }
 
 HASIL:
-{"result": "Waited 2000 ms."}
+{"result": "Opened Craft World (com.angrydynomiteslab.craftworld)."}
