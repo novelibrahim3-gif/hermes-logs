@@ -1,45 +1,29 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T12:26:21+07:00
-Tool: cronjob_manage
+Waktu: 2026-11-14T12:26:57+07:00
+Tool: memory
 Status: ok
-Durasi: 217 ms
+Durasi: 127 ms
 Direktori: /root
 
 INPUT:
 {
-  "action": "update",
-  "deliver": "origin",
-  "job_id": "39839c53f57c"
+  "operations": [
+    {
+      "action": "remove",
+      "old_text": "vision_analyze is heavily rate-limited (HTTP 429, retry_after often 1000s+). tesseract OCR is the working fallback for reading on-screen text; PIL is available, numpy is not."
+    },
+    {
+      "action": "patch",
+      "new_text": "Analisis gambar: JANGAN pakai vision_analyze/Vision API eksternal (rate-limited 429). Gunakan tool lokal craftworld-vision (analyze_screenshot, compare_screenshots) + tesseract OCR + PIL (numpy tidak ada).",
+      "old_text": "Jangan pernah memakai Vision API eksternal (vision_analyze, Nous API untuk gambar, layanan vision pihak ketiga) untuk analisis gambar. Gunakan tool lokal craftworld-vision: analyze_screenshot (resolusi, fitur ORB, OCR) dan compare_screenshots (ORB, kecocokan awal, inliers RANSAC, gambar hasil)."
+    },
+    {
+      "action": "add",
+      "content": "Tutup iklan rewarded Craft World: tunggu countdown; X muncul setelah countdown; tombol >> = skip/next (kadang fake skip); jika redirect Play Store, tekan BACK; tutup via X/>> lalu verifikasi reward."
+    }
+  ],
+  "target": "memory"
 }
 
 HASIL:
-{
-  "success": true,
-  "job": {
-    "job_id": "39839c53f57c",
-    "name": "Craft World cycle",
-    "skill": "craftworld-visual-inspector",
-    "skills": [
-      "craftworld-visual-inspector"
-    ],
-    "prompt_preview": "Jalankan siklus produksi Craft World di HP Android. Gunakan MCP Velnor (read_screen, tap, press, ope...",
-    "model": null,
-    "provider": null,
-    "pinned": false,
-    "base_url": null,
-    "schedule": "once in 104m",
-    "repeat": "once",
-    "deliver": "origin",
-    "next_run_at": "2026-11-14T14:09:44.025529+07:00",
-    "last_run_at": null,
-    "last_status": null,
-    "last_delivery_error": null,
-    "last_delivery_unverified": null,
-    "last_fire_error": null,
-    "last_error": null,
-    "enabled": true,
-    "state": "scheduled",
-    "paused_at": null,
-    "paused_reason": null
-  }
-}
+{"success": true, "done": true, "target": "memory", "usage": "94% — 2,086/2,200 chars", "entry_count": 8, "message": "Applied 3 operation(s).", "patched_entries": {"2": "Jangan pernah memakai Vision API eksternal (vision_analyze, Nous API untuk gambar, layanan vision pihak ketiga) untuk analisis gambar. Gunakan tool lokal craftworld-vision: analyze_screenshot (resolusi, fitur ORB, OCR) dan compare_screenshots (ORB, kecocokan awal, inliers RANSAC, gambar hasil)."}, "patched_entries_after": {"2": "Analisis gambar: JANGAN pakai vision_analyze/Vision API eksternal (rate-limited 429). Gunakan tool lokal craftworld-vision (analyze_screenshot, compare_screenshots) + tesseract OCR + PIL (numpy tidak ada)."}, "removed_entries": {"1": "vision_analyze is heavily rate-limited (HTTP 429, retry_after often 1000s+). tesseract OCR is the working fallback for reading on-screen text; PIL is available, numpy is not."}, "note": "Write saved. This update is complete — do not repeat it."}
