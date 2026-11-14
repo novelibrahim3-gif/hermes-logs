@@ -1,62 +1,129 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T12:25:44+07:00
+Waktu: 2026-11-14T12:25:58+07:00
 Tool: cronjob_manage
 Status: ok
-Durasi: 301 ms
+Durasi: 174 ms
 Direktori: /root
 
 INPUT:
 {
-  "action": "create",
-  "name": "Craft World cycle",
-  "prompt": "Jalankan siklus produksi Craft World di HP Android. Gunakan MCP Velnor (read_screen, tap, press, open_app) untuk semua interaksi layar; jangan pakai OCR/aksesibilitas sebagai pengganti pengamatan gambar.\n\nLangkah:\n1. Buka Craft World (open_app \"Craft World\"), tunggu layar game, tutup popup bila ada (tombol X yang jelas saja).\n2. read_screen, cek timer Earth Mine (timer tepat di bawah tangki/peti Earth Mine) dan timer x2 Boost (tombol bulat kanan bawah).\n3. Jika tombol pink \"x2\" pada Earth Mine muncul ATAU timer Earth Mine habis: tap tombol itu, tonton iklan rewarded sampai selesai (tunggu countdown; cari tombol X atau \">>\" untuk menutup/skip), lalu verifikasi reward.\n4. Jika Boost tidak aktif: aktifkan lewat iklan, lalu verifikasi timer Boost.\n5. Hitung next_cycle_minutes = min(timer_earth_mine_menit, timer_boost_menit) + 2. Lalu buat jadwal baru dengan cronjob_manage action=create schedule=\"in <N>m\" berisi prompt ini (ganti <N> dengan hasil hitung).\n6. Laporkan: status Earth Mine, status Boost, timer keduanya, dan waktu jadwal berikutnya.\n\nAturan: jangan tekan tombol pembelian; jangan sentuh STASHED; jangan tap berulang sebelum memeriksa hasil; jangan mengklaim berhasil tanpa bukti read_screen.",
-  "schedule": "in 104m",
-  "skills": [
-    "craftworld-visual-inspector"
-  ],
-  "timezone": "Asia/Jakarta"
+  "action": "list"
 }
 
 HASIL:
 {
   "success": true,
-  "job_id": "39839c53f57c",
-  "name": "Craft World cycle",
-  "skill": "craftworld-visual-inspector",
-  "skills": [
-    "craftworld-visual-inspector"
+  "count": 4,
+  "jobs": [
+    {
+      "job_id": "c907ad0d21fc",
+      "name": "Craft World factory auto-start",
+      "skill": "buddy-mobile-control",
+      "skills": [
+        "buddy-mobile-control"
+      ],
+      "prompt_preview": "Craft World factory automation. Follow these steps in order. Do NOT run terminal commands.\n\n1. Open ...",
+      "model": null,
+      "provider": null,
+      "pinned": false,
+      "base_url": null,
+      "schedule": "every 5m",
+      "repeat": "forever",
+      "deliver": "origin",
+      "next_run_at": "2026-11-08T12:45:32.009346+07:00",
+      "last_run_at": "2026-11-08T12:40:32.009346+07:00",
+      "last_status": "ok",
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_fire_error": null,
+      "last_error": null,
+      "enabled": false,
+      "state": "paused",
+      "paused_at": "2026-11-08T12:38:48.210173+07:00",
+      "paused_reason": null
+    },
+    {
+      "job_id": "42e596d0bfb0",
+      "name": "Screen wake test",
+      "skill": "buddy-mobile-control",
+      "skills": [
+        "buddy-mobile-control"
+      ],
+      "prompt_preview": "Screen wake test. The user has turned the phone screen OFF. Your job is to confirm the automation ca...",
+      "model": null,
+      "provider": null,
+      "pinned": false,
+      "base_url": null,
+      "schedule": "once in 1m",
+      "repeat": "1/1",
+      "deliver": "origin",
+      "next_run_at": null,
+      "last_run_at": "2026-11-08T04:32:19.635377+07:00",
+      "last_status": "ok",
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_fire_error": null,
+      "last_error": null,
+      "enabled": false,
+      "state": "completed",
+      "paused_at": null,
+      "paused_reason": null
+    },
+    {
+      "job_id": "d331233c8a78",
+      "name": "hermes-logs-autopush-fallback",
+      "skill": null,
+      "skills": [],
+      "prompt_preview": "",
+      "model": null,
+      "provider": null,
+      "pinned": false,
+      "base_url": null,
+      "schedule": "*/10 * * * *",
+      "repeat": "forever",
+      "deliver": "local",
+      "next_run_at": "2026-11-14T12:30:00+07:00",
+      "last_run_at": "2026-11-14T12:20:35.185062+07:00",
+      "last_status": "ok",
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_fire_error": null,
+      "last_error": null,
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "script": "hermes_logs_autopush.sh",
+      "no_agent": true,
+      "workdir": "/root/hermes-logs-sync"
+    },
+    {
+      "job_id": "39839c53f57c",
+      "name": "Craft World cycle",
+      "skill": "craftworld-visual-inspector",
+      "skills": [
+        "craftworld-visual-inspector"
+      ],
+      "prompt_preview": "Jalankan siklus produksi Craft World di HP Android. Gunakan MCP Velnor (read_screen, tap, press, ope...",
+      "model": null,
+      "provider": null,
+      "pinned": false,
+      "base_url": null,
+      "schedule": "once in 104m",
+      "repeat": "once",
+      "deliver": "local",
+      "next_run_at": "2026-11-14T14:09:44.025529+07:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_fire_error": null,
+      "last_error": null,
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null
+    }
   ],
-  "schedule": "once in 104m",
-  "repeat": "once",
-  "deliver": "local",
-  "next_run_at": "2026-11-14T14:09:44.025529+07:00",
-  "job": {
-    "job_id": "39839c53f57c",
-    "name": "Craft World cycle",
-    "skill": "craftworld-visual-inspector",
-    "skills": [
-      "craftworld-visual-inspector"
-    ],
-    "prompt_preview": "Jalankan siklus produksi Craft World di HP Android. Gunakan MCP Velnor (read_screen, tap, press, ope...",
-    "model": null,
-    "provider": null,
-    "pinned": false,
-    "base_url": null,
-    "schedule": "once in 104m",
-    "repeat": "once",
-    "deliver": "local",
-    "next_run_at": "2026-11-14T14:09:44.025529+07:00",
-    "last_run_at": null,
-    "last_status": null,
-    "last_delivery_error": null,
-    "last_delivery_unverified": null,
-    "last_fire_error": null,
-    "last_error": null,
-    "enabled": true,
-    "state": "scheduled",
-    "paused_at": null,
-    "paused_reason": null
-  },
-  "message": "Cron job 'Craft World cycle' created. This is a local-only cron job: its output is saved (view it with cronjob(action='list')) but will NOT be delivered back into this session \u2014 CLI/TUI and stateless HTTP API sessions have no live-delivery channel. To be notified when it runs, recreate or update the job with deliver set to a gateway-connected platform, e.g. deliver='telegram' or deliver='all'.",
   "gateway_running": true
 }
