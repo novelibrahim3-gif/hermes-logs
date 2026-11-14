@@ -1,8 +1,8 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T12:56:47+07:00
+Waktu: 2026-11-14T12:57:09+07:00
 Tool: skill_manage
 Status: ok
-Durasi: 590 ms
+Durasi: 1494 ms
 Direktori: /root
 
 INPUT:
@@ -10,12 +10,18 @@ INPUT:
   "operations": [
     {
       "action": "patch",
-      "name": "craftworld-visual-inspector",
-      "new_string": "2. Crop area navigasi bawah (Buddy: y ~1350-1600 pada 720x1600; Velnor:\n   y ~2270-2350 pada 1080x2400 — di Velnor area ini DI LUAR batas tap\n   1080x2262, jadi tidak bisa di-tap; cukup amati).",
-      "old_string": "2. Crop area navigasi bawah (y ~1350-1600 pada 720x1600). "
+      "name": "buddy-mobile-control",
+      "new_string": "5. **Convert coordinates.** The screenshot result states its own size and the screen size plus a multiplier. Always convert image coords to screen coords before tapping; raw image coords miss. **Buddy:** 720x1600 image on 1080x2400 screen -> x1.5. **Velnor:** 1080x2400 image = panel -> 1:1 (no multiplier), but the attached vision image may be downscaled (e.g. 540x1200) — multiply by the factor the tool states.",
+      "old_string": "5. **Convert coordinates.** The screenshot result states its own size and the screen size plus a multiplier (e.g. 720x1600 image on 1080x2400 screen → multiply image coords by 1.5). Always convert image coords to screen coords before tapping. Tapping raw image coords misses."
+    },
+    {
+      "action": "patch",
+      "name": "buddy-mobile-control",
+      "new_string": "- **Always convert image coordinates to screen coordinates.** The screenshot is scaled down from the real screen; raw image coordinates land in the wrong place. (Buddy ×1.5; Velnor 1:1 — see the Velnor MCP section.)",
+      "old_string": "- **Always convert image coordinates to screen coordinates.** The screenshot is scaled down from the real screen; raw image coordinates land in the wrong place."
     }
   ]
 }
 
 HASIL:
-{"success": true, "operations_applied": 1, "results": [{"name": "craftworld-visual-inspector", "action": "patch", "file_path": null, "success": true}]}
+{"success": true, "operations_applied": 2, "results": [{"name": "buddy-mobile-control", "action": "patch", "file_path": null, "success": true}, {"name": "buddy-mobile-control", "action": "patch", "file_path": null, "success": true}]}
