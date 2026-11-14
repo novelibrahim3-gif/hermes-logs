@@ -1,12 +1,18 @@
-Selesai. Earth Mine dijalankan dan jadwal siklus dibuat.
+Betul, saya terhubung ke Velnor dan tool jadwalnya bisa dipakai. Ternyata masalahnya: tool Velnor (schedule_message/list_scheduled/cancel_scheduled) hanya jalan kalau koneksi MCP membawa chat id di URL. Koneksi sesi ini tadi tanpa chat id, makanya baliknya "Only in Velnor's own chats."
 
-1. Earth Mine: tombol pink "x2" terlihat di atas peti Earth Mine, jadi saya tap. Iklan rewarded terbuka (lalu di-skip pakai ">>" ke end card, X ditutup). Hasilnya: timer "1h 42m" tampil tepat di bawah peti Earth Mine (level 31, badge x2, glow pink) dan laju kayu naik ke 500/min — Earth Mine RUNNING.
+Chat id sesi ini: 08dfd2386522 (12-hex, sama dengan HERMES_SESSION_CHAT_ID). Setelah dipakai, tool Velnor benar-benar berfungsi (saya tes create, list, dan cancel).
 
-2. Timer inti:
-- Earth Mine: 1h 42m (102 menit)
-- Boost: 7h 36m (456 menit)
-Yang habis duluan: Earth Mine.
+Jadwal yang sudah dibuat lewat Velnor MCP:
+- id: 3db637
+- waktu: Sabtu 2026-11-14 14:21 (104 menit dari sekarang)
+- pesan: "Craft World — siklus: cek Earth Mine (timer 1h42m) & x2 Boost; restart/aktifkan sesuai kondisi; verifikasi; lalu jadwalkan siklus berikutnya."
 
-3. Jadwal: next_cycle = min(102, 456) + 2 = 104 menit. Velnor schedule_message tidak tersedia di sesi ini ("Only in Velnor's own chats"), jadi saya pakai Hermes cronjob_manage: job "Craft World cycle" (job_id 39839c53f57c), once in 104m, next run 2026-11-14 14:09:44 WIB, timezone Asia/Jakarta, skill craftworld-visual-inspector, deliver ke chat ini. Sudah diverifikasi lewat list: state scheduled, enabled.
+Isi jadwal saat nanti mulai:
+1. Buka Craft World, pastikan layar game (read_screen).
+2. Cek timer Earth Mine (tepat di bawah tangki/peti) dan timer x2 Boost (tombol kanan bawah).
+3. Kalau tombol pink x2 Earth Mine muncul atau timernya habis: tap, tonton iklan rewarded sampai selesai (pakai X atau >> untuk menutup/skip), verifikasi reward.
+4. Kalau Boost tidak aktif: aktifkan lewat iklan, verifikasi timer.
+5. Hitung next_cycle = min(timer Earth Mine, timer Boost) + 2 menit, lalu buat jadwal Velnor berikutnya (chat id sama).
+6. Laporkan status Earth Mine, Boost, timer, dan jadwal berikutnya. Tanpa pembelian, tanpa menyentuh STASHED.
 
-Metode close ad yang berhasil (tunggu countdown → ">>" untuk lompat ke end card → X) sudah saya simpan di memory dan di skill references/rewarded-ad-handling.md. Laporan + screenshot dipush ke repo craftworld-vision (commit a6a6a28).
+Jadwal tes (35026f) sudah dibatalkan, dan cronjob Hermes duplikat (39839c53f57c) saya hapus supaya tidak dobel. Temuan chat id ini sudah saya simpan di memory dan skill. Log + commit 8deb166 di repo craftworld-vision.
