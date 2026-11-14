@@ -1,129 +1,45 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T12:25:58+07:00
+Waktu: 2026-11-14T12:26:21+07:00
 Tool: cronjob_manage
 Status: ok
-Durasi: 174 ms
+Durasi: 217 ms
 Direktori: /root
 
 INPUT:
 {
-  "action": "list"
+  "action": "update",
+  "deliver": "origin",
+  "job_id": "39839c53f57c"
 }
 
 HASIL:
 {
   "success": true,
-  "count": 4,
-  "jobs": [
-    {
-      "job_id": "c907ad0d21fc",
-      "name": "Craft World factory auto-start",
-      "skill": "buddy-mobile-control",
-      "skills": [
-        "buddy-mobile-control"
-      ],
-      "prompt_preview": "Craft World factory automation. Follow these steps in order. Do NOT run terminal commands.\n\n1. Open ...",
-      "model": null,
-      "provider": null,
-      "pinned": false,
-      "base_url": null,
-      "schedule": "every 5m",
-      "repeat": "forever",
-      "deliver": "origin",
-      "next_run_at": "2026-11-08T12:45:32.009346+07:00",
-      "last_run_at": "2026-11-08T12:40:32.009346+07:00",
-      "last_status": "ok",
-      "last_delivery_error": null,
-      "last_delivery_unverified": null,
-      "last_fire_error": null,
-      "last_error": null,
-      "enabled": false,
-      "state": "paused",
-      "paused_at": "2026-11-08T12:38:48.210173+07:00",
-      "paused_reason": null
-    },
-    {
-      "job_id": "42e596d0bfb0",
-      "name": "Screen wake test",
-      "skill": "buddy-mobile-control",
-      "skills": [
-        "buddy-mobile-control"
-      ],
-      "prompt_preview": "Screen wake test. The user has turned the phone screen OFF. Your job is to confirm the automation ca...",
-      "model": null,
-      "provider": null,
-      "pinned": false,
-      "base_url": null,
-      "schedule": "once in 1m",
-      "repeat": "1/1",
-      "deliver": "origin",
-      "next_run_at": null,
-      "last_run_at": "2026-11-08T04:32:19.635377+07:00",
-      "last_status": "ok",
-      "last_delivery_error": null,
-      "last_delivery_unverified": null,
-      "last_fire_error": null,
-      "last_error": null,
-      "enabled": false,
-      "state": "completed",
-      "paused_at": null,
-      "paused_reason": null
-    },
-    {
-      "job_id": "d331233c8a78",
-      "name": "hermes-logs-autopush-fallback",
-      "skill": null,
-      "skills": [],
-      "prompt_preview": "",
-      "model": null,
-      "provider": null,
-      "pinned": false,
-      "base_url": null,
-      "schedule": "*/10 * * * *",
-      "repeat": "forever",
-      "deliver": "local",
-      "next_run_at": "2026-11-14T12:30:00+07:00",
-      "last_run_at": "2026-11-14T12:20:35.185062+07:00",
-      "last_status": "ok",
-      "last_delivery_error": null,
-      "last_delivery_unverified": null,
-      "last_fire_error": null,
-      "last_error": null,
-      "enabled": true,
-      "state": "scheduled",
-      "paused_at": null,
-      "paused_reason": null,
-      "script": "hermes_logs_autopush.sh",
-      "no_agent": true,
-      "workdir": "/root/hermes-logs-sync"
-    },
-    {
-      "job_id": "39839c53f57c",
-      "name": "Craft World cycle",
-      "skill": "craftworld-visual-inspector",
-      "skills": [
-        "craftworld-visual-inspector"
-      ],
-      "prompt_preview": "Jalankan siklus produksi Craft World di HP Android. Gunakan MCP Velnor (read_screen, tap, press, ope...",
-      "model": null,
-      "provider": null,
-      "pinned": false,
-      "base_url": null,
-      "schedule": "once in 104m",
-      "repeat": "once",
-      "deliver": "local",
-      "next_run_at": "2026-11-14T14:09:44.025529+07:00",
-      "last_run_at": null,
-      "last_status": null,
-      "last_delivery_error": null,
-      "last_delivery_unverified": null,
-      "last_fire_error": null,
-      "last_error": null,
-      "enabled": true,
-      "state": "scheduled",
-      "paused_at": null,
-      "paused_reason": null
-    }
-  ],
-  "gateway_running": true
+  "job": {
+    "job_id": "39839c53f57c",
+    "name": "Craft World cycle",
+    "skill": "craftworld-visual-inspector",
+    "skills": [
+      "craftworld-visual-inspector"
+    ],
+    "prompt_preview": "Jalankan siklus produksi Craft World di HP Android. Gunakan MCP Velnor (read_screen, tap, press, ope...",
+    "model": null,
+    "provider": null,
+    "pinned": false,
+    "base_url": null,
+    "schedule": "once in 104m",
+    "repeat": "once",
+    "deliver": "origin",
+    "next_run_at": "2026-11-14T14:09:44.025529+07:00",
+    "last_run_at": null,
+    "last_status": null,
+    "last_delivery_error": null,
+    "last_delivery_unverified": null,
+    "last_fire_error": null,
+    "last_error": null,
+    "enabled": true,
+    "state": "scheduled",
+    "paused_at": null,
+    "paused_reason": null
+  }
 }
