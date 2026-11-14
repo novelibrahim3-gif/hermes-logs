@@ -1,8 +1,8 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T12:48:35+07:00
+Waktu: 2026-11-14T12:48:52+07:00
 Tool: skill_manage
 Status: ok
-Durasi: 755 ms
+Durasi: 1093 ms
 Direktori: /root
 
 INPUT:
@@ -10,13 +10,18 @@ INPUT:
   "operations": [
     {
       "action": "patch",
-      "file_path": "references/rewarded-ad-handling.md",
-      "name": "craftworld-visual-inspector",
-      "new_string": "## Aturan monitor\n- `read_screen` berkala; jangan tap apa pun selama iklan berjalan.\n- JANGAN mengasumsikan jumlah iklan (\"Ad 1 of N\" bisa berapa saja), durasi,\n  nama situs, atau posisi tombol — baca dari screenshot terbaru.\n- Bila masih ada countdown atau iklan berikutnya: tunggu dan periksa ulang.\n- Bila tombol \">>\" / \"Next Ad >>\" muncul: pahami dulu kondisi layar (skip vs\n  pindah iklan carousel) sebelum menekannya.\n- Jangan tekan X sebelum tombol itu benar-benar terlihat dan teridentifikasi.\n- Tekan X/Skip hanya bila benar-benar terlihat dan bisa ditekan.\n- Setelah iklan ditutup, pastikan game benar-benar kembali (screenshot). Bila\n  malah terbuka Play Store/browser: HOME, buka lagi game, verifikasi.\n- Pastikan reward BENAR-BENAR diberikan (bandingkan timer/nilai sebelum vs\n  sesudah); jangan menyamakan tombol berhasil ditekan dengan reward diterima.\n  Bila toast \"Reward granted\" sudah muncul, reward sudah masuk.",
-      "old_string": "## Aturan monitor\n- `read_screen` berkala; jangan tap apa pun selama iklan berjalan.\n- Tekan X/Skip hanya bila benar-benar terlihat dan bisa ditekan.\n- Reward diberikan saat iklan selesai; menutup lebih awal bisa menggugurkan\n  reward. Bila toast \"Reward granted\" sudah muncul, reward sudah masuk."
+      "name": "buddy-mobile-control",
+      "new_string": "Control the user's Android phone through the Buddy/Velnor MCP tools (`mcp__buddy__*` in the Buddy app, `mcp__velnor__*` inside Velnor). Use for any task phrased as \"open app X\", \"tap Y\", \"check what's on screen\", \"take a screenshot\", \"watch/close the ad\", \"how long until Z\".",
+      "old_string": "Control the user's Android phone through the `mcp__buddy__*` tools. Use for any task phrased as \"open app X\", \"tap Y\", \"check what's on screen\", \"take a screenshot\", \"watch/close the ad\", \"how long until Z\"."
+    },
+    {
+      "action": "patch",
+      "name": "buddy-mobile-control",
+      "new_string": "version: 1.3.0",
+      "old_string": "version: 1.2.0"
     }
   ]
 }
 
 HASIL:
-{"success": true, "operations_applied": 1, "results": [{"name": "craftworld-visual-inspector", "action": "patch", "file_path": "references/rewarded-ad-handling.md", "success": true}]}
+{"success": true, "operations_applied": 2, "results": [{"name": "buddy-mobile-control", "action": "patch", "file_path": null, "success": true}, {"name": "buddy-mobile-control", "action": "patch", "file_path": null, "success": true}]}
