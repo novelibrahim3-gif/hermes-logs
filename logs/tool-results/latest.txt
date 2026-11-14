@@ -1,14 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T12:36:47+07:00
+Waktu: 2026-11-14T12:37:10+07:00
 Tool: terminal
 Status: ok
-Durasi: 936 ms
+Durasi: 979 ms
 Direktori: /root
 
 INPUT:
 {
-  "command": "KEY=\"$MCP_VELNOR_API_KEY\"; echo \"== direct with chat=08dfd2386522 ==\"; curl -s -m 10 -X POST \"http://127.0.0.1:8765/mcp?chat=08dfd2386522\" -H \"Content-Type: application/json\" -H \"Authorization: [DISEMBUNYIKAN]] $KEY\" -d '{\"jsonrpc\":\"2.0\",\"id\":2,\"method\":\"tools/call\",\"params\":{\"name\":\"schedule_message\",\"arguments\":{\"message\":\"Tes jadwal Craft World\",\"in_minutes\":104}}}' 2>&1 | head -c 600; echo; echo \"== list_scheduled ==\"; curl -s -m 10 -X POST \"http://127.0.0.1:8765/mcp?chat=08dfd2386522\" -H \"Content-Type: application/json\" -H \"Authorization: [DISEMBUNYIKAN]] $KEY\" -d '{\"jsonrpc\":\"2.0\",\"id\":3,\"method\":\"tools/call\",\"params\":{\"name\":\"list_scheduled\",\"arguments\":{}}}' 2>&1 | head -c 600"
+  "command": "KEY=\"$MCP_VELNOR_API_KEY\"; echo \"== cancel test ==\"; curl -s -m 10 -X POST \"http://127.0.0.1:8765/mcp?chat=08dfd2386522\" -H \"Content-Type: application/json\" -H \"Authorization: [DISEMBUNYIKAN]] $KEY\" -d '{\"jsonrpc\":\"2.0\",\"id\":4,\"method\":\"tools/call\",\"params\":{\"name\":\"cancel_scheduled\",\"arguments\":{\"id\":\"35026f\"}}}' 2>&1 | head -c 300; echo; echo \"== create real ==\"; curl -s -m 10 -X POST \"http://127.0.0.1:8765/mcp?chat=08dfd2386522\" -H \"Content-Type: application/json\" -H \"Authorization: [DISEMBUNYIKAN]] $KEY\" -d '{\"jsonrpc\":\"2.0\",\"id\":5,\"method\":\"tools/call\",\"params\":{\"name\":\"schedule_message\",\"arguments\":{\"message\":\"Craft World — siklus: cek Earth Mine (timer 1h42m) & x2 Boost; restart/aktifkan sesuai kondisi; verifikasi; lalu jadwalkan siklus berikutnya.\",\"in_minutes\":104}}}' 2>&1 | head -c 600; echo; echo \"== list ==\"; curl -s -m 10 -X POST \"http://127.0.0.1:8765/mcp?chat=08dfd2386522\" -H \"Content-Type: application/json\" -H \"Authorization: [DISEMBUNYIKAN]] $KEY\" -d '{\"jsonrpc\":\"2.0\",\"id\":6,\"method\":\"tools/call\",\"params\":{\"name\":\"list_scheduled\",\"arguments\":{}}}' 2>&1 | head -c 600"
 }
 
 HASIL:
-{"output": "== direct with chat=08dfd2386522 ==\n{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"Scheduled 35026f for Sat 2026-11-14 14:20. Velnor sends it into this chat then, as a new message to you, also with the phone locked; the user sees it above the chat and can cancel it. Android allows Velnor no exact alarms, so it may come a few minutes late.\"}]}}\n== list_scheduled ==\n{\"jsonrpc\":\"2.0\",\"id\":3,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"Scheduled in this chat:\\n35026f: Sat 2026-11-14 14:20: Tes jadwal Craft World\"}]}}", "exit_code": 0, "error": null}
+{"output": "== cancel test ==\n{\"jsonrpc\":\"2.0\",\"id\":4,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"Cancelled 35026f.\"}]}}\n== create real ==\n{\"jsonrpc\":\"2.0\",\"id\":5,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"Scheduled 3db637 for Sat 2026-11-14 14:21. Velnor sends it into this chat then, as a new message to you, also with the phone locked; the user sees it above the chat and can cancel it. Android allows Velnor no exact alarms, so it may come a few minutes late.\"}]}}\n== list ==\n{\"jsonrpc\":\"2.0\",\"id\":6,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"Scheduled in this chat:\\n3db637: Sat 2026-11-14 14:21: Craft World — siklus: cek Earth Mine (timer 1h42m) & x2 Boost; restart\\/aktifkan sesuai kondisi; verifikasi; lalu jadwalkan siklus berikutnya.\"}]}}", "exit_code": 0, "error": null}
