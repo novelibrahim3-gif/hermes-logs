@@ -1,8 +1,8 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T12:47:49+07:00
+Waktu: 2026-11-14T12:48:18+07:00
 Tool: skill_manage
 Status: ok
-Durasi: 769 ms
+Durasi: 705 ms
 Direktori: /root
 
 INPUT:
@@ -11,8 +11,8 @@ INPUT:
     {
       "action": "patch",
       "name": "craftworld-visual-inspector",
-      "new_string": "### Earth Mine restart\n1. Cari tombol gelap \"x2\" (ikon clapperboard) tepat DI ATAS peti Earth Mine.\n   Jangan tertukar dengan tombol play hijau di sisi peti atau tombol pink\n   \"x2 Boost\" di kanan bawah.\n2. **Kondisi pemicu (terverifikasi 14 Nov 2026):** restart bila tombol \"x2\"\n   TERLIHAT di atas peti, ATAU timer di bawah peti sudah habis. Aktifkan hanya\n   bila kondisi dan instruksi user mengizinkan.\n3. Crop area tombol, hitung tengah tombol dari gambar, lalu tap.\n4. Iklan fullscreen terbuka. Pantau dengan `read_screen` berkala; jangan\n   menekan apa pun selama iklan berjalan.\n5. Bila toast \"Reward granted\" muncul dengan tombol X, crop untuk koordinat\n   tepat lalu tap X.\n6. `read_screen` lagi: pastikan game kembali dan timer (mis. \"1h 42m\") tampil\n   TEPAT DI BAWAH tangki/peti Earth Mine. Bila timer tidak di sana, jangan\n   mengklaim berhasil.\n7. **Bukti tambahan:** peti aktif, badge \"x2\" terlihat, glow pink, dan laju\n   produksi naik 2x (mis. 250/min -> 500/min). Jangan klaim aktif bila\n   indikator ini belum terverifikasi.",
-      "old_string": "### Earth Mine restart\n1. Cari tombol gelap \"x2\" (ikon clapperboard) tepat DI ATAS peti Earth Mine.\n   Jangan tertukar dengan tombol play hijau di sisi peti atau tombol pink\n   \"x2 Boost\" di kanan bawah.\n2. Crop area tombol, hitung tengah tombol dari gambar, lalu tap.\n3. Iklan fullscreen terbuka. Pantau dengan `read_screen` berkala; jangan\n   menekan apa pun selama iklan berjalan.\n4. Bila toast \"Reward granted\" muncul dengan tombol X, crop untuk koordinat\n   tepat lalu tap X.\n5. `read_screen` lagi: pastikan game kembali dan timer (mis. \"1h 42m\") tampil\n   TEPAT DI BAWAH tangki/peti Earth Mine. Bila timer tidak di sana, jangan\n   mengklaim berhasil."
+      "new_string": "### Layar gelap / iklan gagal\nBila iklan gagal (\"NO MORE ADS\") atau layar jadi gelap: jangan mengulang\ntap. Pemulihan: `press home` lalu `open_app` Craft World (alternatif:\n`press recents` lalu swipe kartu Craft World untuk menghentikan app, lalu\n`open_app`).\n\n### Penjadwalan (Earth Mine + Boost)\n- Baca kedua timer: Earth Mine (di bawah peti) dan Boost (tombol kanan bawah).\n- Tentukan yang habis lebih dahulu; jadwalkan pemeriksaan berikutnya =\n  min(timer) + margin keamanan (2 menit).\n- Buat jadwal Velnor (`schedule_message` dengan `?chat=<id>`; chat id sesi ini\n  `08dfd2386522`) atau `cronjob_manage`; verifikasi tersimpan & aktif\n  (`list_scheduled` / cronjob list).",
+      "old_string": "### Layar gelap / iklan gagal\nBila iklan gagal (\"NO MORE ADS\") atau layar jadi gelap: jangan mengulang\ntap. Pemulihan: `press home` lalu `open_app` Craft World (alternatif:\n`press recents` lalu swipe kartu Craft World untuk menghentikan app, lalu\n`open_app`)."
     }
   ]
 }
