@@ -1,14 +1,57 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T11:57:13+07:00
-Tool: mcp__velnor__browser_open
+Waktu: 2026-11-14T11:57:29+07:00
+Tool: web_search
 Status: ok
-Durasi: 7532 ms
+Durasi: 744 ms
 Direktori: /root
 
 INPUT:
 {
-  "url": "https://www.google.com/search?q=jenis+iklan+android+rewarded+video+interstitial+banner+cara+menutup+close+button"
+  "limit": 6,
+  "query": "cara menutup iklan rewarded video yang tidak ada tombol X countdown android admob app open ads"
 }
 
 HASIL:
-{"result": "Page: https://www.google.com/search?q=jenis+iklan+android+rewarded+video+interstitial+banner+cara+menutup+close+button&sei=JOr3arzWNOGO4-EPiJLkyQI\nURL: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Djenis%2Biklan%2Bandroid%2Brewarded%2Bvideo%2Binterstitial%2Bbanner%2Bcara%2Bmenutup%2Bclose%2Bbutton%26sei%3DJOr3arzWNOGO4-EPiJLkyQI&q=EgS2CkNeGKXU39cGIjAnvMmidJHWFXPx7ZKriYcdqv1VXHQhJsGq8fv1FZYcaImaW6Y00K3gl8TqorSXPTwyAVJaAUNgpIPMpZGukOyBAQ\n\nBOT CHECK: google.com shows a captcha or a robot check. Don't try to solve it. Ask the user (ask) to solve it, with browser_highlight on the captcha's item (the user taps the Velnor asks notification to open the marked browser view) and options like [\"Done\", \"Use the phone instead\"], or switch to the phone (open_url).\n\nAbout this page\nOur systems have detected unusual traffic from your computer network. This page checks to see if it's really you sending the requests, and not a robot. [1] link \"Why did this happen?\"\nIP address: 182.10.67.94\nTime: 2026-11-14T04:57:10Z\nURL: https://www.google.com/search?q=jenis+iklan+android+rewarded+video+interstitial+banner+cara+menutup+close+button&sei=JOr3arzWNOGO4-EPiJLkyQI"}
+{
+  "success": true,
+  "data": {
+    "web": [
+      {
+        "title": "RewardedAd | Android | Google for Developers",
+        "url": "https://developers.google.com/admob/android/reference/com/google/android/gms/ads/rewarded/RewardedAd?authuser=77&hl=id",
+        "description": "public class MainActivity extends AppCompatActivity {\nprivate RewardedAd rewardedAd;\n@Override\nprotected void onCreate(Bundle savedInstanceState) {\nsuper.onCreate(savedInstanceState);\nsetContentView(R.layout.activity_main);\nFullScreenContentCallback fullScreenContentCallback =\nnew FullScreenContentCallback() {\n@Override\npublic void onAdShowedFullScreenContent() {\n// Code to be invoked when the ad showed full screen content.\n}\n@Override\npublic void onAdDismissedFullScreenContent() {\nrewardedAd = null;\n// Code to be invoked when the ad dismissed full screen content.\n}\n};\nRewardedAd.load(\nthis,\n\"adUnitId\",\nnew AdRequ\nest.Builder().build(),\nnew RewardedAdLoadCallback() {\n@Override\npublic void onAdLoaded(RewardedAd ad) {\nfindViewById(R.id.display_button).setVisibility(View.VISIBLE);\nrewardedAd = ad;\nrewardedAd.setFullScreenContentCallback(fullScreenContentCallback);\n}\n});\n}\npublic void onDisplayButtonClicked(View view) {\nif (rewardedAd != null) {\nrewardedAd.show(\nthis,\nnew OnUserEarnedRewardListener() {\n@Override\npublic void onUserEarnedReward(@NonNull RewardItem rewardItem) {\nToast.makeText(\nMainActivity.this,\n\"onRewarded!\ncurrency: \"\n+ rewardItem.getType() + \" amount: \"\n+ rewardItem.getAmount(), Toast.LENGTH_SHORT).show();\n}\n…\n...\n|`abstract void`|`setFullScreenContentCallback(     @Nullable FullScreenContentCallback fullScreenContentCallback )` Mendaftarkan callback untuk dipanggil saat iklan menampilkan dan menutup konten layar penuh.| | | | | | | | | | | | | | \n...\n|`abstract void`|`show(     @NonNull Activity activity,     @NonNull OnUserEarnedRewardListener onUserEarnedReward\n...\npublic static @Nullable RewardedAd ~~pollAd~~\n(@NonNull Context context, @NonNull String adUnitId)\n```\nMengambil iklan reward berikutnya yang dimuat dari `startPreload`, atau `null` jika tidak ada iklan yang tersedia.\n...\nMendaftarkan callback untuk dipanggil saat iklan menampilkan dan menutup konten layar penuh.",
+        "position": 1
+      },
+      {
+        "title": "Ringkasan unit iklan interstisial reward (Beta)",
+        "url": "https://support.google.com/admob/answer/9884467?authuser=451499271&visit_id=639198884068121304-1786052475&hl=id&rd=1",
+        "description": "Sebagai ganti dialog keikutsertaan pada iklan reward, interstisial reward memerlukan layar pengantar yang mengumumkan reward dan memberikan pengguna kesempatan untuk memilih tidak ikut jika mereka menginginkannya.\n...\n## Bagaimana cara kerja iklan interstisial reward?\nIklan interstisial reward dapat ditayangkan tanpa mengharuskan pengguna untuk memilih ikut menonton.\nKapan saja selama pengalaman berlangsung, pengguna dapat memutuskan untuk melewati iklan atau berhenti melihat iklan.\n...\n## Fitur & format iklan interstisial reward AdMob\nSebelum menampilkan iklan interstisial reward kepada pengguna, Anda harus menampilkan layar pengantar yang mencakup hal berikut kepada pengguna:\n...\n- Opsi yang jelas dan tidak terhalang untuk melewati iklan sebelum iklan dimulai\n...\n#### Contoh\nSetelah beberapa detik, iklan dimulai dengan hitung mundur yang memungkinkan pengguna mengetahui berapa banyak waktu yang tersisa hingga dia menerima reward.\nJika pengguna mengklik untuk keluar dari iklan, dialog akan muncul untuk memberikan peringatan tentang hilangnya reward.\nPengguna harus mengonfirmasi bahwa dia ingin keluar dari iklan sebelum iklan ditutup.\n### Jenis iklan video\n...\n- Dukungan ikon bisukan (hanya Android)\n- **Iklan video yang dapat ditutup**: - Mengklik tombol X akan menampilkan dialog yang berisi pertanyaan apakah pengguna ingin menutup iklan\n- Pengguna diperingatkan bahwa dia akan kehilangan reward jika iklan ditutup\n- **Penghitung mundur**: - Memberi tahu pengguna berapa lama waktu yang tersisa hingga dia menerima reward",
+        "position": 2
+      },
+      {
+        "title": "Ringkasan unit iklan reward - Bantuan Google AdMob",
+        "url": "https://support.google.com/admob/answer/7372450?hl=id",
+        "description": "# Ringkasan unit iklan reward\n## Fitur & format iklan reward AdMob\nPengguna akan melihat tombol tutup dengan penghitung mundur yang menampilkan jumlah detik yang tersisa sebelum pengguna menerima reward.\nDurasi hitung mundur yang sebenarnya dapat berkisar antara 5 hingga 30 detik, bergantung pada materi iklan.",
+        "position": 3
+      },
+      {
+        "title": "Ringkasan unit iklan interstisial reward (Beta)",
+        "url": "https://support.google.com/admob/answer/9884467?authuser=993749347&visit_id=639193095595328839-3442348073&hl=id&rd=1",
+        "description": "Sebagai ganti dialog keikutsertaan pada iklan reward, interstisial reward memerlukan layar pengantar yang mengumumkan reward dan memberikan pengguna kesempatan untuk memilih tidak ikut jika mereka menginginkannya.\n...\n## Bagaimana cara kerja iklan interstisial reward?\nIklan interstisial reward dapat ditayangkan tanpa mengharuskan pengguna untuk memilih ikut menonton.\nKapan saja selama pengalaman berlangsung, pengguna dapat memutuskan untuk melewati iklan atau berhenti melihat iklan.\n...\n## Fitur & format iklan interstisial reward AdMob\nSebelum menampilkan iklan interstisial reward kepada pengguna, Anda harus menampilkan layar pengantar yang mencakup hal berikut kepada pengguna:\n...\n- Opsi yang jelas dan tidak terhalang untuk melewati iklan sebelum iklan dimulai\n...\n#### Contoh\nSetelah beberapa detik, iklan dimulai dengan hitung mundur yang memungkinkan pengguna mengetahui berapa banyak waktu yang tersisa hingga dia menerima reward.\nJika pengguna mengklik untuk keluar dari iklan, dialog akan muncul untuk memberikan peringatan tentang hilangnya reward.\nPengguna harus mengonfirmasi bahwa dia ingin keluar dari iklan sebelum iklan ditutup.\n### Jenis iklan video\n...\n- Dukungan ikon bisukan (hanya Android)\n- **Iklan video yang dapat ditutup**: - Mengklik tombol X akan menampilkan dialog yang berisi pertanyaan apakah pengguna ingin menutup iklan\n- Pengguna diperingatkan bahwa dia akan kehilangan reward jika iklan ditutup\n- **Penghitung mundur**: - Memberi tahu pengguna berapa lama waktu yang tersisa hingga dia menerima reward",
+        "position": 4
+      },
+      {
+        "title": "Iklan reward | Flutter - Google for Developers",
+        "url": "https://developers.google.com/admob/flutter/rewarded?hl=id",
+        "description": "Dengan menggunakan `FullScreenContentCallback`, Anda dapat memproses peristiwa\nsiklus proses, seperti saat iklan ditampilkan atau ditutup.\nTetapkan\n`RewardedAd.fullScreenContentCallback` sebelum menampilkan iklan untuk menerima\nnotifikasi untuk peristiwa ini.\n...\n`RewardedAd` ditampilkan sebagai Overlay di atas semua konten aplikasi dan\nditempatkan secara statis; sehingga tidak dapat ditambahkan ke hierarki widget Flutter.\nAnda dapat\nmemilih kapan akan menampilkan iklan dengan memanggil `show()`.\n`RewardedAd.show()` menggunakan `OnUserEarnedRewardCallback`, yang dipanggil saat\npengguna mendapatkan reward.\nPastikan untuk menerapkan ini dan memberi reward kepada pengguna karena\nmenonton iklan.\n```\n_rewardedAd?.show(\nonUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {\ndebugPrint('Reward amount: ${rewardItem.amount}');\n...\n);\n...\nSetelah `show()` dipanggil, `Ad` yang ditampilkan dengan cara ini tidak dapat dihapus\nsecara terprogram dan memerlukan input pengguna.\n`RewardedAd` hanya dapat ditampilkan\nsekali.\nPanggilan berikutnya untuk menampilkan akan memicu `onAdFailedToShowFullScreenContent`.\nIklan harus dihapus jika akses ke iklan tersebut tidak lagi diperlukan.\nPraktik terbaik\nuntuk waktu pemanggilan `dispose()` adalah dalam\ncallback `FullScreenContentCallback.onAdDismissedFullScreenContent` dan\n`FullScreenContentCallback.onAdFailedToShowFullScreenContent`.",
+        "position": 5
+      },
+      {
+        "title": "Rewarded ads | Android | Google for Developers",
+        "url": "https://developers.google.com/admob/android/rewarded",
+        "description": "- Load rewarded ads using the static `load()` method of the `RewardedAd` class and set a `RewardedAdLoadCallback` to handle load events.\n- Use the `FullScreenContentCallback` to manage events related to displaying your rewarded ad, such as when it is shown or dismissed.\n...\nRewarded ads are loaded by calling the static `load` method on the\n`RewardedAd` class and passing in a `RewardedAdLoadCallback`.\nThis is usually\ndone in the `onCreate` method of an `Activity`.\n...\nThe `FullScreenContentCallback` handles events related to displaying your\n`RewardedAd`.\nBefore you show your `RewardedAd`, make sure to set the callback\nas follows:\n...\nrewardedAd.setFullScreenContentCallback(\nnew FullScreenContentCallback() {\n@Override\npublic void onAdDismissedFullScreenContent() {\n// Called when fullscreen content is dismissed.\nLog.d(TAG, \"Ad was dismissed.\");\n// Don't forget to set the ad reference to null so you\n// don't show the ad a second time.\nrewardedAd = null;\n...\npublic void onAdShowedFullScreenContent() {\n// Called when fullscreen content is shown.\nLog.d(TAG, \"Ad showed fullscreen content.\");\n}\n...\npublic void onAdImpression() {\n// Called when an impression is recorded for an ad.\nLog.d(TAG, \"Ad recorded an impression.\");\n}\n@Override\npublic void onAdClicked() {\n// Called when an ad is clicked.\nLog.d(TAG, \"Ad was clicked.\");\n}\n...\nWhen you show a rewarded ad, use an `OnUserEarnedRewardListener` object\nto handle reward events.",
+        "position": 6
+      }
+    ]
+  }
+}
