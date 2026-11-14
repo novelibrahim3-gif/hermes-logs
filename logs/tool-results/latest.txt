@@ -1,15 +1,22 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T12:27:21+07:00
-Tool: skill_view
+Waktu: 2026-11-14T12:27:45+07:00
+Tool: skill_manage
 Status: ok
-Durasi: 1001 ms
+Durasi: 1601 ms
 Direktori: /root
 
 INPUT:
 {
-  "file_path": "references/rewarded-ad-handling.md",
-  "name": "craftworld-visual-inspector"
+  "operations": [
+    {
+      "action": "patch",
+      "file_path": "references/rewarded-ad-handling.md",
+      "name": "craftworld-visual-inspector",
+      "new_string": "- **Tidak ada tombol sama sekali**: tekan tombol BACK sistem.\n\n### Urutan observasi (terverifikasi 14 Nov 2026)\n- Iklan rewarded Craft World: countdown di kanan atas (mis. 33-35s). Setelah\n  countdown habis, tombol berubah jadi `>>`. Tap `>>` -> iklan melompat ke\n  *end card* advertiser dan tombol **X** muncul di kanan atas end card.\n  Tap X -> kembali ke game. Reward TETAP masuk walau iklan di-skip pakai `>>`\n  (terverifikasi: Earth Mine timer 1h42m dan boost 3h59m muncul).\n- Jangan tap badan iklan install-app: bisa membuka halaman Play Store/advertiser.\n- Iklan yang sangat panjang/loop: tunggu countdown selesai, lalu pakai `>>` untuk\n  melompat ke end card, jangan menunggu video habis.\n",
+      "old_string": "- **Tidak ada tombol sama sekali**: tekan tombol BACK sistem.\n"
+    }
+  ]
 }
 
 HASIL:
-{"success": true, "name": "craftworld-visual-inspector", "file": "references/rewarded-ad-handling.md", "content": "# Iklan rewarded & tombol tutup (Android / Craft World)\n\n## Jenis iklan fullscreen\n- **Rewarded video** — video dengan imbalan (boost/restart). Tombol X di kanan\n  atas, sering baru aktif setelah hitung mundur selesai.\n- **Rewarded interstitial** — fullscreen otomatis, biasanya ada opsi skip.\n- **Interstitial** — fullscreen, X di kanan atas.\n- **App open ads** — muncul saat app dibuka.\n\n## Tombol tutup\n- **X di kanan atas**: kadang ada hitung mundur (5-35s) sebelum bisa ditutup.\n  Bila X belum muncul, tunggu dan `read_screen` lagi; jangan tap badan iklan.\n- **\">>\" di kanan atas**: skip/next — sering *fake skip* yang hanya pindah ke\n  iklan berikutnya di carousel, bukan menutup iklan. Jangan anggap iklan selesai\n  hanya karena tombol ini ditekan; verifikasi dengan `read_screen`.\n- **Tidak ada tombol sama sekali**: tekan tombol BACK sistem.\n\n## Redirect ke Play Store / halaman advertiser\n- Menekan badan iklan (atau X yang salah target) pada iklan install-app bisa\n  membuka halaman Play Store atau halaman app advertiser.\n- Pemulihan: tekan BACK; bila halaman advertiser punya X sendiri, tap X itu;\n  lalu HOME dan buka ulang game. Jangan biarkan layar tertahan di sana.\n\n## Aturan monitor\n- `read_screen` berkala; jangan tap apa pun selama iklan berjalan.\n- Tekan X/Skip hanya bila benar-benar terlihat dan bisa ditekan.\n- Reward diberikan saat iklan selesai; menutup lebih awal bisa menggugurkan\n  reward. Bila toast \"Reward granted\" sudah muncul, reward sudah masuk.\n\n## Workflow Craft World\n### Earth Mine restart\n1. Tombol gelap \"x2\" (ikon clapperboard) tepat DI ATAS peti Earth Mine.\n   Jangan tertukar dengan tombol play hijau di sisi peti atau tombol pink\n   \"x2 Boost\" di kanan bawah.\n2. Tap -> iklan -> tunggu -> X / toast \"Reward granted\" -> tap.\n3. Verifikasi: timer (mis. \"1h 42m\") tampil TEPAT DI BAWAH tangki/peti.\n\n### x2 Boost\n1. Lingkaran pink \"x2 Boost\" di kanan bawah.\n2. Tap -> iklan -> selesai -> panel boost muncul dengan sisa durasi\n   (mis. \"3h 59m\").\n3. Tombol \"+4h\" (di atas tombol boost) menambah durasi lewat iklan lain.\n4. Tutup panel lewat X di kanan atas panel.\n\n## Layar gelap / gagal\n- Bila iklan gagal (\"NO MORE ADS\") atau layar jadi gelap: jangan mengulang tap.\n- Pemulihan: `press home` lalu `open_app` Craft World (atau `press recents`\n  lalu swipe kartu Craft World untuk menghentikan app, lalu `open_app`).\n", "file_type": ".md"}
+{"success": true, "operations_applied": 1, "results": [{"name": "craftworld-visual-inspector", "action": "patch", "file_path": "references/rewarded-ad-handling.md", "success": true}]}
