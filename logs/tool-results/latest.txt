@@ -1,15 +1,57 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T11:57:51+07:00
-Tool: mcp__velnor__tap
+Waktu: 2026-11-14T11:58:06+07:00
+Tool: web_search
 Status: ok
-Durasi: 171 ms
+Durasi: 729 ms
 Direktori: /root
 
 INPUT:
 {
-  "x": 1000,
-  "y": 1036
+  "limit": 6,
+  "query": "admob rewarded ad close button X countdown \"skip\" icon top right app open ad close"
 }
 
 HASIL:
-{"result": "Tapped (1000, 1036) using KernelSU.\n\n[BUDDY_USER_UPDATE] The user added this while you were working; it comes from the user, through Velnor, not from the screen. Take it into account now, it may change or stop the task. If it asks something, answer it in your final reply too, not only the first task:\nKamu punya akses browser internal kamu bisa cari tau tombol tombol yang digunakan untuk menitup iklan"}
+{
+  "success": true,
+  "data": {
+    "web": [
+      {
+        "title": "Overview of rewarded interstitial ad units (Beta)",
+        "url": "https://www.support.google.com/admob/answer/9884467",
+        "description": "# Overview of rewarded interstitial ad units (Beta)\nThis feature is currently in beta release.\n...\nInstead of the opt-in prompt in rewarded ads, rewarded interstitials require an intro screen that announces the reward and gives users a chance to opt-out if they wish to do so.\nOnly skippable ads will be served in rewarded interstitial ad units.\n...\n## How do rewarded interstitial ads work?\nRewarded interstitial ads can serve without requiring the user to opt-in to viewing.\nAt any point during the experience, the user can decide to skip the ad or to stop viewing the ad.\n...\nSelect the **Settings** icon at the top right corner of the video player, select **Captions**, and then specify your language.\n## AdMob rewarded interstitial ad format & features\nBefore displaying a rewarded interstitial ad to users, you must present the user with an introduction screen that includes the following:\n- Clear reward messaging that incentivizes users to view the ad\n- A clear, unobstructed option to skip the ad before it starts\n- Sufficient time for the user to understand the reward and opt-out if they don’t want to view the ad\n#### Example\nA user playing a game has just completed a level.\nWhile the next level loads, the user is prompted that an ad will begin in a few seconds and the reward for watching the ad is an extra heart.\nThe user has the option to close the ad.\nAfter a few seconds, the ad begins with a countdown that lets the user know how much time is left until they receive the reward.\nIf the user clicks to exit the ad, a prompt appears to warn about the loss of the reward.\nThe user must confirm that they want to exit the ad before the ad closes.\n### Video ad type\n...\n- Mute icon support (Android only)\n- **Closeable video ad**: - Clicking on the X button will generate a prompt asking if the user wishes to close the ad\n- The user is warned that they will lose the reward if the ad is closed\n- **Countdown timer**: - Lets the user know how much time is left until they receive the reward",
+        "position": 1
+      },
+      {
+        "title": "Play Store build getting rejected due 'Ads that interfere ...",
+        "url": "https://groups.google.com/g/google-admob-ads-sdk/c/oJ4VhdHGW3Y",
+        "description": "The issue is that the ad mob rewarded are not showing closeable window after 5 seconds and it is violating google play store family policies.\n...\nPlease note that the maximum length to skip a rewarded ad is 30 seconds.\nIf high-engagement ads are enabled, the maximum length to skip a rewarded ad is 60 seconds.\nA reward will be granted once skip time is reached.\nIf the target audiences of your app are children and older audiences, then the “Monetisation and advertising that interferes with normal app use or gameplay, including rewarded or opt-in ads, that are not closeable after five seconds” is prohibited when serving ads to children or users of unknown age.\n...\nAdMob supports mediation with networks like LevelPlay, but we’re facing an issue with **rewarded ad close buttons**.\nIn the attached screen record, the close option appears as **“Ad 1 of 2”** in the top-left instead of a clear **“X”** on the top-right.\nThis causes confusion and rejection during Play Console review.\n...\nIn our case, the ads are closeable after 5s without reward but cross button is not visible on screen.\nWe randomly click on top left or top right and close ad popup appears.\nWhat we need is a visible \"x\" button.\n...\nAs per this high-engagement ads help center article, please note that the maximum skip time for a rewarded ad is 30 seconds.\nHowever, if high-engagement ads are enabled, this maximum skip time extends to 60 seconds.\nA reward will be granted once the skip time is reached.\n...\nAds close button is mostly invisible, after 5s of playtime.\nIt works if we click on top left or top right of the screen, trying to grab an invisible close button\nBut the close ('x') button is no where to be found.\n...\nFor ads with a visible timer: the skip button (\"X\") is displayed from the start and becomes clickable after 5 seconds.\nFor ads without a visible timer: no visible skip button is shown, but the skip option is still available after 5 seconds on tapping one of the top corners (screenshot attached).\nGoogle Play Store wants to see a visible (\"X\") button after 5 seconds of ad play time.\n...\nEverything appears to be working as expected — the ads are loading properly, and the close button is visible.I also reviewed your screen recording for the specific ad where you're facing the issue (no visible timer or skip button), but I was not able to view that particular ad on my end.\n...\nWe’ve confirmed that the fix is fully live as of Sep 17, and the rendering issue on Android 15+ that affects full-screen ads rendering is now resolved.\nPlease do not use the workaround we’ve shared before and remove the workaround if you have implemented it.",
+        "position": 2
+      },
+      {
+        "title": "applovin_admob_sdk 2.9.23 | Flutter package",
+        "url": "https://pub.dev/packages/applovin_admob_sdk/versions/2.9.23",
+        "description": "-\n**AdMob rewarded test ads can get permanently stuck on Android, unrelated\nto this SDK.** Manually verified 2026-08-08: an `AdMobAdapter`-shown\nrewarded ad occasionally shows a frozen countdown label and a static\nplay-icon instead of a playing video — the video silently failed to start,\n...\n~~**Known limitation:** `app_open_ad_test.dart` / `interstitial_ad_test.dart`\n/ `rewarded_ad_test.dart` call `showXAd()` twice back-to-back without\nwaiting for the ad to finish loading first.~~ **Fixed (2026-07-19).** All three now poll the slot (`_waitForAppOpenLoaded` / `_waitForInterstitialLoaded`\n/ `_waitForRewardedLoaded`) until `isReady` before tapping show, and fail\nloudly instead of silently passing on the safe \"ad not ready, skip\"\nfallback.\n...\n**App Open never draws over a banner or MREC (2.4.0)** — Google's App Open guidance says not to present an App Open ad on top of another ad, and names banner content explicitly.\nThe resume path used to do exactly that: it restores banner visibility on resume, then shows the App Open over it.\n...\n- **App Open never stacks on a modal (1.0.23)** — `AdScreenRouteLogger` now\ncounts `PopupRoute`s (dialogs, bottom sheets, Cupertino popups) and exposes\n`isDialogOnTop`; `showAppOpenAdOnResume` consults it plus\n`AdLoadingDialog.isShowing` and **skips the App Open ad while any dialog is\npresented** (e.g. the consent dialog or a VIP redeem confirmation).\n...\nOn iOS the ad shows while the app stays `resumed`, so the Android-only \"foreground = hung\" heuristic was force-closing\n...\n- ✅ **App Open ad auto-skips while a dialog/modal is on top** (1.0.23) — it never stacks over the consent dialog, a VIP redeem confirmation, or any bottom sheet.\n...\nGoogle's \"Rewarded Interstitial\" format — shown at a natural transition point\n(between levels, after a task completes, ...) rather than behind an explicit\n\"watch ad\" tap, while still granting a reward.\nSet\n`AdMobConfig(rewardedInterstitialId: '...')` and use the matching\nload/show/canShow trio:",
+        "position": 3
+      },
+      {
+        "title": "Rewarded interstitial ads (beta) | Android",
+        "url": "https://developers.google.com/admob/android/rewarded-interstitial",
+        "description": "- Rewarded interstitial ads are an incentivized ad format that appear automatically during app transitions, offering rewards without requiring users to opt-in.\n...\n- Before showing a rewarded interstitial ad, you must present an intro screen with clear reward messaging and a skip option.\n...\n- Handle the reward callback\n- Display the ad\n...\n**Key Point:** Before displaying a rewarded interstitial ad to users, you must present the user with an intro screen that provides clear reward messaging and an option to skip the ad before it starts.",
+        "position": 4
+      },
+      {
+        "title": "GoogleMobileAds.Api.RewardedInterstitialAd Class Reference | Unity | Google for Developers",
+        "url": "https://developers.google.com/admob/unity/reference/class/google-mobile-ads/api/rewarded-interstitial-ad?authuser=1004904077",
+        "description": "At any point during the experience, the user can decide to skip the ad.\n...\n|### Events|### Events|\n|--|--|\n|`OnAdClicked`|`Action` Raised when an ad is clicked.|\n|`OnAdFullScreenContentClosed`|`Action` Raised when the ad closed full-screen content.|\n|`OnAdFullScreenContentFailed`|`Action< AdError >` Raised when the ad failed to open full-screen content.|\n|`OnAdFullScreenContentOpened`|`Action` Raised when an ad opened full-screen content.|\n|`OnAdImpressionRecorded`|`Action` Raised when an impression is recorded for an ad.|\n|`OnAdPaid`|`Action< AdValue >` Raised when the ad is estimated to have earned money.|\n|### Properties|### Properties|\n|--|--|\n|`PlacementId`|`long` A long integer provided by the AdMob UI for the configured placement.|\n|### Public static functions|### Public static functions|\n|--|--|\n|`Load(string adUnitId, AdRequest request, Action< RewardedInterstitialAd, LoadAdError > adLoadCallback)`|`void` Loads a rewarded interstitial ad.|\n|### Public functions|### Public functions|\n|--|--|\n|`CanShowAd()`|`bool` Returns true if the ad is loaded and not shown.|\n|`Destroy()`|`void` Destroys the ad.|\n|`GetAdUnitID()`|`string` Returns the ad unit ID.|\n|`GetResponseInfo()`|`ResponseInfo` Returns the ad request response info.|\n|`GetRewardItem()`|`Reward` The reward item for the loaded rewarded interstitial ad.|\n|`SetServerSideVerificationOptions(ServerSideVerificationOptions options)`|`void` Sets the server side verification options.|\n|`Show(Action< Reward > userEarnedRewardCallback)`|`void` Shows a rewarded interstitial ad.|\n...\nKey actions include loading an ad using `Load` with an ad unit ID and request, showing it via `Show`, and optionally setting server-side verification with `SetServerSideVerificationOptions`.\nThe ad can be destroyed with `Destroy`.",
+        "position": 5
+      },
+      {
+        "title": "Rewarded interstitial ads | iOS | Google for Developers",
+        "url": "https://developers.google.com/admob/ios/rewarded-interstitial",
+        "description": "- You must present users with an intro screen explaining the reward and providing an opt-out option before displaying a rewarded interstitial ad.\n...\n**Key Point:** Before displaying a rewarded interstitial ad to users, you must present the user with an intro screen that provides clear reward messaging and an option to skip the ad before it starts.\nLearn more.",
+        "position": 6
+      }
+    ]
+  }
+}
