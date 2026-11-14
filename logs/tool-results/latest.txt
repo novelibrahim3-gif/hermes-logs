@@ -1,8 +1,8 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T12:48:18+07:00
+Waktu: 2026-11-14T12:48:35+07:00
 Tool: skill_manage
 Status: ok
-Durasi: 705 ms
+Durasi: 755 ms
 Direktori: /root
 
 INPUT:
@@ -10,12 +10,13 @@ INPUT:
   "operations": [
     {
       "action": "patch",
+      "file_path": "references/rewarded-ad-handling.md",
       "name": "craftworld-visual-inspector",
-      "new_string": "### Layar gelap / iklan gagal\nBila iklan gagal (\"NO MORE ADS\") atau layar jadi gelap: jangan mengulang\ntap. Pemulihan: `press home` lalu `open_app` Craft World (alternatif:\n`press recents` lalu swipe kartu Craft World untuk menghentikan app, lalu\n`open_app`).\n\n### Penjadwalan (Earth Mine + Boost)\n- Baca kedua timer: Earth Mine (di bawah peti) dan Boost (tombol kanan bawah).\n- Tentukan yang habis lebih dahulu; jadwalkan pemeriksaan berikutnya =\n  min(timer) + margin keamanan (2 menit).\n- Buat jadwal Velnor (`schedule_message` dengan `?chat=<id>`; chat id sesi ini\n  `08dfd2386522`) atau `cronjob_manage`; verifikasi tersimpan & aktif\n  (`list_scheduled` / cronjob list).",
-      "old_string": "### Layar gelap / iklan gagal\nBila iklan gagal (\"NO MORE ADS\") atau layar jadi gelap: jangan mengulang\ntap. Pemulihan: `press home` lalu `open_app` Craft World (alternatif:\n`press recents` lalu swipe kartu Craft World untuk menghentikan app, lalu\n`open_app`)."
+      "new_string": "## Aturan monitor\n- `read_screen` berkala; jangan tap apa pun selama iklan berjalan.\n- JANGAN mengasumsikan jumlah iklan (\"Ad 1 of N\" bisa berapa saja), durasi,\n  nama situs, atau posisi tombol — baca dari screenshot terbaru.\n- Bila masih ada countdown atau iklan berikutnya: tunggu dan periksa ulang.\n- Bila tombol \">>\" / \"Next Ad >>\" muncul: pahami dulu kondisi layar (skip vs\n  pindah iklan carousel) sebelum menekannya.\n- Jangan tekan X sebelum tombol itu benar-benar terlihat dan teridentifikasi.\n- Tekan X/Skip hanya bila benar-benar terlihat dan bisa ditekan.\n- Setelah iklan ditutup, pastikan game benar-benar kembali (screenshot). Bila\n  malah terbuka Play Store/browser: HOME, buka lagi game, verifikasi.\n- Pastikan reward BENAR-BENAR diberikan (bandingkan timer/nilai sebelum vs\n  sesudah); jangan menyamakan tombol berhasil ditekan dengan reward diterima.\n  Bila toast \"Reward granted\" sudah muncul, reward sudah masuk.",
+      "old_string": "## Aturan monitor\n- `read_screen` berkala; jangan tap apa pun selama iklan berjalan.\n- Tekan X/Skip hanya bila benar-benar terlihat dan bisa ditekan.\n- Reward diberikan saat iklan selesai; menutup lebih awal bisa menggugurkan\n  reward. Bila toast \"Reward granted\" sudah muncul, reward sudah masuk."
     }
   ]
 }
 
 HASIL:
-{"success": true, "operations_applied": 1, "results": [{"name": "craftworld-visual-inspector", "action": "patch", "file_path": null, "success": true}]}
+{"success": true, "operations_applied": 1, "results": [{"name": "craftworld-visual-inspector", "action": "patch", "file_path": "references/rewarded-ad-handling.md", "success": true}]}
