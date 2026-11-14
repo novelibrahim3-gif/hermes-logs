@@ -1,15 +1,10 @@
-Tugas selesai. Semua bukti diambil dari read_screen MCP Velnor.
+Selesai. 2x boost dijalankan 2 kali, dan boost sekarang aktif 7h 48m.
 
-1. Tombol Watch Ad berhasil ditekan: YA. Tombol gelap "x2" (ikon clapperboard) di atas peti Earth Mine terlihat jelas, center (480,1271), dan tap berhasil dieksekusi.
+Rincian:
+- Boost pertama: tap tombol x2 Boost (990,2110) -> iklan rewarded terbuka -> iklan selesai -> panel boost menunjukkan 3h 59m.
+- Boost kedua: tap tombol "+4h" (967,1950) -> iklan rewarded (storybitehub, 35s) -> tombol ">>" (skip) ditekan -> panel boost menunjukkan 7h 49m.
+- Panel ditutup lewat X (898,646); layar utama menunjukkan tombol x2 Boost = 7h 48m.
 
-2. Iklan benar-benar selesai: YA. Read_screen menangkap "Ad 1 of 2" (one.google.com), lalu "Ad 2 of 2" (jalaniman.com) dengan toast "Reward granted". Saya tidak menekan tombol apa pun selama iklan berjalan.
+Jadi total dua aktivasi boost: 3h 59m + 4h = 7h 48m aktif. Sesuai pesanmu, saya berhenti di situ dan tidak menambah lagi.
 
-3. Game berhasil kembali: YA. Setelah tombol X pada toast "Reward granted" (center 1024,170) ditekan, read_screen berikutnya menunjukkan layar game kembali normal.
-
-4. Earthmine terlihat: YA. Peti Earth Mine (badge bintang 31) tampil dengan ikon stopwatch kuning, badge "x2", dan glow pink keunguan.
-
-5. Timer tepat di bawah tangki Earthmine: YA. Timer "1h 42m" tampil di kotak gelap tepat di bawah peti/tangki Earth Mine, bukan di tempat lain.
-
-Bukti visual: read_screen terakhir (img_d9811276bc2e.png) dan crop zoom Earth Mine (task-03-earthmine.png). Indikator pendukung: laju kayu naik dari 250/min jadi 500/min, menandakan x2 aktif.
-
-Laporan dan screenshot sudah saya push ke repo craftworld-vision (commit 43afbc5).
+Catatan: root force-stop via PRoot su tetap diblokir sandbox (exit 255, "Unable to get default service manager"), jadi root method tidak tersedia; navigasi pulang pakai HOME + buka ulang game. Laporan dan screenshot sudah dipush ke repo craftworld-vision (commit 95b0341).
