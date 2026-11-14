@@ -1,8 +1,8 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T12:56:29+07:00
+Waktu: 2026-11-14T12:56:47+07:00
 Tool: skill_manage
 Status: ok
-Durasi: 1597 ms
+Durasi: 590 ms
 Direktori: /root
 
 INPUT:
@@ -11,17 +11,11 @@ INPUT:
     {
       "action": "patch",
       "name": "craftworld-visual-inspector",
-      "new_string": "2. **Pastikan foreground SEBELUM perintah perangkat (Velnor/Buddy) apa pun**. Cek `read_screen` —",
-      "old_string": "2. **Pastikan foreground SEBELUM perintah Buddy apa pun**. Cek `read_screen` —"
-    },
-    {
-      "action": "patch",
-      "name": "craftworld-visual-inspector",
-      "new_string": "2a. **Tool MCP bisa belum terdaftar di katalog sesi.** `tool_search` kosong dan\n   `tool_call` menolak tool MCP (\"not a known tool name\") padahal server\n   hidup (probe `POST http://127.0.0.1:8765/mcp` `tools/list` membalas 200).\n   Jalankan `tool_search` lagi sebelum menyimpulkan server mati — katalog sesi\n   discover saat start dan server yang baru siap bisa butuh satu pencarian ulang.\n   Bila tetap tak terdaftar, minta `/reload-mcp`; jangan membuat alat pengganti.",
-      "old_string": "2a. **Buddy tool bisa belum terdaftar di katalog sesi.** `tool_search` kosong dan\n   `tool_call` menolak `mcp__buddy__*` (\"not a known tool name\") padahal server\n   hidup (probe `POST http://127.0.0.1:8765/mcp` `tools/list` membalas 200).\n   Jalankan `tool_search` lagi sebelum menyimpulkan server mati — katalog sesi\n   discover saat start dan server yang baru siap bisa butuh satu pencarian ulang.\n   Bila tetap tak terdaftar, minta `/reload-mcp`; jangan membuat alat pengganti."
+      "new_string": "2. Crop area navigasi bawah (Buddy: y ~1350-1600 pada 720x1600; Velnor:\n   y ~2270-2350 pada 1080x2400 — di Velnor area ini DI LUAR batas tap\n   1080x2262, jadi tidak bisa di-tap; cukup amati).",
+      "old_string": "2. Crop area navigasi bawah (y ~1350-1600 pada 720x1600). "
     }
   ]
 }
 
 HASIL:
-{"success": true, "operations_applied": 2, "results": [{"name": "craftworld-visual-inspector", "action": "patch", "file_path": null, "success": true}, {"name": "craftworld-visual-inspector", "action": "patch", "file_path": null, "success": true}]}
+{"success": true, "operations_applied": 1, "results": [{"name": "craftworld-visual-inspector", "action": "patch", "file_path": null, "success": true}]}
