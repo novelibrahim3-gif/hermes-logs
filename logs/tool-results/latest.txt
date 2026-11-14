@@ -1,8 +1,8 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T12:46:37+07:00
+Waktu: 2026-11-14T12:47:06+07:00
 Tool: skill_manage
-Status: ok
-Durasi: 671 ms
+Status: error
+Durasi: 886 ms
 Direktori: /root
 
 INPUT:
@@ -10,13 +10,12 @@ INPUT:
   "operations": [
     {
       "action": "patch",
-      "file_path": "references/mcp-http-api.md",
-      "name": "buddy-mobile-control",
-      "new_string": "- `read_screen` mengembalikan GAMBAR screenshot (KernelSU screencap), BUKAN daftar elemen; tidak ada accessibility tree / element id. Validasi layar lewat vision (+ OCR lokal bila perlu).\n- `tap` takes screen-pixel `x`/`y`; `wait` takes `ms` capped near 10000.\n- Velnor: screenshot penuh 1080x2400 dan koordinat layar = koordinat gambar (faktor 1:1); tap dibatasi 1080x2262. Tool jadwal butuh `?chat=<id>` di URL.",
-      "old_string": "- `read_screen` returns the numbered element list with `@x,y` centers for native UI.\n- `tap` takes screen-pixel `x`/`y` (or an `element` id from the last `read_screen`); `wait` takes `ms` capped near 10000."
+      "name": "craftworld-visual-inspector",
+      "new_string": "Ketika tombol \"▶ x2\" atau \"x2 Boost\" ditekan, iklan rewarded akan tampil.\nSebelum tap: pastikan tombol memang milik Earth Mine, bukan tombol lain.\nSebelum menutup: tunggu countdown / konfirmasi \"Reward granted\"; jangan menutup\niklan sebelum reward terbukti. Buka `references/rewarded-ad-handling.md`\nuntuk alur detail dan cara membaca tanda iklan selesai.\n\n### Prosedur terverifikasi (14 Nov 2026)\n\n**Earth Mine**\n- Cek apakah tombol gelap \"x2\" (ikon clapperboard) di ATAS peti Earth Mine\n  muncul, ATAU timer di bawah peti sudah habis.\n- Aktifkan HANYA bila kondisi dan instruksi user mengizinkan.\n- Setelah proses selesai, pastikan: peti Earth Mine aktif, badge \"x2\" terlihat,\n  glow pink, dan timer (mis. \"1h 42m\") TEPAT DI BAWAH peti.\n- Bukti tambahan bila tersedia: laju produksi naik 2x (mis. 250/min -> 500/min).\n- Jangan klaim aktif bila indikator belum terverifikasi.\n\n**x2 Boost**\n- Ikuti jumlah aktivasi yang diminta user (mis. \"2 kali saja\").\n- Cek sisa waktu boost sebelum aktivasi: tombol boost menampilkan sisa\n  (mis. \"3h 59m\"). Berhenti setelah jumlah tercapai.\n- Bila waktu boost sudah banyak, jangan menambah aktivasi tanpa instruksi.\n- Panel boost: \"ADD +4h\" (di atas tombol boost) menambah durasi lewat iklan;\n  X di kanan atas panel menutup panel.\n\n**Penjadwalan (Earth Mine + Boost)**\n- Baca kedua timer: Earth Mine (di bawah peti) dan Boost (tombol kanan bawah).\n- Tentukan yang habis lebih dahulu; jadwalkan pemeriksaan berikutnya =\n  min(timer) + margin keamanan (2 menit).\n- Buat jadwal Velnor (`schedule_message` dengan `?chat=<id>`) atau\n  `cronjob_manage`; verifikasi tersimpan & aktif (`list_scheduled` / cronjob list).",
+      "old_string": "Ketika tombol \"▶ x2\" atau \"x2 Boost\" ditekan, iklan rewarded akan tampil.\nSebelum tap: pastikan tombol memang milik Earth Mine, bukan tombol lain.\nSebelum menutup: tunggu countdown / konfirmasi \"Reward granted\"; jangan menutup\niklan sebelum reward terbukti. Buka `references/rewarded-ad-handling.md`\nuntuk alur detail dan cara membaca tanda iklan selesai."
     }
   ]
 }
 
 HASIL:
-{"success": true, "operations_applied": 1, "results": [{"name": "buddy-mobile-control", "action": "patch", "file_path": "references/mcp-http-api.md", "success": true}]}
+{"success": false, "error": "operations[0] (patch on 'craftworld-visual-inspector') failed: Could not find a match for old_string in the file\n\nDid you mean one of these sections?\n 374| \n 375| ### x2 Boost\n 376| 1. Lingkaran pink \"x2 Boost\" di kanan bawah. Tap -> iklan fullscreen.\n 377| 2. Setelah iklan selesai, panel boost muncul dengan sisa durasi (mis. \"3h 59m\").\n 378| 3. Tombol \"+4h\" di atas tombol boost menambah durasi lewat iklan lain.\n 379| 4. Tutup panel lewat X di kanan atas panel.\n 380| \n 381| ### Layar gelap / iklan gagal\n 382| Bila iklan gagal (\"NO MORE ADS\") atau layar jadi gelap: jangan mengulang\n---\n 363| 1. Cari tombol gelap \"x2\" (ikon clapperboard) tepat DI ATAS peti Earth Mine.\n 364|    Jangan tertukar dengan tombol play hijau di sisi peti atau tombol pink\n 365|    \"x2 Boost\" di kanan bawah.\n 366| 2. Crop area tombol, hitung tengah tombol dari gambar, lalu tap.\n 367| 3. Iklan fullscreen terbuka. Pantau dengan `read_screen` berkala; jangan\n 368|    menekan apa pun selama iklan berjalan.\n 369| 4. Bila toast \"Reward granted\" muncul dengan tombol X, crop untuk koordinat\n 370|    tepat lalu tap X.\n 371| 5. `read_screen` lagi: pastikan game kembali dan timer (mis. \"1h 42m\") tampil\n---\n 364|    Jangan tertukar dengan tombol play hijau di sisi peti atau tombol pink\n 365|    \"x2 Boost\" di kanan bawah.\n 366| 2. Crop area tombol, hitung tengah tombol dari gambar, lalu tap.\n 367| 3. Iklan fullscreen terbuka. Pantau dengan `read_screen` berkala; jangan\n 368|    menekan apa pun selama iklan berjalan.\n 369| 4. Bila toast \"Reward granted\" muncul dengan tombol X, crop untuk koordinat\n 370|    tepat lalu tap X.\n 371| 5. `read_screen` lagi: pastikan game kembali dan timer (mis. \"1h 42m\") tampil\n 372|    TEPAT DI BAWAH tangki/peti Earth Mine. Bila timer tidak di sana, jangan — batch aborted, all touched skills rolled back.", "failed_index": 0, "completed_before_failure": 0, "file_preview": "---\nname: craftworld-visual-inspector\ndescription: Analisis visual Craft World (fasilitas, resource, produksi).\nversion: 1.5.0\nauthor: Hermes Agent\nlicense: MIT\nmetadata:\n  hermes:\n    tags: [vision, image-analysis, craftworld]\n    category: game-analysis\n---\n\n# Craft World Visual Inspector\n\n## When to Use\n\n- Mengamati atau menganalisis layar Craft World (fasilitas, resource, ikon,\n  level, stok, timer).\n- Memeriksa seluruh map dengan scroll bertahap.\n- Membandingkan dua screenshot (ORB/RANSAC) ..."}
