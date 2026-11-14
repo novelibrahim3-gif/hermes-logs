@@ -1,10 +1,12 @@
-Selesai. 2x boost dijalankan 2 kali, dan boost sekarang aktif 7h 48m.
+Selesai. Earth Mine dijalankan dan jadwal siklus dibuat.
 
-Rincian:
-- Boost pertama: tap tombol x2 Boost (990,2110) -> iklan rewarded terbuka -> iklan selesai -> panel boost menunjukkan 3h 59m.
-- Boost kedua: tap tombol "+4h" (967,1950) -> iklan rewarded (storybitehub, 35s) -> tombol ">>" (skip) ditekan -> panel boost menunjukkan 7h 49m.
-- Panel ditutup lewat X (898,646); layar utama menunjukkan tombol x2 Boost = 7h 48m.
+1. Earth Mine: tombol pink "x2" terlihat di atas peti Earth Mine, jadi saya tap. Iklan rewarded terbuka (lalu di-skip pakai ">>" ke end card, X ditutup). Hasilnya: timer "1h 42m" tampil tepat di bawah peti Earth Mine (level 31, badge x2, glow pink) dan laju kayu naik ke 500/min — Earth Mine RUNNING.
 
-Jadi total dua aktivasi boost: 3h 59m + 4h = 7h 48m aktif. Sesuai pesanmu, saya berhenti di situ dan tidak menambah lagi.
+2. Timer inti:
+- Earth Mine: 1h 42m (102 menit)
+- Boost: 7h 36m (456 menit)
+Yang habis duluan: Earth Mine.
 
-Catatan: root force-stop via PRoot su tetap diblokir sandbox (exit 255, "Unable to get default service manager"), jadi root method tidak tersedia; navigasi pulang pakai HOME + buka ulang game. Laporan dan screenshot sudah dipush ke repo craftworld-vision (commit 95b0341).
+3. Jadwal: next_cycle = min(102, 456) + 2 = 104 menit. Velnor schedule_message tidak tersedia di sesi ini ("Only in Velnor's own chats"), jadi saya pakai Hermes cronjob_manage: job "Craft World cycle" (job_id 39839c53f57c), once in 104m, next run 2026-11-14 14:09:44 WIB, timezone Asia/Jakarta, skill craftworld-visual-inspector, deliver ke chat ini. Sudah diverifikasi lewat list: state scheduled, enabled.
+
+Metode close ad yang berhasil (tunggu countdown → ">>" untuk lompat ke end card → X) sudah saya simpan di memory dan di skill references/rewarded-ad-handling.md. Laporan + screenshot dipush ke repo craftworld-vision (commit a6a6a28).
