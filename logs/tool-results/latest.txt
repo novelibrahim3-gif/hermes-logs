@@ -1,14 +1,18 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T12:24:27+07:00
-Tool: terminal
+Waktu: 2026-11-14T12:24:52+07:00
+Tool: tool_describe
 Status: ok
-Durasi: 2979 ms
+Durasi: 262 ms
 Direktori: /root
 
 INPUT:
 {
-  "command": "cd /root/.hermes/cache/scratch && cp /root/.hermes/cache/images/img_3fc6261297e0.png em-03.png && /root/craftworld-vision/.venv/bin/python - <<'EOF'\nfrom PIL import Image\nim = Image.open('em-03.png')\nim.crop((330,1380,620,1520)).resize((1160,560), Image.LANCZOS).save('em-03-timer.png')\nim.crop((860,2020,1080,2200)).resize((880,720), Image.LANCZOS).save('em-03-boost.png')\nprint('ok')\nEOF"
+  "names": [
+    "mcp__velnor__schedule_message",
+    "mcp__velnor__list_scheduled",
+    "mcp__velnor__cancel_scheduled"
+  ]
 }
 
 HASIL:
-{"output": "ok", "exit_code": 0, "error": null, "approval": "Command was flagged (script execution via heredoc) and auto-approved by an 'always' approval the user saved earlier."}
+{"tools": {"mcp__velnor__schedule_message": {"description": "Schedule a one-time message or reminder in the current Velnor chat. Give in_minutes or at.", "parameters": {"type": "object", "properties": {"message": {"type": "string", "description": "What to do or remind the user about"}, "in_minutes": {"type": "integer", "description": "Minutes from now"}, "at": {"type": "string", "description": "Phone local time, e.g. 2026-11-12 09:00 or 09:00"}, "remind": {"type": "boolean"}, "quiet": {"type": "boolean"}}, "required": ["message"]}}, "mcp__velnor__list_scheduled": {"description": "List one-time messages scheduled in the current Velnor chat.", "parameters": {"type": "object", "properties": {}, "required": []}}, "mcp__velnor__cancel_scheduled": {"description": "Cancel a scheduled message in the current Velnor chat.", "parameters": {"type": "object", "properties": {"id": {"type": "string", "description": "Scheduled message id"}}, "required": ["id"]}}}}
