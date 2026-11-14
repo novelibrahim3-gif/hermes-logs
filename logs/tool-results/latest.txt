@@ -1,14 +1,14 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T12:51:41+07:00
+Waktu: 2026-11-14T12:51:58+07:00
 Tool: terminal
 Status: ok
-Durasi: 2988 ms
+Durasi: 676 ms
 Direktori: /root
 
 INPUT:
 {
-  "command": "ls -li /root/.hermes/skills/autonomous-ai-agents/buddy-mobile-control/SKILL.md /root/.hermes/skills/_backups/2026-11-14-skill-update/buddy-mobile-control/SKILL.md; echo \"=== symlinks ===\"; ls -la /root/.hermes/skills/autonomous-ai-agents/ /root/.hermes/skills/game-analysis/ 2>&1 | head -20; echo \"=== profiles ===\"; find /root/.hermes/profiles -maxdepth 4 -name \"SKILL.md\" -path \"*buddy*\" 2>/dev/null; find /root/.hermes -maxdepth 5 -type d -name \"buddy-mobile-control\" 2>/dev/null"
+  "command": "ls -la /root/.hermes/skills/game-analysis/craftworld-visual-inspector/SKILL.md /root/.hermes/skills/_backups/2026-11-14-skill-update/craftworld-visual-inspector/SKILL.md; echo \"=== live head ===\"; head -12 /root/.hermes/skills/game-analysis/craftworld-visual-inspector/SKILL.md; echo \"=== backup head ===\"; head -12 /root/.hermes/skills/_backups/2026-11-14-skill-update/craftworld-visual-inspector/SKILL.md"
 }
 
 HASIL:
-{"output": "2132178 -rw-r--r--+ 1 root root 18494 Nov 14 12:48 /root/.hermes/skills/_backups/2026-11-14-skill-update/buddy-mobile-control/SKILL.md\n2125232 -rw-r--r--+ 1 root root 16246 Nov 14 05:45 /root/.hermes/skills/autonomous-ai-agents/buddy-mobile-control/SKILL.md\n=== symlinks ===\n/root/.hermes/skills/autonomous-ai-agents/:\ntotal 25\ndrwxr-xr-x+  7 root root 3452 Nov 14 05:45 .\ndrwx------+ 46 root root 3452 Nov 14 12:49 ..\n-rw-r--r--+  1 root root  211 Nov  7 23:30 DESCRIPTION.md\ndrwxr-xr-x+  4 root root 3452 Nov 14 05:45 buddy-mobile-control\ndrwxr-xr-x+  2 root root 3452 Nov  7 23:30 claude-code\ndrwxr-xr-x+  2 root root 3452 Nov  7 23:30 codex\ndrwxr-xr-x+  2 root root 3452 Nov  7 23:30 computer-use\ndrwxr-xr-x+  4 root root 3452 Nov 13 19:08 hermes-agent\n\n/root/.hermes/skills/game-analysis/:\ntotal 9\ndrwxr-xr-x+  3 root root 3452 Nov  8 19:06 .\ndrwx------+ 46 root root 3452 Nov 14 12:49 ..\ndrwxr-xr-x+  4 root root 3452 Nov 14 12:39 craftworld-visual-inspector\n=== profiles ===\n/root/.hermes/skills/autonomous-ai-agents/buddy-mobile-control\n/root/.hermes/skills/_backups/2026-11-14-skill-update/buddy-mobile-control", "exit_code": 0, "error": null}
+{"output": "-rw-r--r--+ 1 root root 26392 Nov 14 12:48 /root/.hermes/skills/_backups/2026-11-14-skill-update/craftworld-visual-inspector/SKILL.md\n-rw-r--r--+ 1 root root 25367 Nov 14 12:39 /root/.hermes/skills/game-analysis/craftworld-visual-inspector/SKILL.md\n=== live head ===\n---\nname: craftworld-visual-inspector\ndescription: Analisis visual Craft World (fasilitas, resource, produksi).\nversion: 1.5.0\nauthor: Hermes Agent\nlicense: MIT\nmetadata:\n  hermes:\n    tags: [vision, image-analysis, craftworld]\n    category: game-analysis\n---\n\n=== backup head ===\n---\nname: craftworld-visual-inspector\ndescription: Analisis visual Craft World (fasilitas, resource, produksi).\nversion: 1.6.0\nauthor: Hermes Agent\nlicense: MIT\nmetadata:\n  hermes:\n    tags: [vision, image-analysis, craftworld]\n    category: game-analysis\n---", "exit_code": 0, "error": null}
