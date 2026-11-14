@@ -1,27 +1,16 @@
 Hermes — hasil tool
-Waktu: 2026-11-14T12:48:52+07:00
-Tool: skill_manage
+Waktu: 2026-11-14T12:49:12+07:00
+Tool: read_file
 Status: ok
-Durasi: 1093 ms
+Durasi: 37 ms
 Direktori: /root
 
 INPUT:
 {
-  "operations": [
-    {
-      "action": "patch",
-      "name": "buddy-mobile-control",
-      "new_string": "Control the user's Android phone through the Buddy/Velnor MCP tools (`mcp__buddy__*` in the Buddy app, `mcp__velnor__*` inside Velnor). Use for any task phrased as \"open app X\", \"tap Y\", \"check what's on screen\", \"take a screenshot\", \"watch/close the ad\", \"how long until Z\".",
-      "old_string": "Control the user's Android phone through the `mcp__buddy__*` tools. Use for any task phrased as \"open app X\", \"tap Y\", \"check what's on screen\", \"take a screenshot\", \"watch/close the ad\", \"how long until Z\"."
-    },
-    {
-      "action": "patch",
-      "name": "buddy-mobile-control",
-      "new_string": "version: 1.3.0",
-      "old_string": "version: 1.2.0"
-    }
-  ]
+  "limit": 30,
+  "offset": 1,
+  "path": "/root/.hermes/skills/autonomous-ai-agents/buddy-mobile-control/references/rewarded-ad-flow.md"
 }
 
 HASIL:
-{"success": true, "operations_applied": 2, "results": [{"name": "buddy-mobile-control", "action": "patch", "file_path": null, "success": true}, {"name": "buddy-mobile-control", "action": "patch", "file_path": null, "success": true}]}
+{"content": "1|# Rewarded-ad flow (Buddy)\n2|\n3|Decision table for \"watch ad / activate boost\" style requests in mobile games.\n4|\n5|## Steps\n6|\n7|1. Screenshot + vision to locate the boost/ad button; note its timer/value before starting.\n8|2. Tap the button (screen coords = image coords x multiplier).\n9|3. Ad opens full-screen. Poll with `wait` (max 10 s per call) + screenshot until a close (X) control appears. Rewarded ads typically run 15-30 s; some longer.\n10|4. Vision-check the close control: it may be a small circular X near the bottom-center or in a corner, sometimes adjacent to a Google Play / Download button. `read_screen` often exposes it as an element with desc \"Ad closed\" — prefer that element id over guessing coordinates. The close control can appear only after a countdown, so keep polling until it exists. Tap only the close control.\n11|5. After closing, re-open the app if it was backgrounded/redirected (Play Store often opens).\n12|6. Screenshot the game and compare the timer/value to step 1 to confirm the reward was applied.\n13|\n14|## Pitfalls\n15|\n16|- Do not tap a \"Download\" / Google Play badge thinking it is the close button.\n17|- Do not assume the game is still foregrounded after the ad closes — check and re-open.\n18|- A tap that \"did nothing\" per `read_screen` may still have worked; verify visually.", "total_lines": 18, "file_size": 1283, "truncated": false, "is_binary": false, "is_image": false, "not_found": false}
